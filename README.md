@@ -17,7 +17,10 @@ I adopt:
 - 'vlc' video player
 - 'hangups' ncurses chat hangout client
 - 'transmission-remote-cli' ncurses torrent client
-- 'acpi', 'xbacklight'
+- 'acpi' and 'xbacklight', for notebook power saving purposes
 - 'pulseaudio' audio server
 - 'pulsemixer' ncurses pulseaudio volume control manager
-- ...some other stuff that I don't remember now :)
+- 'sxiv' as pics viewer
+- 'zsh' as shell
+- 'vim' (of course!) as text editor
+- ...some other stuff that I don't remember now :) and various little scripts to automatize
