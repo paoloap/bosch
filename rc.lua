@@ -1,3 +1,13 @@
+-- SORRY FOR COMMENTS IN ITALIAN LANGUAGE, I'LL TRANSLATE WHEN I'LL HAVE TIME :(
+-- IMPORTANT NOTES:
+---- The network widgets work only if you have wicd-cli set in italian version (it's a weak script invented to work only on my
+--   PC)... it should be simple to adapt it to english/other langs
+---- Volume/Brightness keybindings need pulseaudio-ctl and xbacklight installed and configured
+---- Terminal is set to 'termite' and editor is set to 'vim'. If you use other apps, just change the variables
+---- Set 'networktype' with your network device name to make network and down/upload widgets work!
+---- vicious and lain-git packages are mandatory!
+---- Battery widget needs 'acpi' installed and configured
+---- Obviously... substitute my theme path with yours :)
 
 -- LIBRERIE STANDARD DA CARICARE
 local gears = require("gears")
@@ -154,8 +164,11 @@ separatore = wibox.widget.textbox(" |")
 separatore2 = wibox.widget.textbox("| ")
 
 -- WIDGET DOWN/UP
-
+-- IMPORTANT NOTE: Insert here your network device name. I tried to manage the autodetecting of it, but I couldn't yet :(
 networktype = 'eno1'
+
+-- Below some ugly stuff that does not work. I don't even remember what was its purpose
+
 -- netdownwidget = wibox.widget.textbox()
 -- netupwidget = wibox.widget.textbox()
 -- netdownwidget:set_text("")
@@ -175,6 +188,7 @@ networktype = 'eno1'
 --
 --
 
+-- IMPORTANT!!! THE WIDGET BELOW WORKS ONLY IF YOU HAVE ITALIAN LANGUAGE SET IN WICD!!! FOR ENGLISH VERSION TRY SUBSTITUTING ITALIAN WORDS
 
 -- WIDGET NETWORK STATUS
 netstatuswidget = wibox.widget.textbox()
@@ -566,7 +580,7 @@ end),
     
     -- Applicazioni
     awful.key({ modkey, "Mod1" }, "v", function () awful.util.spawn("vlc") end),
-    awful.key({ modkey, "Mod1" }, "f", function () awful.util.spawn("firefox") end),
+    -- awful.key({ modkey, "Mod1" }, "f", function () awful.util.spawn("firefox") end),
     awful.key({ modkey, "Mod1" }, "h", function () awful.util.spawn("pcmanfm") end),
     awful.key({ modkey, "Mod1" }, "m", function () awful.util.spawn("player") end),
     awful.key({ modkey, "Mod1" }, "n", function () awful.util.spawn("wicd-client -n") end),
