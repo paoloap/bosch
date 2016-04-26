@@ -1,7 +1,10 @@
 # bosch
 Awesome WM 'Bosch Theme'
 
-I adopt:
+In this git I will upload all the configuration files that make my GUI work properly.
+
+I adopt the following:
+- Arch
 - 'awesome' window manager (with some libraries, including 'vicious' and 'lain-git'. See awesome/rc.lua for more details
 - 'oomox-early_bird' gtk3 theme -> https://github.com/actionless/oomox
 - 'area o.43' gtk icon theme -> http://gnome-look.org/content/show.php/area.o43+SVG+Icon+theme?content=101979
