@@ -2,6 +2,7 @@
 Awesome WM 'Bosch Theme'
 
 In this git I will upload all the configuration files that make my GUI work properly.
+NOTE: this GUI configuration is intended to maximize keyboard/automation and minimize mouse/touchpad use.
 
 I adopt the following:
 - Arch
