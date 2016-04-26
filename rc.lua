@@ -7,7 +7,8 @@
 ---- Set 'networktype' with your network device name to make network and down/upload widgets work!
 ---- vicious and lain-git packages are mandatory!
 ---- Battery widget needs 'acpi' installed and configured
----- Obviously... substitute my theme path with yours :)
+---- Obviously, substitute my theme path with yours :)
+---- Finally... sorry if I have everything in a single rc.lua file. One day I will modularize my widgets, I promise!
 
 -- LIBRERIE STANDARD DA CARICARE
 local gears = require("gears")
