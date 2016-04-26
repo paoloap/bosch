@@ -24,4 +24,5 @@ I adopt:
 - 'zsh' as shell
 - 'vim' (of course!) as text editor
 - 'lightdm' as session manager (and lockscreen)
+- 'dmenu' to execute apps (with <mod4> + R)
 - ...some other stuff that I don't remember now :) and various little scripts to automatize
