@@ -23,4 +23,5 @@ I adopt:
 - 'sxiv' as pics viewer
 - 'zsh' as shell
 - 'vim' (of course!) as text editor
+- 'lightdm' as session manager (and lockscreen)
 - ...some other stuff that I don't remember now :) and various little scripts to automatize
