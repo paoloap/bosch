@@ -32,7 +32,7 @@ I adopt the following:
 
 # some screenshots
 Empty screen
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/blank/screenshots/blank.png)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/blank.png)
 
 Two ncmpcpp terminal sessions to view music playlist and visualizer
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/music.png)
