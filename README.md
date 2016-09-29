@@ -35,8 +35,7 @@ Empty screen
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/blank.png)
 
 Two ncmpcpp terminal sessions to view music playlist and visualizer
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/ncmpcpp
-.png)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/ncmpcpp.png)
 
 yaourt, pcmanfm, screenfetch
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/yaourt_pcmanfm_screenfetch.png)
