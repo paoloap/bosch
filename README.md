@@ -2,7 +2,7 @@
 Awesome WM 'Bosch Theme'
 
 In this git I will upload all the configuration files that make my GUI work properly.
-NOTE: this GUI configuration is intended to maximize keyboard/automation and minimize mouse/touchpad use.
+This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
 
 I adopt the following:
 - Arch
@@ -32,7 +32,7 @@ I adopt the following:
 
 # some screenshots
 Empty screen
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/blank/screenshots/png)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/blank/screenshots/blank.png)
 
 Two ncmpcpp terminal sessions to view music playlist and visualizer
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/music.png)
