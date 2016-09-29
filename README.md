@@ -35,17 +35,18 @@ Empty screen
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/blank.png)
 
 Two ncmpcpp terminal sessions to view music playlist and visualizer
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/music.png)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/ncmpcpp
+.png)
 
-curl wttr.in/Rome, neomutt, screenfetch
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/weather_mutt_screenfetch.png)
+yaourt, pcmanfm, screenfetch
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/yaourt_pcmanfm_screenfetch.png)
 
-Vim, sxiv and pcmanfm
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/vim_sxiv_pcmanfm.png)
+Two Vim sessions
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/vim.png)
 
 Maximized screen with browser (taskbar hidden)
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/max_browser_wo_taskbar.png)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/browser_max.png)
 
-rtv, canto-curses, and a browser page tiled, opened with canto-curses
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/browser_canto_rtv.png)
+rtv, canto-curses, and a vimb web page tiled, opened with canto-curses
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/rtv_canto_vimb.png)
 
