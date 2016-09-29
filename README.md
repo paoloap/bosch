@@ -17,16 +17,19 @@ I adopt the following:
 - 'turses' ncurses twitter client
 - 'rtv' ncurses reddit client
 - 'toxic' ncurses tox chat client
-- 'wicd-curses' ncurses wicd client
 - 'vlc' video player
 - 'hangups' ncurses chat hangout client
 - 'transmission-remote-cli' ncurses torrent client
-- 'acpi' and 'xbacklight', for notebook power saving purposes
+- 'acpi' for notebook power saving purposes
 - 'pulseaudio' audio server
 - 'pulsemixer' ncurses pulseaudio volume control manager
 - 'sxiv' as pics viewer
 - 'zsh' as shell
 - 'vim' (of course!) as text editor
 - 'lightdm' as session manager (and lockscreen)
-- 'dmenu' to execute apps (with \<mod4\> + R)
+- 'taskwarrior' / 'timewarrior' to manage my tasks
 - ...some other stuff that I don't remember now :) and various little scripts to automatize
+
+Screenshots:
+Empty screen
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/awesome/themes/bosch/screenshots/blank.png)
