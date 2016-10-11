@@ -112,15 +112,15 @@ theme.layout_centerwork   = themedir .. "/layouts/centerwork.png"
 -- {{{ Widget icons
 
 theme.widget_fs     = themedir .. "/icons/disk.png"
-
 theme.widget_mem    = themedir .. "/icons/mem.png"
 theme.widget_cpu    = themedir .. "/icons/cpu.png"
 theme.widget_net    = themedir .. "/icons/download.png"
 theme.widget_netup  = themedir .. "/icons/upload.png"
+
 theme.widget_vol_on = themedir .. "/icons/vol_on.png"
 theme.widget_vol_off = themedir .. "/icons/vol_off.png"
 theme.widget_music  = themedir .. "/icons/music.png"
-theme.widget_ac_full = themedir .. "/icons/ac_full.png"
+
 theme.widget_ac     = themedir .. "/icons/ac.png"
 theme.widget_bat_full   = themedir .. "/icons/bat_full.png"
 theme.widget_bat_med    = themedir .. "/icons/bat_med.png"

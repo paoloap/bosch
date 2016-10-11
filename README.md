@@ -1,5 +1,6 @@
 # bosch
 Awesome WM 'Bosch Theme'
+v 0.2
 
 In this git I will upload all the configuration files that make my GUI work properly.
 This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.

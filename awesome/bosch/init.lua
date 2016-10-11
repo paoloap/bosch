@@ -14,7 +14,9 @@ local bosch =
   network = require("bosch.network"),
   system = require("bosch.system"),
   audio = require("bosch.audio"),
-  taskbar = require("bosch.taskbar")
+  taskbar = require("bosch.taskbar"),
+  bwibox = require("bosch.bwibox"),
+  layoutsandtags = require("bosch.layoutsandtags")
 }
 
 return bosch

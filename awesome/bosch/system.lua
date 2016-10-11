@@ -43,12 +43,16 @@ function system.battery()
       icon = theme.widget_bat_low
     else
       icon = theme.widget_bat_empty
-      if perc < 5 then
+      if perc < 9 then
 	os.execute("systemctl suspend")
       end
     end
   else
-    icon = theme.widget_ac
+    if perc == 100 then
+      icon = theme.widget_ac_full
+    else
+      icon = theme.widget_ac
+    end
   end
 
   -- Close the files
