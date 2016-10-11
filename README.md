@@ -5,6 +5,9 @@ v 0.2
 In this git I will upload all the configuration files that make my GUI work properly.
 This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
 
+This stuff is still bad developed, all is strongly coupled, and I discourage to adopt it for now, if you like some ideas just try to copy them :)
+Sorry for that, I'm learning Lua *while* doing it
+
 I adopt the following:
 - Arch
 - 'awesome' window manager (with some libraries, including 'vicious' and 'lain-git'. See awesome/rc.lua for more details
