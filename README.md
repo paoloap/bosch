@@ -2,6 +2,8 @@
 Awesome WM 'Bosch Theme'
 v 0.21
 
+... yes, the theme is called 'Bosch' despite the actual wallpaper is by Caravaggio. But I still have some Bosch paintings in wallpaper folder :P
+
 In this git I will upload all the configuration files that make my GUI work properly.
 This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
 
