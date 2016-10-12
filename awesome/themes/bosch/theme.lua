@@ -46,9 +46,9 @@ theme.font      = "Aldrich Regular 10"
 theme.tasklist_disable_icon = true
 
 -- {{{ Colors
-theme.fg_normal = "#000000"
-theme.fg_focus  = "#AA0000"
-theme.fg_urgent = "#555500"
+theme.fg_normal = "#0f0e0a"
+theme.fg_focus  = "#954635"
+theme.fg_urgent = "#c5633c"
 theme.bg_normal = "#ffffff00"
 theme.bg_focus  = "#ffffff00"
 theme.bg_urgent = "#ffffff00"
@@ -56,8 +56,8 @@ theme.bg_urgent = "#ffffff00"
 
 -- {{{ Borders
 theme.border_width  = "2"
-theme.border_normal = "#000000"
-theme.border_focus = "#000000"
+theme.border_normal = "#0f0e0a"
+theme.border_focus = "#0f0e0a"
 theme.border_marked = "#000000"
 -- }}}
 
