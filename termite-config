@@ -2,7 +2,7 @@
 font = Audimat Mono Regular 10
 
 [colors]
-background	= rgba(15, 14, 10, 1)
+background	= rgba(15, 14, 10, 0.9)
 
 # special
 foreground      = #d3ccad

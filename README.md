@@ -1,6 +1,6 @@
 # bosch
 Awesome WM 'Bosch Theme'
-v 0.21
+v 0.3
 
 ... yes, the theme is called 'Bosch' despite the actual wallpaper is by Caravaggio. But I still have some Bosch paintings in wallpaper folder :P
 
@@ -15,6 +15,7 @@ TODO:
 - continue separating functions from rc.lua
 - give coherence to keybindings, rules and signals
 - decrease coupling using a config.lua file
+- create script to select palette on theme (which affects theme.lua, termite-config, gtk theme with oomox-cli, awesome and gtk icons with imagemagick)
 
 
 I adopt the following:
