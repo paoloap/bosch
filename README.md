@@ -16,6 +16,7 @@ NEW STUFF:
 - the awesome files now are compatible (only?) with awesome git/dev version
 - started decoupling some functions
 - added gap for maximized windows
+- added a "switcher" to view all non-minimezed windows in a maximized layout (see below)
 - some corrections here and there
 
 TODO:
@@ -68,3 +69,5 @@ Two ncmpcpp terminal sessions to view music playlist and visualizer
 Three 'vimb-tiled' sessions
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/vimb_tiled.jpg)
 
+That's what happens when you press <mod>+"\" in a maximized tag
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/switcher.jpg)
