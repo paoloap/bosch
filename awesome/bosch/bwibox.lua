@@ -48,10 +48,9 @@ function bwibox.traffic()
   return dnicon, upicon, downwidget, upwidget
 end
 
-function bwibox.separators()
-  local separatore = wibox.widget.textbox(" |")
-  local separatore2 = wibox.widget.textbox("| ")
-  return separatore, separatore2
+function bwibox.separator()
+  local separatore = wibox.widget.textbox(" :: ")
+  return separatore 
 end
 
 function bwibox.volume()
@@ -74,7 +73,7 @@ function bwibox.mpd()
       if args["{state}"] == "Stop" then 
         return ""
       else
-        return "♬ " .. args["{Artist}"]..'/'.. args["{Title}"]
+        return " " .. args["{Artist}"]..'/'.. args["{Title}"]
       end
     end, 7)
   return mpdwidget
@@ -96,10 +95,10 @@ function bwibox.cpu()
   return cpuicon, cpuwidget
 end
 
-function bwibox.get()
+function bwibox.init()
 
   -- Fixed elements (which are the same in every screen
-  separatore, separatore2 = bwibox.separators()
+  separatore = bwibox.separator()
   batteryicon, batterystatus, batterytimer = bwibox.battery()
   neticon, netstatus, netstatustimer = bwibox.network()
   dnicon, upicon, downwidget, upwidget = bwibox.traffic()
@@ -110,7 +109,7 @@ function bwibox.get()
   mytextclock = awful.widget.textclock()
   
   -- Elements wchich are potentially different in every screen
-  -- Variables need to be initializzate because the are arrays
+  -- Variables need to be initialized because the are arrays
   -- (i.e. mywibox[1] is different from mywibox[2]
   mywibox = {}
   my2ndwibox = {}
@@ -120,20 +119,36 @@ function bwibox.get()
   mytaglist = {}
     
   for s = 1, screen.count() do
+    -- Create Wibox
+    mywibox[s] = awful.wibox(
+    {
+      position = "top",
+      height = 20,
+      screen = s,
+      bg = beautiful.bg_bwibox,
+      fg = beautiful.fg_bwibox
+    })
+    -- Create Tag List
+    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.noempty, nil, 
+    {
+      fg_focus = beautiful.fg_bwibox_seltag,
+      bg_focus = beautiful.bg_bwibox_seltag,
+      fg_urgent = beautiful.fg_bwibox_urgent
+    })
+    -- Create Prompt Box
     mypromptbox[s] = awful.widget.prompt()
+    mytitlebar[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused, nil,
+     {
+       bg_focus = beautiful.bg_bwibox,
+       fg_focus = beautiful.fg_bwibox
+     })
+    -- Create Layout Box
     mylayoutbox[s] = awful.widget.layoutbox(s)
-    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.noempty, mytaglist.buttons)
-  --   mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
-    mytitlebar[s] = wibox.widget.textbox()
-  
-  -- Crea la wibox vera e propria
-    mywibox[s] = awful.wibox({ position = "top", height = 20, screen = s })
-  
       -- Widget allineati a sinistra
     local left_layout = wibox.layout.fixed.horizontal()
     -- left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
-    left_layout:add(separatore2)
+    left_layout:add(separatore)
     left_layout:add(mypromptbox[s])
   
     -- Widget allineati a destra
@@ -168,9 +183,10 @@ function bwibox.get()
     mywibox[s]:set_widget(layout)
   
   end
-
   return mywibox
 
 end
+
+
 
 return bwibox

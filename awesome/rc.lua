@@ -20,7 +20,6 @@ local menubar = require("menubar")
 
 -- Layout/Widget libraries
 local wibox = require("wibox")
-local vicious = require("vicious")
 local lain = require("lain")
 local bosch = require("bosch")
 
@@ -43,9 +42,9 @@ do
     -- Make sure we don't go into an endless error loop
     if in_error then return end
     in_error = true
---    naughty.notify({ preset = naughty.config.presets.critical,
---      title = "Oops, an error happened!",
---      text = err })
+    naughty.notify({ preset = naughty.config.presets.critical,
+      title = "Oops, an error happened!",
+      text = err })
     in_error = false
   end)
 end
@@ -55,102 +54,45 @@ end
 -- {{{ Variables
 
 -- Load the theme
-beautiful.init("/home/paoloap/.config/awesome/themes/bosch/theme.lua")
+beautiful.init("~/.config/awesome/themes/bosch/theme.lua")
 
+naughty.config.presets.normal.timeout          = 5
+naughty.config.presets.normal.screen           = 1
+naughty.config.presets.normal.position         = "top_right"
+naughty.config.presets.normal.margin           = 10
+naughty.config.presets.normal.gap              = "5"
+naughty.config.presets.normal.ontop            = true
+naughty.config.presets.normal.icon_size        = 16
+naughty.config.presets.normal.fg               = beautiful.notify_fg
+naughty.config.presets.normal.bg               = beautiful.notify_bg
+naughty.config.presets.normal.border_color     = beautiful.notify_border
+naughty.config.presets.normal.border_width     = beautiful.notify_border_width
+naughty.config.presets.normal.hover_timeout    = nil
 -- Default terminal, editor, launch command
 terminal = "termite"
 editor = "vim"
-editor_cmd = terminal .. " -e " .. editor
+launch_in_term = terminal .. " -e "
+editor_cmd = launch_in_term .. editor
 
 -- Default modkey. 'Mod4' is Windows key (also named 'Super')
 modkey = "Mod4"
 
 layouts = bosch.layoutsandtags.layouts()
 tags = bosch.layoutsandtags.tags()
----- -- Layout table
----- local layouts =
----- {
-----   awful.layout.suit.floating,
-----   lain.layout.uselesstile,
-----   lain.layout.centerfair,
----- --  lain.layout.termfair,
-----   lain.layout.uselessfair,
-----   lain.layout.centerwork,
-----   awful.layout.suit.max,
-----   awful.layout.suit.max.fullscreen
----- }
----- 
----- -- Lain: layout settings
----- lain.layout.termfair.nmaster = 3
----- lain.layout.termfair.ncol = 1
----- lain.layout.centerfair.nmaster = 3
----- lain.layout.centerfair.ncol = 1
----- lain.layout.centerwork.top_left = 0
----- lain.layout.centerwork.top_right = 1
----- lain.layout.centerwork.bottom_left = 2
----- lain.layout.centerwork.bottom_right = 3
----- 
----- -- }}}
 
 -- {{{ Wallpapers
 
 if beautiful.wallpaper then
-  for s = 1, screen.count() do
+  awful.screen.connect_for_each_screen(function(s)
     gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-  end
+  end)
 end
 
 -- }}}
 
----- -- {{{ Tags
----- 
----- tags = {}
----- 
----- tags[1] = awful.tag({"⚓", "%", "¶", "♥", "⚒", "#", "❏", "♬"  }, 1, {layouts[6], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[3]})
----- if screen.count() == 2 then
-----   local fextmon = assert(io.popen("xrandr | grep ' connected ' | cut -d' ' -f1 | sed '2!d'"))
-----   local extmon = fextmon:read("*l")
-----   if extmon == "VGA1" then
-----     tags[2] = awful.tag({"⚒", "⚓"}, 2, {layouts[2], layouts[6]})
-----   else
-----     tags[2] = awful.tag({"❏", "⚓"}, 2, {layouts[2], layouts[6]})
-----   end
----- end
----- 
----- -- }}}
-
--- {{{ Menu
-
--- Create main menu
-myawesomemenu = {
-  { "manual", terminal .. " -e man awesome" },
-  { "edit config", editor_cmd .. " " .. awesome.conffile },
-  { "restart", awesome.restart },
-  { "quit", awesome.quit }
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-    { "open terminal", terminal }
-  }
-})
-
-menubar.utils.terminal = terminal
-
--- }}}
 
 mywibox = {}
-mywibox = bosch.bwibox.get()
-
-
--- {{{ MOUSE ---------------------------------------------------------------------
-
-root.buttons(awful.util.table.join(
-  awful.button({ }, 3, function () mymainmenu:toggle() end),
-  awful.button({ }, 4, awful.tag.viewnext),
-  awful.button({ }, 5, awful.tag.viewprev)
-))
--- }}} ---------------------------------------------------------------------------
-----------------------------------------------------------------------------------
+mywibox = bosch.bwibox.init()
 
 
 -- {{{ TASTIERA ------------------------------------------------------------------
@@ -165,51 +107,28 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     -- Spostamento tra diverse finestre dentro una tag
-    -- awful.key({ modkey,           }, "j",
   awful.key({ modkey,           }, "Tab",
     function ()
       awful.client.focus.byidx( 1)
       if client.focus then client.focus:raise() end
-      -- bosch.taskbar.show(mouse.screen)
-    --end,
-    -- function()
-      -- os.execute("(sleep 2 && echo 'bosch = require(\"bosch\"); bosch.taskbar.hide(mouse.screen)' | awesome-client) &")
-      end),
-  -- awful.key({ modkey,           }, "k",
+  end),
   awful.key({ modkey, "Shift"   }, "Tab",
     function ()
       awful.client.focus.byidx(-1)
       if client.focus then client.focus:raise() end
-      -- bosch.taskbar.show(mouse.screen)
-    end),
+      -- bosch.taskbar.show(mouse.screen.index)
+   end),
 
-  -- Mostra menu (disattivato per mancato utilizzo)
-  -- awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
   -- Manipola il layout
   awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
   awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
   awful.key({ modkey,           }, "a", function ()
     awful.screen.focus_relative( 1)
-      n, empty_screen = bosch.taskbar.check_skip_taskbar_screen(mouse.screen)
-      if empty_screen then
-	mytitlebar[mouse.screen]:set_text("")
-      end
   end),
 
 
   awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-
-  -- Il vecchio spostamento da finestra attuale a ultima finestra in focus
-  -- Disattivato per mancato utilizzo
-  -- awful.key({ modkey,           }, "Tab",
-  --     function ()
-  --         awful.client.focus.history.previous()
-  --            if client.focus then
-  --                client.focus:raise()
-  --            end
-  --        end
-  --     ),
 
   -- Programmi
 
@@ -234,39 +153,33 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
   awful.key({ modkey,           }, "space", function ()
     awful.layout.inc(layouts,  1)
-    bosch.taskbar.check_skip_taskbar_screen(mouse.screen)
   end),
   awful.key({ modkey, "Shift"   }, "space", function ()
     awful.layout.inc(layouts, -1)
-    bosch.taskbar.check_skip_taskbar_screen(mouse.screen)
   end),
   awful.key({ modkey, "Control" }, "n", function ()
     local c = awful.client.restore(mouse.screen)
-    bosch.taskbar.check_skip_taskbar_client(c, mouse.screen)
+    client.focus = c
+    c:raise()
   end),
-  awful.key({ modkey }, "\\", function()
-    bosch.taskbar.toggle(mouse.screen)
+  awful.key({ modkey, "Shift" }, "n", function()
+    bosch.taskbar.toggle(mouse.screen.index)
   end),
-  awful.key({ modkey, "Shift" }, "\\", function()
-    if awful.layout.get(mouse.screen) == awful.layout.suit.max then
-      layoutmax = true
-      awful.layout.set(lain.layout.termfair)
-    elseif awful.layout.get(mouse.screen) == lain.layout.termfair then
-      layoutmax = false
+  awful.key({ modkey, }, "\\", function()
+    if awful.layout.get(mouse.screen.index) == awful.layout.suit.max then
+      awful.layout.set(bosch.switcher.layout())
+    elseif awful.layout.get(mouse.screen.index) == bosch.switcher.layout() then
       awful.layout.set(awful.layout.suit.max)
     end
   end),
 
   -- Menu "Super-r"
-  awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
-  -- awful.key({modkey }, "r", function()
-  --   awful.util.spawn_with_shell( "exe=`dmenu_path | dmenu -b -nf '#888888' -nb '#000000' -sf '#ffffff' -sb '#285577'` && exec $exe")
-  -- end),
+  awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen.index]:run() end),
   -- Menu "Lua"
   awful.key({ modkey }, "x",
     function ()
       awful.prompt.run({ prompt = "Run Lua code: " },
-        mypromptbox[mouse.screen].widget,
+        mypromptbox[mouse.screen.index].widget,
         awful.util.eval, nil,
         awful.util.getdir("cache") .. "/history_eval"
       )
@@ -297,11 +210,28 @@ globalkeys = awful.util.table.join(
     volumeicon:set_image(vi)
   end),
 
+  -- MPD
+  awful.key({ }, "XF86AudioPlay", function ()
+    awful.util.spawn("mpc-pause")
+  end),
+  awful.key({ }, "XF86AudioPrev", function ()
+    awful.util.spawn("mpc prev")
+  end),
+  awful.key({ }, "XF86AudioNext", function ()
+    awful.util.spawn("mpc next")
+  end),
   -- Applicazioni
-  awful.key({ modkey, "Mod1" }, "b", function () awful.util.spawn("adblim") end),
+  awful.key({ }, "XF86HomePage", function ()
+    awful.util.spawn("brws")
+  end),
+  awful.key({ modkey, }, "F5", function ()
+    awful.util.spawn("tiledvimb")
+  end),
+  awful.key({ modkey, "Mod1" }, "b", function ()
+    awful.spawn("vlc", {instance = "cacca" })
+  end),
   awful.key({ modkey, "Mod1" }, "h", function () awful.util.spawn("pcmanfm") end),
-  awful.key({ modkey, "Mod1" }, "n", function () awful.util.spawn("wicd-client -n") end),
-  awful.key({ modkey, "Mod1" }, "e", function () awful.util.spawn("termite -e vim") end),
+  awful.key({ modkey, "Mod1" }, "n", function () awful.util.spawn(launch_in_term .. "wicd-curses") end),
 
   -- Dynamic tagging (with LAIN)
 
@@ -323,8 +253,11 @@ clientkeys = awful.util.table.join(
   awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
   awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
   awful.key({ modkey,           }, "o",      function (c)
-    awful.client.movetoscreen(c, mouse.screen + 1)
-    bosch.taskbar.check_skip_taskbar_client(c, mouse.screen)
+    awful.client.movetoscreen(c, mouse.screen.index + 1)
+  end),
+  awful.key({ modkey, "Shift"}, "o", function(c)
+    awful.client.movetoscreen(c, mouse.screen.index + 1)
+    awful.screen.focus_relative( 1) 
   end),
 --  awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
   awful.key({ modkey,           }, "n",
@@ -333,17 +266,24 @@ clientkeys = awful.util.table.join(
       -- minimized, since minimized clients can't have the focus.
       c.minimized = true
       c.skip_taskbar = false
-      n, empty_screen = bosch.taskbar.check_skip_taskbar_screen(mouse.screen)
-      if empty_screen then
-	mytitlebar[mouse.screen]:set_text("")
-      end
     end),
   awful.key({ modkey,           }, "m",
     function (c)
       c.maximized_horizontal = not c.maximized_horizontal
       c.maximized_vertical   = not c.maximized_vertical
     end
-  )
+  ),
+  awful.key({ modkey,           }, "<",
+    function (c)
+      if c.class == "Vlc" then
+	if extmon == "HDMI1" then
+	  awful.client.movetotag(tags[2][2],c)
+	else
+	  awful.client.movetotag(tags[1][7],c)
+	end
+      end
+
+    end)
 
 )
 
@@ -354,7 +294,7 @@ for i = 1, 9 do
   globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey }, "#" .. i + 9,
       function ()
-        local screen = mouse.screen
+        local screen = mouse.screen.index
 	local noemptytags = {}
 	for j = 1, 9 do
 	  local tag = awful.tag.gettags(screen)[j]
@@ -367,44 +307,17 @@ for i = 1, 9 do
 	local seltag = noemptytags[i]
 	if seltag then
           awful.tag.viewonly(seltag)
-          -- check if the tag is empty. if yes, empty titlebar
-	  n, empty_screen = bosch.taskbar.check_skip_taskbar_screen(mouse.screen)
-	  if empty_screen then
-	     mytitlebar[mouse.screen]:set_text("")
-	  end
         end
       end
     ),
---    awful.key({ modkey, "Control" }, "#" .. i + 9,
---      function ()
---        local screen = mouse.screen
---        local tag = awful.tag.gettags(screen)[i]
---        if tag then
---          awful.tag.viewtoggle(tag)
---        end
---      end
---    ),
     awful.key({ modkey, "Shift" }, "#" .. i + 9,
       function ()
-        local tag = awful.tag.gettags(client.focus.screen)[i]
+        local tag = awful.tag.gettags(client.focus.screen.index)[i]
         if client.focus and tag then
           awful.client.movetotag(tag)
         end
-	-- check if the screen is empty after client's repositioning. if yes, empty titlebar
-	n, empty_screen = bosch.taskbar.check_skip_taskbar_screen(mouse.screen)
-	if empty_screen then
-	   mytitlebar[mouse.screen]:set_text("")
-	end
       end
     )
---    awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
---      function ()
---        local tag = awful.tag.gettags(client.focus.screen)[i]
---        if client.focus and tag then
---          awful.client.toggletag(tag)
---        end
---      end
---    )
   )
 end
 
@@ -429,37 +342,23 @@ awful.rules.rules = {
   -- Regole valide per tutti i client
   { rule = { },
     properties = { border_width = beautiful.border_width,
-      border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       keys = clientkeys,
-      buttons = clientbuttons
+      buttons = clientbuttons,
+      placement = awful.placement.no_overlap+awful.placement.no_offscreen+awful.placement.under_mouse
     }
   },
 
--- Regole per singoli client (per ora tutte disattivate)
---    { rule = { class = "MPlayer" },
---      properties = { floating = true } },
---    { rule = { class = "pinentry" },
---      properties = { floating = true } },
---    { rule = { class = "gimp" },
---      properties = { floating = true } },
---
-    { rule = { name = "zsh" },
-      properties = { tag = tags[1][2] }
-    },
-    { rule = { name = "ncmpcpp 0.7.5" },
+    { rule = { name = "mpd-play" },
       properties = { tag = tags[1][8] }
     },
-    { rule = { class = "Vlc" },
-      properties = { tag = tags[1][7] }
+    { rule = { name = "mpd-visualizer" },
+      properties = { tag = tags[1][8] }
     },
-    { rule = { name = "StartPage Search Engine" },
+    { rule = { instance = "vimb-main" },
       properties = { tag = tags[1][1] }
-    },
+    }
 
---      properties = { tag = tags[2][1] } },
---    { rule = { class = "Chromium" },
---      properties = { tag = tags[1][1] } },
 
 }
 
@@ -471,20 +370,15 @@ awful.rules.rules = {
 -- Funzioni da eseguire all'apertura di un nuovo client
 
 client.connect_signal("manage", function (c, startup)
-  bosch.taskbar.check_skip_taskbar_client(c, mouse.screen)
   -- Focus al passaggio del mouse
   c:connect_signal("mouse::enter", function(c)
-    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+    if awful.layout.get(c.screen.index) ~= awful.layout.suit.magnifier
         and awful.client.focus.filter(c) then
       client.focus = c
     end
   end)
 
   if not startup then
-    -- Set the windows at the slave,
-    -- i.e. put it at the end of others instead of setting it master.
-    -- awful.client.setslave(c)
-
     -- Put windows in a smart way, only if they does not set an initial position.
     if not c.size_hints.user_position and not c.size_hints.program_position then
       awful.placement.no_overlap(c)
@@ -492,80 +386,81 @@ client.connect_signal("manage", function (c, startup)
     end
   end
 
-  -- DISATTIVA TUTTE LE CAZZO DI TITLEBAR
-  local titlebars_enabled = false
-
-  if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
-    -- pulsanti titlebar (in caso venisse attivata su qualche client)
-    local buttons = awful.util.table.join(
-      awful.button({ }, 1, function()
-        client.focus = c
-        c:raise()
-        awful.mouse.client.move(c)
-      end),
-      awful.button({ }, 3, function()
-        client.focus = c
-        c:raise()
-        awful.mouse.client.resize(c)
-      end)
-    )
-
-    -- Widgets allineati a sinistra nella titlebar
-    local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(awful.titlebar.widget.iconwidget(c))
-    left_layout:buttons(buttons)
-
-    -- Widgets allineati a destra nella titlebar
-    local right_layout = wibox.layout.fixed.horizontal()
-    right_layout:add(awful.titlebar.widget.floatingbutton(c))
-    right_layout:add(awful.titlebar.widget.maximizedbutton(c))
-    right_layout:add(awful.titlebar.widget.stickybutton(c))
-    right_layout:add(awful.titlebar.widget.ontopbutton(c))
-    right_layout:add(awful.titlebar.widget.closebutton(c))
-
-    -- Titolo titlebar (in mezzo)
-    local middle_layout = wibox.layout.flex.horizontal()
-    local title = awful.titlebar.widget.titlewidget(c)
-    title:set_align("center")
-    middle_layout:add(title)
-    middle_layout:buttons(buttons)
-
-    -- Metti insieme tutto
-    local layout = wibox.layout.align.horizontal()
-    layout:set_left(left_layout)
-    layout:set_right(right_layout)
-    layout:set_middle(middle_layout)
-
-    awful.titlebar(c):set_widget(layout)
+  if c.type == "normal" or c.type == "dialog" then
+    bosch.switcher.init_titlebar(c)
   end
 end)
 
 client.connect_signal("focus", function(c)
-  c.border_width = "2"
-  c.border_color = beautiful.border_focus
-  -- update the titlebar with new focused client's name
-  mytitlebar[mouse.screen]:set_text(c.name)
+  local l = awful.layout.get(c.screen.index)
+  if l == bosch.switcher.layout() then c.border_color = beautiful.bg_switcher_focus
+  else
+    c.border_color = beautiful.border_focus
+    if l == awful.layout.suit.max or c.maximized then
+      c.border_color = beautiful.border_color_max
+    end
+  end
 end)
 client.connect_signal("unfocus", function(c)
-  c.border_width = "2"
+  local l = awful.layout.get(c.screen.index)
   c.border_color = beautiful.border_normal
 end)
-client.connect_signal("unmanage", function(c)
-  -- check if the screen is empty after client's closure. if yes, empty titlebar
-  n, empty_screen = bosch.taskbar.check_skip_taskbar_screen(mouse.screen)
-  if empty_screen then
-    mytitlebar[mouse.screen]:set_text("")
+client.connect_signal("property::maximized", function (c)
+  if l == awful.layout.suit.max then
+    c.maximized = false
+  elseif c.maximized then
+    c.border_color = beautiful.border_color_max
   end
 end)
-
-client.connect_signal("property::name", function(c)
-  -- when client changes name, check if it was focused. if yes, update titlebar
-  -- (i don't know why, it doesn't work...)
-  if c == client.focus then
-    mytitlebar[mouse.screen]:set_text(c.name)
+tag.connect_signal("property::selected", function(t)
+    if t.layout == awful.layout.suit.max then
+    elseif t.layout == awful.layout.suit.max.fullscreen then
+      t.gap = 0
+    else
+      t.gap = 3
+    end
+  
+  end)
+tag.connect_signal("property::layout", function(t)
+  clients = t:clients()
+  local l = awful.layout.get(mouse.screen.index)
+  if l == awful.layout.suit.max.fullscreen then
+    t.gap = 0
+  elseif l == awful.layout.suit.max then
+    t.gap = 3
+    for i, c in ipairs(clients) do
+      awful.titlebar.hide(c)
+      c.border_color = beautiful.border_color_max
+    end
+  elseif l == bosch.switcher.layout() then
+    t.gap = 3
+    for i, c in ipairs(clients) do
+      awful.titlebar.show(c)
+      c.border_width = beautiful.switcher_border_width
+      if c == awful.client.focus.history.get(mouse.screen.index, 0) then
+	c.border_color = beautiful.bg_switcher_focus
+      end
+      
+    end
+  else
+    t.gap = 3
+    for i, c in ipairs(clients) do
+      awful.titlebar.hide(c)
+      if c.maximized then
+	c.border_width = beautiful.border_width_max
+	c.border_color = beautiful.border_color_max
+      else
+	c.border_width = beautiful.border_width
+      end
+      if c == awful.client.focus.history.get (mouse.screen.index, 0) then
+	c.border_color = beautiful.border_focus
+      else
+	c.border_color = beautiful.border_normal
+      end
+    end
   end
-end)
 
+end)
 -- }}} ---------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
 

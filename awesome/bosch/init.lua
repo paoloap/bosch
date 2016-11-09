@@ -16,7 +16,8 @@ local bosch =
   audio = require("bosch.audio"),
   taskbar = require("bosch.taskbar"),
   bwibox = require("bosch.bwibox"),
-  layoutsandtags = require("bosch.layoutsandtags")
+  layoutsandtags = require("bosch.layoutsandtags"),
+  switcher = require("bosch.switcher")
 }
 
 return bosch

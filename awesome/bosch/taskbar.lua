@@ -20,67 +20,14 @@ local tag = require("awful.tag")
 local wibox = require("wibox")
 local instance = {  tasks = {},
 		    wibox = nil }
-
---- taskbar.check_skip_taskbar_client takes client and screen as input,
---- and returns true if the client must be hidden
--- @param first client
--- @param second screen
--- @return true if client must be hidden, false otherwise
-function taskbar.check_skip_taskbar_client(c, screen)
-  local l = layout.get(screen)
-  if c ~= nil then
-    if l ~= layout.suit.max and l ~= layout.suit.max.fullscreen and not c.minimized then
-      c.skip_taskbar = true
-    else
-      c.skip_taskbar = false
-    end
-  end
-end
-
---- taskbar.check_skip_taskbar_screen takes screen as input, and returns
---- and returns the number of clients which must appear in taskbar for
---- actual screen, and boolean value which is true if screen hasn't
---- focused clients
--- @param screen
--- @return first number of clients showable in taskbar
--- @return second true if screen hasn't any focused client
-function taskbar.check_skip_taskbar_screen(screen)
-  local num = 0
-  local empty = true
-  local l = layout.get(screen)
-  local tags = tag.gettags(screen)
-  for i, t in ipairs(tags) do
-    if t.selected then
-      local clients = t.clients(t)
-      for j, c in ipairs(clients) do
-	if not c.minimized then
-	  empty = false
-	  if l ~= layout.suit.max and l ~= layout.suit.max.fullscreen then
-	    c.skip_taskbar = true
-	  else
-	    c.skip_taskbar = false
-	    num = num + 1
-	  end
-	else
-	  c.skip_taskbar = false
-	  num = num + 1
-	end
-      end
-    end
-  end
-  return num, empty
-end
-
-function empty_screen(screen)
-  local empty = true
-end
+local beautiful = require("beautiful")
 
 --- taskbar.initialize draws a new wibox (just below the main one) and
 --- puts a taskbar into it
 -- @param screen
 local function initialize(s)
   instance.wibox = wibox({})
-  instance.tasks[s] = widget.tasklist(s, widget.tasklist.filter.currenttags)
+  instance.tasks[s] = widget.tasklist(s, widget.tasklist.filter.minimizedcurrenttags, nil, {bg_normal = "#100d0a", fg_normal = "#d3c8a3"})
   instance.wibox.ontop = true
   local layout = wibox.layout.fixed.horizontal()
   layout:add(instance.tasks[s])
@@ -92,7 +39,6 @@ end
 --- taskbar.show shows taskbar in actual screen
 -- @param screen
 function taskbar.show(s)
-  if taskbar.check_skip_taskbar_screen(s) == 0 then return end
   if not instance.wibox then
     initialize(s)
   elseif not instance.wibox.visible then
