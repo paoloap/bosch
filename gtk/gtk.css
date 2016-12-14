@@ -1,0 +1,5 @@
+/* Put this in $HOME/.config/gtk-3.0
+ * It will setup termite padding */
+VteTerminal, vte-terminal {
+    padding: 20px;
+}

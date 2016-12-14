@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   version="1.0"
+   sodipodi:docbase="/home/qwerty/.icons/MonoIce/scalable/actions"
+   sodipodi:docname="stock_mail-unread-multiple.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#f0f0f0"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10000"
+     objecttolerance="10000"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="-103.51915"
+     inkscape:cy="-38.054853"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     width="48px"
+     height="48px"
+     showgrid="true"
+     inkscape:window-width="1278"
+     inkscape:window-height="976"
+     inkscape:window-x="1"
+     inkscape:window-y="24" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 9.34375 16.5625 L 1.34375 24.5625 L 20 24.5625 L 20 19.6875 L 21.78125 19.6875 L 18.65625 16.5625 L 14 21.25 L 9.34375 16.5625 z "
+       id="path6061" />
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 1.3322676e-15,7.244605 L 8.3030301,15.244605 L 1.3322676e-15,23.244605 L 1.3322676e-15,7.244605 z "
+       id="path5088" />
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 1.3333334,5.9112717 L 13.999999,18.577939 L 26.666667,5.9112717 L 1.3333334,5.9112717 z "
+       id="path2160" />
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 28 7.25 L 20 15.25 L 24.4375 19.6875 L 28 19.6875 L 28 7.25 z "
+       id="path6059" />
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 21.333333,38.341267 L 29.333333,30.341266 L 34,35.007933 L 38.666666,30.341266 L 46.666667,38.341267 L 21.333333,38.341267 z "
+       id="path2161" />
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 20,21.007933 L 28,29.007933 L 20,37.007933 L 20,21.007933 z "
+       id="path2163" />
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 21.333333,19.674599 L 34,32.341267 L 46.666667,19.674599 L 21.333333,19.674599 z "
+       id="path2165" />
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 48,21.007933 L 40,29.007933 L 48,37.007933 L 48,21.007933 z "
+       id="path2167" />
+  </g>
+</svg>

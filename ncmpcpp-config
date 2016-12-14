@@ -3,4 +3,39 @@ visualizer_output_name = "my_fifo"
 visualizer_sync_interval = "30" 
 visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
-visualizer_color = "yellow"
+header_visibility = yes
+statusbar_visibility = yes
+
+
+colors_enabled = "yes"
+empty_tag_color = "cyan"
+header_window_color = "default"
+volume_color = "default"
+state_line_color = "default"
+state_flags_color = "default"
+main_window_color = "black"
+color1 = "black"
+color2 = "black"
+main_window_highlight_color = "blue"
+progressbar_color = "blue"
+statusbar_color = "default"
+active_column_color = "black"
+window_border_color = "blue"
+active_window_border = "blue"
+song_columns_list_format = "(6f)[black]{l} (25)[black]{a} (40)[blue]{t|f} (30)[black]{b}"
+now_playing_prefix = "$b"
+now_playing_suffix = "$/b"
+playlist_display_mode = "columns" (classic/columns)
+autocenter_mode = "yes"
+centered_cursor = "no"
+ignore_leading_the = "yes"
+
+song_status_format = "$1%a $1- $1%t $1- $1%b {(Disc %d) }$1($1%y$1)"
+titles_visibility = "no"
+
+browser_playlist_prefix = "$2plist »$9 "
+browser_display_mode = "columns" (classic/columns)
+
+song_window_title_format = "MPD: {%a > }{%t}{ [%b{ Disc %d}]}|{%f}"
+search_engine_display_mode = "columns" (classic/columns)
+follow_now_playing_lyrics = "yes"

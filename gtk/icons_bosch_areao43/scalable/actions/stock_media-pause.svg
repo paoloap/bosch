@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48px"
+   height="48px"
+   id="svg1307"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docbase="/home/christof/themes_and_icons/meinICONtheme/BRIT ICONS/scalable/actions"
+   sodipodi:docname="media-playback-pause.svg"
+   inkscape:export-filename="/home/lapo/Desktop/Grafica/Icone/media-actions-outlines.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs1309">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective37" />
+    <linearGradient
+       id="linearGradient2584">
+      <stop
+         style="stop-color:#373b41;stop-opacity:1;"
+         offset="0"
+         id="stop2586" />
+      <stop
+         style="stop-color:#f0f0f0;stop-opacity:0;"
+         offset="1"
+         id="stop2588" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2697">
+      <stop
+         id="stop2699"
+         offset="0"
+         style="stop-color:#babdb6" />
+      <stop
+         id="stop2701"
+         offset="1"
+         style="stop-color:#555753" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#f0f0f0"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="8"
+     inkscape:cx="25.087754"
+     inkscape:cy="18.518074"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:grid-points="true"
+     fill="#fcaf3e"
+     showguides="false"
+     inkscape:guide-bbox="true"
+     guidetolerance="1px"
+     stroke="#729fcf"
+     inkscape:window-width="1680"
+     inkscape:window-height="1001"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     showborder="true">
+    <sodipodi:guide
+       orientation="horizontal"
+       position="38.996647"
+       id="guide2194" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="9.0140845"
+       id="guide2196" />
+    <sodipodi:guide
+       orientation="vertical"
+       position="9.0140845"
+       id="guide2198" />
+    <sodipodi:guide
+       orientation="vertical"
+       position="38.975184"
+       id="guide2200" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="22.988281"
+       id="guide2202" />
+    <sodipodi:guide
+       orientation="vertical"
+       position="23.908786"
+       id="guide2204" />
+    <sodipodi:guide
+       orientation="vertical"
+       position="157.99417"
+       id="guide4332" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="-36.062446"
+       id="guide4334" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="-58.02695"
+       id="guide4336" />
+    <sodipodi:guide
+       orientation="vertical"
+       position="180.00287"
+       id="guide4338" />
+    <sodipodi:guide
+       orientation="vertical"
+       position="107.92217"
+       id="guide4417" />
+    <sodipodi:guide
+       orientation="vertical"
+       position="129.93087"
+       id="guide4419" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="19.996875"
+       id="guide5106" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="63.039674"
+       id="guide5119" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="49.066305"
+       id="guide5121" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="-86.007168"
+       id="guide5307" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="-108.09009"
+       id="guide5309" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="-100.15429"
+       id="guide3111" />
+    <inkscape:grid
+       id="GridFromPre046Settings"
+       type="xygrid"
+       originx="0px"
+       originy="0px"
+       spacingx="0.5px"
+       spacingy="0.5px"
+       color="#0000ff"
+       empcolor="#0000ff"
+       opacity="0.2"
+       empopacity="0.4"
+       empspacing="2" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata1312">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Media Playback Stop</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Lapo Calamandrei</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/" />
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>player</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>stop</rdf:li>
+            <rdf:li>video</rdf:li>
+            <rdf:li>music</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/2.0/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Attribution" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="BASE"
+     style="display:inline" />
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     style="display:inline">
+    <g
+       style="fill:#f0f0f0;fill-opacity:1;stroke:#373b41;stroke-opacity:1;display:inline"
+       transform="translate(-132.99996,-70.998899)"
+       id="g2410">
+      <g
+         style="fill:#f0f0f0;fill-opacity:1;stroke:#373b41;stroke-opacity:1"
+         id="g2412"
+         transform="translate(0.30303,-2.30303)" />
+      <g
+         style="fill:#f0f0f0;fill-opacity:1;stroke:#373b41;stroke-opacity:1"
+         id="g2414">
+        <path
+           sodipodi:type="inkscape:offset"
+           inkscape:radius="3.1274991"
+           inkscape:original="M 146.40625 84 C 146.16721 84.045611 145.99571 84.256684 146 84.5 L 146 105.5 C 146.00003 105.77613 146.22387 105.99997 146.5 106 L 154.5 106 C 154.77613 105.99997 154.99997 105.77613 155 105.5 L 155 84.5 C 154.99997 84.223869 154.77613 84.000028 154.5 84 L 146.5 84 C 146.46882 83.997064 146.43743 83.997064 146.40625 84 z M 159.40625 84 C 159.16721 84.045611 158.99571 84.256684 159 84.5 L 159 105.5 C 159.00003 105.77613 159.22387 105.99997 159.5 106 L 167.5 106 C 167.77613 105.99997 167.99997 105.77613 168 105.5 L 168 84.5 C 167.99997 84.223869 167.77613 84.000028 167.5 84 L 159.5 84 C 159.46882 83.997064 159.43743 83.997064 159.40625 84 z "
+           style="fill:#f0f0f0;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;marker:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+           id="path2418"
+           d="M 146.125,80.875 C 146.01984,80.89051 145.91554,80.91137 145.8125,80.9375 C 144.09908,81.264437 142.84425,82.818393 142.875,84.5625 L 142.875,105.5 C 142.87521,107.46611 144.53389,109.12479 146.5,109.125 L 154.5,109.125 C 155.45865,109.1249 156.34353,108.72634 157,108.09375 C 157.65639,108.72642 158.54135,109.1249 159.5,109.125 L 167.5,109.125 C 169.46611,109.12479 171.12479,107.46611 171.125,105.5 L 171.125,84.5 C 171.12479,82.53389 169.46613,80.875199 167.5,80.875 L 159.78125,80.875 C 159.68429,80.86587 159.59726,80.876304 159.5,80.875 C 159.37032,80.873261 159.25428,80.862827 159.125,80.875 C 159.01984,80.89051 158.91554,80.91137 158.8125,80.9375 C 158.12047,81.069545 157.58354,81.504276 157.09375,81.96875 C 156.43027,81.289668 155.49835,80.875101 154.5,80.875 L 146.78125,80.875 C 146.68429,80.86587 146.59726,80.876304 146.5,80.875 C 146.37032,80.873261 146.25428,80.862827 146.125,80.875 z" />
+      </g>
+    </g>
+    <g
+       id="g2141"
+       transform="translate(-132.99996,-70.998899)"
+       style="fill:#373b41;fill-opacity:1;stroke:#373b41;stroke-opacity:1;display:inline">
+      <g
+         transform="translate(0.30303,-2.30303)"
+         id="g1816"
+         style="fill:#373b41;fill-opacity:1;stroke:#373b41;stroke-opacity:1" />
+      <g
+         id="g1791"
+         style="fill:#373b41;fill-opacity:1;stroke:#373b41;stroke-opacity:1">
+        <path
+           style="color:#373b41;fill:#373b41;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;marker:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+           d="M 146.40625,84 C 146.16721,84.045611 145.99571,84.256684 146,84.5 L 146,105.5 C 146.00003,105.77613 146.22387,105.99997 146.5,106 L 154.5,106 C 154.77613,105.99997 154.99997,105.77613 155,105.5 L 155,84.5 C 154.99997,84.223869 154.77613,84.000028 154.5,84 L 146.5,84 C 146.46882,83.997064 146.43743,83.997064 146.40625,84 L 146.40625,84 z M 159.40625,84 C 159.16721,84.045611 158.99571,84.256684 159,84.5 L 159,105.5 C 159.00003,105.77613 159.22387,105.99997 159.5,106 L 167.5,106 C 167.77613,105.99997 167.99997,105.77613 168,105.5 L 168,84.5 C 167.99997,84.223869 167.77613,84.000028 167.5,84 L 159.5,84 C 159.46882,83.997064 159.43743,83.997064 159.40625,84 L 159.40625,84 z "
+           id="rect3614"
+           sodipodi:nodetypes="cccccccccccccccccccccc" />
+      </g>
+    </g>
+  </g>
+</svg>

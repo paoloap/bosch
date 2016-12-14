@@ -1,23 +1,23 @@
 ---------------------------------------------------------------------------
---- Bosch library: just some network, system, audio and taskbar functions
---
--- @author paoloap
--- @copyright 2016 Paolo Porcedda
--- @release 0.1
+--- BOSCH - bosch init.lua
+--- Bosch modules initialization
+-- Released under GPL v3
+-- To do: rules and signals modules
+-- @author schuppenflektor
+-- @copyright 2016 Paolo Porcedda - porcedda(at)gmail.com
 -- @module bosch
+-- @release 0.6
 ---------------------------------------------------------------------------
 
 package.loaded.bosch = nil
 
 local bosch =
 {
-  network = require("bosch.network"),
-  system = require("bosch.system"),
-  audio = require("bosch.audio"),
-  taskbar = require("bosch.taskbar"),
   bwibox = require("bosch.bwibox"),
-  layoutsandtags = require("bosch.layoutsandtags"),
-  switcher = require("bosch.switcher")
+  switcher = require("bosch.switcher"),
+  tiling = require("bosch.tiling"),
+  config = require("bosch.config"),
+  keys = require("bosch.keys")
 }
 
 return bosch

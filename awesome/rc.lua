@@ -1,24 +1,21 @@
 ---------------------------------------------------------------------------
---- My rc.lua. Inspire on it, but us it carefully (there are a lot of
---- dependencies on various linux packages and commands)
---
--- @author paoloap
--- @copyright 2016 Paolo Porcedda
--- @release 0.1
+--- BOSCH - rc.lua
+--- Main Awesome WM user file
+-- Released under GPL v3
+-- To do: improve awesomewm 4 compatibility; put keys, rules and signals in
+--        separate files, if possible
+-- @author schuppenflektor
+-- @copyright 2016 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.6
 ---------------------------------------------------------------------------
 
--- Standard libraries 
 local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
--- Theming library
 local beautiful = require("beautiful")
--- Notifies library
 local naughty = require("naughty")
 local menubar = require("menubar")
-
--- Layout/Widget libraries
 local wibox = require("wibox")
 local lain = require("lain")
 local bosch = require("bosch")
@@ -27,7 +24,6 @@ local bosch = require("bosch")
 
 -- Check if awesome finds an error during startup. If yes, adopt another config
 -- (the code below will be executed only in fallback
-
 if awesome.startup_errors then
   naughty.notify({ preset = naughty.config.presets.critical,
     title = "Oops, there were errors during startup!",
@@ -35,7 +31,6 @@ if awesome.startup_errors then
 end
 
 -- Error managing after startup
-
 do
   local in_error = false
   awesome.connect_signal("debug::error", function (err)
@@ -51,53 +46,33 @@ end
 
 -- }}}
 
--- {{{ Variables
-
--- Load the theme
-beautiful.init("~/.config/awesome/themes/bosch/theme.lua")
-
-naughty.config.presets.normal.timeout          = 5
-naughty.config.presets.normal.screen           = 1
-naughty.config.presets.normal.position         = "top_right"
-naughty.config.presets.normal.margin           = 10
-naughty.config.presets.normal.gap              = "5"
-naughty.config.presets.normal.ontop            = true
-naughty.config.presets.normal.icon_size        = 16
-naughty.config.presets.normal.fg               = beautiful.notify_fg
-naughty.config.presets.normal.bg               = beautiful.notify_bg
-naughty.config.presets.normal.border_color     = beautiful.notify_border
-naughty.config.presets.normal.border_width     = beautiful.notify_border_width
-naughty.config.presets.normal.hover_timeout    = nil
--- Default terminal, editor, launch command
-terminal = "termite"
-editor = "vim"
-launch_in_term = terminal .. " -e "
-editor_cmd = launch_in_term .. editor
+-- {{{ Init elements
 
 -- Default modkey. 'Mod4' is Windows key (also named 'Super')
 modkey = "Mod4"
 
-layouts = bosch.layoutsandtags.layouts()
-tags = bosch.layoutsandtags.tags()
-
--- {{{ Wallpapers
-
+-- Set wallpaper
 if beautiful.wallpaper then
   awful.screen.connect_for_each_screen(function(s)
     gears.wallpaper.maximized(beautiful.wallpaper, s, true)
   end)
 end
 
--- }}}
+-- Load the theme
+beautiful.init(config.theme)
+
+-- Load layouts, tags and top wibar
+layouts = {}
+tags = {}
+wibar = {}
+layouts = bosch.tiling.layouts()
+tags = bosch.tiling.tags()
+wibar = bosch.bwibox.init()
 
 
-mywibox = {}
-mywibox = bosch.bwibox.init()
-
-
--- {{{ TASTIERA ------------------------------------------------------------------
-
--- Settaggi globali (indipendenti dal client aperto)
+-- {{{ KEYBOARD ------------------------------------------------------------------
+-- TO BE ORGANIZED, IMPROVED AND SEPARATED
+--Settaggi globali (indipendenti dal client aperto)
 
 globalkeys = awful.util.table.join(
 
@@ -118,7 +93,7 @@ globalkeys = awful.util.table.join(
       if client.focus then client.focus:raise() end
       -- bosch.taskbar.show(mouse.screen.index)
    end),
-
+  
 
   -- Manipola il layout
   awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -138,7 +113,7 @@ globalkeys = awful.util.table.join(
     if tags[1][1].selected then
       awful.tag.viewonly(tags[1][2])
     end
-    awful.util.spawn(terminal)
+    awful.util.spawn(config.terminal)
   end),
   awful.key({ modkey, "Control" }, "r", awesome.restart),
   awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -152,10 +127,10 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
   awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
   awful.key({ modkey,           }, "space", function ()
-    awful.layout.inc(layouts,  1)
+    awful.layout.inc(1, mouse.screen, layouts)
   end),
   awful.key({ modkey, "Shift"   }, "space", function ()
-    awful.layout.inc(layouts, -1)
+    awful.layout.inc(-1, mouse.screen, layouts)
   end),
   awful.key({ modkey, "Control" }, "n", function ()
     local c = awful.client.restore(mouse.screen)
@@ -174,12 +149,12 @@ globalkeys = awful.util.table.join(
   end),
 
   -- Menu "Super-r"
-  awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen.index]:run() end),
+    awful.key({ modkey },            "r",     function () promptbox[mouse.screen.index]:run() end),
   -- Menu "Lua"
   awful.key({ modkey }, "x",
     function ()
       awful.prompt.run({ prompt = "Run Lua code: " },
-        mypromptbox[mouse.screen.index].widget,
+        promptbox[mouse.screen.index].widget,
         awful.util.eval, nil,
         awful.util.getdir("cache") .. "/history_eval"
       )
@@ -196,18 +171,12 @@ globalkeys = awful.util.table.join(
   -- Controllo volume
   awful.key({ }, "XF86AudioLowerVolume", function ()
     awful.util.spawn("pulseaudio-ctl down")
-    local vi,vw = bosch.audio.volume()
-    volumewidget:set_text(vw)
   end),
   awful.key({ }, "XF86AudioRaiseVolume", function ()
     awful.util.spawn("pulseaudio-ctl up")
-    local vi,vw = bosch.audio.volume()
-    volumewidget:set_text(vw)
   end),
   awful.key({ }, "XF86AudioMute", function ()
     awful.util.spawn("pulseaudio-ctl mute")
-    local vi,vw = bosch.audio.volume()
-    volumeicon:set_image(vi)
   end),
 
   -- MPD
@@ -227,24 +196,41 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "F5", function ()
     awful.util.spawn("tiledvimb")
   end),
-  awful.key({ modkey, "Mod1" }, "b", function ()
-    awful.spawn("vlc", {instance = "cacca" })
-  end),
   awful.key({ modkey, "Mod1" }, "h", function () awful.util.spawn("pcmanfm") end),
-  awful.key({ modkey, "Mod1" }, "n", function () awful.util.spawn(launch_in_term .. "wicd-curses") end),
+  awful.key({ modkey, "Mod1" }, "w", function () awful.util.spawn(config.launch_in_term .. "vim -t write") end),
+  awful.key({ modkey, "Mod1" }, "n", function () awful.util.spawn("wicd-client -n") end),
+  awful.key({ modkey, "Mod1" }, "t", function () awful.util.spawn(config.launch_in_term .. "transmission-remote-cli") end),
 
+  
   -- Dynamic tagging (with LAIN)
 
-  awful.key({ modkey, "Shift" }, "a", function () lain.util.add_tag(mypromptbox) end),
   awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag(mypromptbox) end),
-  awful.key({ modkey, "Shift" }, "Left", function () lain.util.move_tag(1) end),  -- move to next tag
-  awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(-1) end), -- move to previous tag
-  awful.key({ modkey, "Shift" }, "d", function () lain.util.remove_tag() end)
+  awful.key({ modkey, "Control" }, "Left", function () lain.util.move_tag(-1) end), -- move to previous tag
+  awful.key({ modkey, "Control" }, "Right", function () lain.util.move_tag(1) end)  -- move to next tag
 )
 
 -- Settaggi riguardanti il client
 
 clientkeys = awful.util.table.join(
+  awful.key({ modkey, }, "z", function (c)
+    local itsTag = bosch.tiling.getDefaultClientsTag(c)
+    awful.client.movetotag(itsTag,c)
+    itsTag:view_only()
+  end),
+  awful.key({ modkey, "Shift" }, "z", function (c)
+    local itsTag = bosch.tiling.getDefaultClientsTag(c)
+    awful.client.movetotag(itsTag,c)
+  end),
+
+  awful.key({ modkey, "Shift" }, "Left", function (c)
+    c:move_to_tag(tags[c.screen.index][c.screen.selected_tag.index -1])
+    awful.tag.viewprev(mouse.screen.index)
+  end),
+  awful.key({ modkey, "Shift" }, "Right", function (c)
+    c:move_to_tag(tags[c.screen.index][c.screen.selected_tag.index +1])
+    awful.tag.viewnext(mouse.screen.index)
+  end),
+
   awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
   awful.key({ modkey, "Shift"   }, "c",      function (c)
     c:kill()
@@ -272,22 +258,11 @@ clientkeys = awful.util.table.join(
       c.maximized_horizontal = not c.maximized_horizontal
       c.maximized_vertical   = not c.maximized_vertical
     end
-  ),
-  awful.key({ modkey,           }, "<",
-    function (c)
-      if c.class == "Vlc" then
-	if extmon == "HDMI1" then
-	  awful.client.movetotag(tags[2][2],c)
-	else
-	  awful.client.movetotag(tags[1][7],c)
-	end
-      end
-
-    end)
+  )
 
 )
 
--- Settaggi vari per spostarsi / spostare le finestre da un tag all'altro
+--Settaggi vari per spostarsi / spostare le finestre da un tag all'altro
 
 
 for i = 1, 9 do
@@ -297,7 +272,7 @@ for i = 1, 9 do
         local screen = mouse.screen.index
 	local noemptytags = {}
 	for j = 1, 9 do
-	  local tag = awful.tag.gettags(screen)[j]
+	  local tag = tags[screen][j]
 	  if tag then
 	    if awful.widget.taglist.filter.noempty(tag) then
 	      table.insert(noemptytags, tag)
@@ -306,7 +281,7 @@ for i = 1, 9 do
 	end
 	local seltag = noemptytags[i]
 	if seltag then
-          awful.tag.viewonly(seltag)
+	  seltag:view_only()
         end
       end
     ),
@@ -328,7 +303,7 @@ clientbuttons = awful.util.table.join(
   awful.button({ modkey }, 1, awful.mouse.client.move),
   awful.button({ modkey }, 3, awful.mouse.client.resize)
 )
-
+--clientkeys = bosch.keys.global()
 -- Probabilmente per attivare tutte le combinazioni da tastiera
 root.keys(globalkeys)
 
@@ -347,18 +322,7 @@ awful.rules.rules = {
       buttons = clientbuttons,
       placement = awful.placement.no_overlap+awful.placement.no_offscreen+awful.placement.under_mouse
     }
-  },
-
-    { rule = { name = "mpd-play" },
-      properties = { tag = tags[1][8] }
-    },
-    { rule = { name = "mpd-visualizer" },
-      properties = { tag = tags[1][8] }
-    },
-    { rule = { instance = "vimb-main" },
-      properties = { tag = tags[1][1] }
-    }
-
+  }
 
 }
 
@@ -385,7 +349,9 @@ client.connect_signal("manage", function (c, startup)
       awful.placement.no_offscreen(c)
     end
   end
-
+  local itsTag = bosch.tiling.getDefaultClientsTag(c)
+  awful.client.movetotag(itsTag,c)
+  itsTag:view_only()
   if c.type == "normal" or c.type == "dialog" then
     bosch.switcher.init_titlebar(c)
   end
@@ -417,7 +383,7 @@ tag.connect_signal("property::selected", function(t)
     elseif t.layout == awful.layout.suit.max.fullscreen then
       t.gap = 0
     else
-      t.gap = 3
+      t.gap = 5
     end
   
   end)
@@ -427,13 +393,13 @@ tag.connect_signal("property::layout", function(t)
   if l == awful.layout.suit.max.fullscreen then
     t.gap = 0
   elseif l == awful.layout.suit.max then
-    t.gap = 3
+    t.gap = 5
     for i, c in ipairs(clients) do
       awful.titlebar.hide(c)
       c.border_color = beautiful.border_color_max
     end
   elseif l == bosch.switcher.layout() then
-    t.gap = 3
+    t.gap = 5
     for i, c in ipairs(clients) do
       awful.titlebar.show(c)
       c.border_width = beautiful.switcher_border_width
@@ -443,7 +409,7 @@ tag.connect_signal("property::layout", function(t)
       
     end
   else
-    t.gap = 3
+    t.gap = 5
     for i, c in ipairs(clients) do
       awful.titlebar.hide(c)
       if c.maximized then

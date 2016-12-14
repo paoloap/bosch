@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   version="1.0"
+   sodipodi:docbase="/home/christof/themes_and_icons/meinICONtheme/BRIT ICONS/scalable/actions"
+   sodipodi:docname="object-flip-vertical.svg"
+   inkscape:export-filename="/home/lapo/Desktop/rotate.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective14" />
+    <linearGradient
+       id="linearGradient3252">
+      <stop
+         id="stop3254"
+         offset="0"
+         style="stop-color:#fcaf3e;stop-opacity:1" />
+      <stop
+         style="stop-color:#ffcf82;stop-opacity:1;"
+         offset="0.24886067"
+         id="stop3258" />
+      <stop
+         id="stop3260"
+         offset="0.60878158"
+         style="stop-color:#fcaf3e;stop-opacity:1;" />
+      <stop
+         id="stop3256"
+         offset="1"
+         style="stop-color:white;stop-opacity:1;" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#f0f0f0"
+     bordercolor="#afafaf"
+     borderopacity="1"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="8"
+     inkscape:cx="2.93441"
+     inkscape:cy="23.124658"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     width="48px"
+     height="48px"
+     inkscape:showpageshadow="false"
+     borderlayer="true"
+     inkscape:window-width="1680"
+     inkscape:window-height="1000"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     showgrid="false"
+     showguides="true"
+     showborder="true"
+     inkscape:guide-bbox="true"
+     inkscape:grid-points="true">
+    <inkscape:grid
+       id="GridFromPre046Settings"
+       type="xygrid"
+       originx="0px"
+       originy="0px"
+       spacingx="0.5px"
+       spacingy="0.5px"
+       color="#0000ff"
+       empcolor="#0000ff"
+       opacity="0.2"
+       empopacity="0.4"
+       empspacing="2" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Lapo Calamandrei</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/GPL/2.0/" />
+        <dc:title>Flip Horizontally</dc:title>
+        <dc:date>2006-10-02</dc:date>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>flip</rdf:li>
+            <rdf:li>mirror</rdf:li>
+            <rdf:li>arrows</rdf:li>
+            <rdf:li>horizontally</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/GPL/2.0/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/SourceCode" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <path
+       sodipodi:type="inkscape:offset"
+       inkscape:radius="4.7434163"
+       inkscape:original="M 24 3.71875 L 9.59375 19.28125 L 17.875 19.28125 L 17.875 28.71875 L 9.65625 28.71875 L 24 44.28125 L 38.40625 28.71875 L 30.125 28.71875 L 30.125 19.28125 L 38.34375 19.28125 L 24 3.71875 z "
+       style="fill:#f0f0f0;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.39999999999999991;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+       id="path3159"
+       d="M 24.125,-1.03125 C 22.762767,-1.0606206 21.453674,-0.50283295 20.53125,0.5 L 6.125,16.0625 C 4.9060998,17.382375 4.5373987,19.277574 5.172577,20.95815 C 5.8077554,22.638726 7.3378135,23.816284 9.125,24 C 7.3433444,24.194018 5.8231141,25.375533 5.1952834,27.054154 C 4.5674527,28.732775 4.9392074,30.621921 6.15625,31.9375 L 20.5,47.5 C 21.397984,48.471935 22.661109,49.024631 23.984375,49.024631 C 25.307641,49.024631 26.570766,48.471935 27.46875,47.5 L 41.875,31.9375 C 43.0939,30.617625 43.462601,28.722426 42.827423,27.04185 C 42.192245,25.361274 40.662186,24.183716 38.875,24 C 40.656656,23.805982 42.176886,22.624467 42.804717,20.945846 C 43.432547,19.267225 43.060793,17.378079 41.84375,16.0625 L 27.5,0.5 C 26.629165,-0.44692914 25.411089,-0.99957505 24.125,-1.03125 z"
+       transform="matrix(0.9500569,0,0,0.9500569,1.1986339,1.1984411)" />
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:nonzero;stroke:#373b41;stroke-width:0.95005691;stroke-linecap:round;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.4;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+       d="M 37.686758,28.480583 L 29.821769,28.480583 L 29.821769,19.519029 L 37.63078,19.519029 L 23.999999,4.7324655 L 10.313242,19.519029 L 18.178231,19.519029 L 18.178231,28.480583 L 10.369221,28.480583 L 23.999999,43.267149 L 37.686758,28.480583 z"
+       id="path3390" />
+  </g>
+</svg>

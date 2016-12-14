@@ -1,43 +1,29 @@
 [options]
-font = Audimat Mono Regular 10
+font = Share Tech Mono 10
+
 
 [colors]
-background	= rgba(15, 14, 10, 0.9)
 
 # special
-foreground      = #d3ccad
-foreground_bold = #d3ccad
-cursor          = #d3ccad
-#background      = #0f0e0a
+foreground      = #373b41
+foreground_bold = #373b41
+cursor          = #373b41
+#background      = #f0f0f0
+background	= rgba(240, 240, 240, 0.9)
 
-# black
-color0  = #191812
-color8  = #f9bab6
-
-# red
-color1  = #22201a
-color9  = #41db77
-
-# green
-color2  = #343129
-color10 = #75fafe
-
-# yellow
-color3  = #4c493d
-color11 = #ffe1aa
-
-# blue
-color4  = #6b6756
-color12 = #c5633c
-
-# magenta
-color5  = #8f8a75
-color13 = #954635
-
-# cyan
-color6  = #bab498
-color14 = #b5a752
-
-# white
-color7  = #ebe3c1
-color15 = #739cf8
+color0  = #1d1f21
+color1  = #b75b5b
+color2  = #919753
+color3  = #be9c5c
+color4  = #22ad93
+color5  = #9d83a5
+color6  = #729d97
+color7  = #a7aaa8
+color8  = #808280
+color9  = #b75b5b
+color10 = #919753
+color11 = #be9c5c
+color12 = #22ad93
+color13 = #9d83a5
+color14 = #729d97
+color15 = #1d1f21

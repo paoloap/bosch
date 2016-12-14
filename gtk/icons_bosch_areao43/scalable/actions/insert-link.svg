@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg1306"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docbase="/home/qwerty/.icons/qw3rtY_new/scalable/actions"
+   sodipodi:docname="insert-link.svg"
+   inkscape:export-filename="/home/lapo/Desktop/insert-link-16.png"
+   inkscape:export-xdpi="90.000031"
+   inkscape:export-ydpi="90.000031"
+   version="1.0"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs1308">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective22" />
+    <linearGradient
+       id="linearGradient3269">
+      <stop
+         id="stop3271"
+         offset="0"
+         style="stop-color:#fecb81;stop-opacity:1" />
+      <stop
+         id="stop3273"
+         offset="1"
+         style="stop-color:#fcaf3e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3473">
+      <stop
+         style="stop-color:#888a85;stop-opacity:1"
+         offset="0"
+         id="stop3475" />
+      <stop
+         id="stop3481"
+         offset="0.5"
+         style="stop-color:#eeeeec;stop-opacity:1;" />
+      <stop
+         style="stop-color:#cecec8;stop-opacity:1;"
+         offset="1"
+         id="stop3477" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3387">
+      <stop
+         style="stop-color:#8f9388;stop-opacity:1;"
+         offset="0"
+         id="stop3389" />
+      <stop
+         id="stop3354"
+         offset="0.5"
+         style="stop-color:#c6cac2;stop-opacity:1;" />
+      <stop
+         style="stop-color:#d3d7cf;stop-opacity:0;"
+         offset="1"
+         id="stop3391" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#f0f0f0"
+     bordercolor="#666"
+     borderopacity="1"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="9.2121204"
+     inkscape:cx="-6.5404193"
+     inkscape:cy="30.347034"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     fill="#fcaf3e"
+     stroke="#555753"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1680"
+     inkscape:window-height="1000"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:showpageshadow="false"
+     showborder="true"
+     inkscape:grid-points="true"
+     width="48px"
+     height="48px">
+    <inkscape:grid
+       id="GridFromPre046Settings"
+       type="xygrid"
+       originx="0px"
+       originy="0px"
+       spacingx="0.5px"
+       spacingy="0.5px"
+       color="#0000ff"
+       empcolor="#0000ff"
+       opacity="0.2"
+       empopacity="0.4"
+       empspacing="2" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata1311">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Insert Link</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Lapo Calamandrei</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:source>http://www.gnome.org</dc:source>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title />
+          </cc:Agent>
+        </dc:contributor>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/GPL/2.0/" />
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>insert</rdf:li>
+            <rdf:li>link</rdf:li>
+            <rdf:li>anchor</rdf:li>
+            <rdf:li>url</rdf:li>
+            <rdf:li>generic</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/GPL/2.0/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/SourceCode" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <path
+       style="font-size:35.72286986999999669px;font-style:normal;font-weight:normal;fill:#f0f0f0;fill-opacity:1;stroke:none;stroke-width:3.30303024999999995;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;font-family:OpenSymbol"
+       d="M 22.262037,0.21770578 C 17.877949,0.033487099 13.522494,2.9891345 12.339017,7.2643653 C 11.628777,9.4704759 11.515132,11.904246 12.234341,14.12352 C 9.6489982,17.316998 8.700516,21.696286 9.6571917,25.64646 C 10.653688,30.370552 14.612362,34.378389 19.442864,35.08473 C 22.282838,35.606398 25.311418,35.205309 27.857602,33.818801 C 29.165813,35.256839 31.237766,34.666658 32.942023,34.788329 C 34.790552,34.713219 36.670779,34.947911 38.497925,34.652519 C 40.685135,34.09607 41.552191,31.072282 39.99056,29.442072 C 38.557084,27.80847 37.144847,26.156427 35.724634,24.511326 C 36.979459,21.866589 37.852523,19.001671 37.9684,16.062577 C 38.223062,14.734156 37.32609,12.908577 35.896102,12.321639 C 34.718501,11.334197 32.193812,12.875917 31.708015,11.589329 C 31.662747,9.2191202 31.800833,6.8359082 31.634704,4.474131 C 31.270678,2.5100644 29.162592,1.8961545 27.564268,1.2388965 C 25.872776,0.59969615 24.075768,0.20707992 22.262037,0.21770578 z"
+       id="path2404" />
+    <path
+       d="M 15.5,30.40625 C 13.466205,30.407177 11.627177,31.615805 10.819478,33.482338 C 10.011778,35.34887 10.389669,37.516819 11.78125,39 L 20.28125,48 C 21.245664,49.026525 22.591508,49.608741 24,49.608741 C 25.408492,49.608741 26.754336,49.026525 27.71875,48 L 36.21875,39 C 37.610331,37.516819 37.988222,35.34887 37.180522,33.482338 C 36.372823,31.615805 34.533795,30.407177 32.5,30.40625 L 15.5,30.40625 z"
+       id="path3178"
+       style="fill:#f0f0f0;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.30303049000000004;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dashoffset:1.39999999999999991;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+       inkscape:original="M 15.5 35.5 L 24 44.5 L 32.5 35.5 L 15.5 35.5 z "
+       inkscape:radius="5.101974"
+       sodipodi:type="inkscape:offset"
+       transform="matrix(0.8864262,0,0,0.8864262,2.8437638,3.6803075)" />
+    <path
+       style="fill:#373b41;fill-opacity:1;fill-rule:nonzero;stroke:#373b41;stroke-width:1.15504038;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dashoffset:1.4;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+       d="M 16.583372,35.148441 L 31.652626,35.148441 L 24.117999,43.12627 L 16.583372,35.148441 z"
+       id="path4125"
+       sodipodi:nodetypes="cccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:31.66568565px;font-style:normal;font-weight:normal;fill:#373b41;fill-opacity:1;stroke:#373b41;stroke-width:2.92789221;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;font-family:OpenSymbol"
+       x="12.796861"
+       y="28.209509"
+       id="text3239"
+       transform="scale(0.9396604,1.0642142)"><tspan
+         sodipodi:role="line"
+         id="tspan3241"
+         x="12.796861"
+         y="28.209509"
+         style="stroke:#373b41;stroke-width:2.92789221;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;font-family:DejaVu Sans">&amp;</tspan></text>
+  </g>
+</svg>
