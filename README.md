@@ -43,6 +43,7 @@ TODO:
 DEPENDENCIES:
 - awesomewm 4 (or - in general - git version)
 - xrandr
+- acpi
 - pulseaudio
 - xcompmgr
 - maildir (every mail service works only if you have it in maildir format)
@@ -69,7 +70,7 @@ Browser start page
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/vimb_start_page.jpg)
 
 Browser random page
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/vimb_random_page.jpg)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/vimb_random_website.jpg)
 
 Two vim sessions
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/vim_sessions.jpg)
