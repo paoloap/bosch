@@ -49,6 +49,17 @@ DEPENDENCIES:
 - termite
 - there are a lot of other dependencies, mainly related to keybindings (pcmanfm, ncmpcpp, zathura...), but i'll try to symbolize every shortcut through config file, so that everyone can adopt bosch with favourite programs. i must say that it's a long-term goal, because i created all this stuff with the purpose of make it work in my personal machine(s): in general at the time i'd rather consider it as a group of Lua/Bash files with the addition of some nice wallpapers and icons, than as a fully working gui.
 
+IF YOU WANT TO TRY TO INSTALL IT DESPITE EVERYTHING...
+- copy awesome folder in your $HOME/.config/ (remember to backup all your previous awesomewm files before!)
+- copy gtk/icons_bosch_areao43 folder in $HOME/.icons/
+- copy gtk/theme_bosch_oomox folder in $HOME/.themes/
+- copy gtk/gtk.css to $HOME/.config/gtk-3.0/
+- copy ncmpcpp-config to $HOME/.ncmpcpp/ and rename it to 'config'
+- copy termite-config to $HOME/.config/termite/ and rename it to 'config'
+- copy launchbosch folder in... well, whereever you want, but keep track of its path
+- edit launchbosch.sh setting $scriptpath with launchbosch folder position
+- copy launchbosch.sh to your user path folder
+- edit your .xinitrc (or your .xprofile, or whatever) adding 'launchbosch.sh &' at the end of it
 
 # some screenshots
 Empty screen
