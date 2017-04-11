@@ -63,35 +63,47 @@ ABOUT TOP BAR (bwibox)
 ```
 Actual active tags (with selected tag highlighted)
 Focused client's titlebar (no icon, just text)
+```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/taglist.jpg)
+```
 Active sound output (Speakers, bluetooth, hdmi, jack)
 Sound volume
 Actual MPD playing song (if yes)
+```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/audio.jpg)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/volume_icons.jpg)
+```
 CPU stress
 MEM stress
 NOTE: 'stress' situations are not implemented yet, because I didn't reprogrammed these widget from scratch yet, they are still based on vicious
 Battery status/charge
 Thermal (needed in my case)
+```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/system.jpg)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/system_icons.jpg)
+```
 Connection status (wifi, eth, usb, bluetooth, connecting, disconnected, connected)
 Traffic (download, upload)
+```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/network.jpg)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/network_icons.jpg)
+```
 Unread mails
+```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/mail.jpg)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/mail_icons.jpg)
+```
 Date/Time
 Actual layout
+```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/clock_layout.jpg)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/layouts.jpg)
+```
 - No to:
 ```
 Free disk space
-```
 List of windows (in a tiling layout all windows are directly shown so I don't see the point, in a maximized layout i added a thing called "switcher", we'll see that later)
+```
 > TECHNICALLY:
 - For every widget there's a bash script which extracts the data from basic unix commands every n seconds, and writes it into plain text files, which consequentially updates
 - These scripts and text files are into bosch/scripts directory
