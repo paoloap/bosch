@@ -23,8 +23,6 @@ Htop, pacman (admin tag)
 Two ncmpcpp sessions (music tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/music.png)
 
-Switcher with some browser instances open (browser tag)
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/switcher.png)
 
 # Various information
 ## About tiling settings
@@ -112,22 +110,25 @@ List of windows (in a tiling layout all windows are directly shown so I don't se
 - These scripts and text files are into bosch/scripts directory
 - To put the data into the widgets, there are some lua functions into bosch/bwibox directory
 
-ABOUT CLIENTS
+## About clients
 - Maximize content space. So no titlebar (if we want to see the title, let's just focus to the client and see it in the bwibox), and no borders
 - The actual focused client is "signed" with a green line at the bottom
 
-ABOUT SWITCHER
+## About switcher
 - If we are in a maximized layout, considering what described before, we have a problem about seeing all clients opened in tag.
 - That's what switcher is for: if we are into a tag with maximized layout (i.e. browser one), there is a key binding which toggles a general view, and temporary shows the titlebar for every client
+Switcher with some browser instances open (browser tag)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/switcher.png)
 
-ABOUT BROWSER
+## About browser
 - The idea is to have a simple, lightweight, button-less, keyboard-oriented browser
 - Possibly this browser should be also tab-less, because the wm manages correctly the different browser instances, with the help of the switcher, and this way we can maximize space available for websites' content
 - The better choice imo is vimb browser: it's simple, it's lightweight, it's button-less, it's tab-less, it's keyboard oriented, and there's a WebKit2 version in development and already usable.
-[video/gif: open vimb, show switcher, change window, return]
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/browser.png)
 - Moreover, it allows to create different "profiles" based on separate configuration files.
 - So we can create a separate profile, called "tiled" or "tiledvimb", which has the same configuration of "main" profile, except for one important aspect: we configure "Safari Mobile" as agent. This way, by default every web page will open in "mobile" website version, and it's just perfect for a tiled layout!
-[Screenshot: two mobile websites and two terminals in a "chat" scenario]
+
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/tiled_browser.png)
 
 ABOUT TERMINAL
 - Just like browser, terminal should be lightweight, button-less and tab-less
