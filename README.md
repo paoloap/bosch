@@ -2,6 +2,12 @@
 Awesome WM 'Bosch Theme'
 v 0.6.2
 
+In this git I will upload all the configuration files that make my GUI work properly.
+This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
+
+While I improved a lot the code and decoupled many things, I still discourage to try to make this work out of the box. It's not perfect in my own pc, probably in other ones just few things will work. If you like it, for now just take inspiration and copy-paste the code parts you're interested in :)
+
+# Some screenshots
 Empty screen
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/empty.png)
 
@@ -17,10 +23,9 @@ Htop, pacman (admin tag)
 Two ncmpcpp sessions (music tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/music.png)
 
-In this git I will upload all the configuration files that make my GUI work properly.
-This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
+Switcher with some browser instances open (browser tag)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/switcher.png)
 
-While I improved a lot the code and decoupled many things, I still discourage to try to make this work out of the box. It's not perfect in my own pc, probably in other ones just few things will work. If you like it, for now just take inspiration and copy-paste the code parts you're interested in :)
 
 ABOUT TILING SETTINGS
 Dynamic tagging is good, but too freedom in its interpretation risks to traduce into cervellotic ideas and not ergonomic consequences.
