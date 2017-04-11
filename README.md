@@ -27,19 +27,29 @@ Switcher with some browser instances open (browser tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/switcher.png)
 
 
-ABOUT TILING SETTINGS
+# About tiling settings
 Dynamic tagging is good, but too freedom in its interpretation risks to traduce into cervellotic ideas and not ergonomic consequences.
 
 - Upstream, some "scenarios" (tag/layout couples) must be defined. By default they are:
+
   > browsers (maximized) ------------------ brave, firefox, chromium, vimb, opera...
+
   > nerd (tiling1-classic) ---------------- termite, pcmanfm...
+
   > distraction-free (tiling2-centered) --- termite/vim...
+
   > chat (tiling3-columned) --------------- tiled-vimb, termite/hangups...
+
   > work (tiling1-classic) ---------------- mutt...
+
   > admin (tiling1-classic) --------------- termite/htop, termite/pacman, wicd...
+
   > max-apps (maximized) ------------------ libreoffice, gimp...
+
   > video (tiling1-classic) --------------- vlc, sxiv...
+
   > music (tiling2-centered) -------------- nncmpcpp, quodlibet...
+
 - By config.lua user can create/delete/edit scenarios
 - When system is started there's only one open tag, other ones are inactives
 - Every time a new client is opened, it can be put into an active tag (possibly the actually selected one) or activate a new one
