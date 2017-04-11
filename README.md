@@ -130,27 +130,27 @@ Switcher with some browser instances open (browser tag)
 
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/tiled_browser.png)
 
-ABOUT TERMINAL
+## About terminal
 - Just like browser, terminal should be lightweight, button-less and tab-less
 - But it should correctly support colors
 - So I choosed termite, which also supports internal padding and pic integration (well, I didn't realize how to make it work yet...)
-[Screenshot: some terminals in "spiral" layout]
+In spiral layout
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/terminals.png)
 
-ABOUT GTK
+## About GTK
 - I adopted an icon theme and a color scheme (which matches with termite and awesomewm) both created with oomox
 - I adopted as font the same font (Share Tech Mono 10) used for terminal and awesomewm
 - I use pcmanfm file manager, with hidden buttons (unfortunately not menu, because I don't know how to do it)
-[Screenshot: lxappearence, pcmanfm and a terminal]
 
-ABOUT KEY BINDINGS
-- I find Awesome WM default key-shortcuts not very comfortable. In my idea all important ones should be one-hand. So this is my custom mapping:
+## About key-shortcuts
+I find Awesome WM default key-shortcuts not very comfortable. In my idea all important ones should be one-hand. So this is my custom mapping:
 
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/infographic.png)
 
-ABOUT config.lua
-- In my opinion all custom user settings should be into a unique file, and that's why I created config.lua.
+## About config.lua
+In my opinion all custom user settings should be into a unique file, and that's why I created `config.lua`.
 - Theming options: you can set the color scheme, the gaps and the borders. Example:
-
+```
 config.font = "Share Tech Mono 10";
 config.transparent = "#00000000";
 config.colorfg = "#373b41";
@@ -160,9 +160,9 @@ config.color01 = "#b75b5b";
 ...
 config.gap = "5";
 config.border = "0";
-
+```
 - Command options: you can set all standard commands (like terminal, file manager, browser, volume buttons commands, etc.). Example:
-
+```
 config.commands = {
   terminal = "termite";
   filemanager = "pcmanfm";
@@ -182,10 +182,10 @@ config.commands = {
   musicprev = "mpc prev";
   musicnext = "mpc next"
 }
-
-- Tiling options: this is the most complex part. We have:
->> config.tiling.tags: an array with all possible tags. Every one has a layout type (a string which can be: maximized, tiling1 or 2 or 3, write, video, music, floating, fullscreen), a name (which will be not shown), an icon, and a key which univocally identifies the tag. Example:
-
+```
+Tiling options: this is the most complex part. We have:
+- config.tiling.tags: an array with all possible tags. Every one has a layout type (a string which can be: maximized, tiling1 or 2 or 3, write, video, music, floating, fullscreen), a name (which will be not shown), an icon, and a key which univocally identifies the tag. Example:
+```
 config.tiling.tags = {
   {
   type = "maximized";
@@ -206,9 +206,9 @@ config.tiling.tags = {
   key = "d"
   },
 }
-
->> config.tiling.schemes: a three-elements table, each one is the set of tags which will be set to a different screen type: default is the one used for main display (by default it just inherits config.tiling.tags), vga and hdmi for external connected monitors. It can be useful for people that, like me, use external displays for precise purposes (i.e. I use an HDMI tv, for which I want a "video" tag as first). Example:
-
+```
+- config.tiling.schemes: a three-elements table, each one is the set of tags which will be set to a different screen type: default is the one used for main display (by default it just inherits config.tiling.tags), vga and hdmi for external connected monitors. It can be useful for people that, like me, use external displays for precise purposes (i.e. I use an HDMI tv, for which I want a "video" tag as first). Example:
+```
 config.tiling.schemes = {
   default =  config.tiling.tags;
   vga = {
@@ -221,9 +221,9 @@ config.tiling.schemes = {
     config.tiling.tags[9]
   }
 }
-
->> config.tiling.clients: an array which all clients for which we want to apply some dynamic tagging logic. As already stated in "tiling" section, for every client we have class and name variables (to identify it univocally), a type variable (which contains the key of its default tag, and a sub-array named "forbidden", which contains the keys of tags in which we don't want to find them. Example:
-
+```
+- config.tiling.clients: an array which all clients for which we want to apply some dynamic tagging logic. As already stated in "tiling" section, for every client we have class and name variables (to identify it univocally), a type variable (which contains the key of its default tag, and a sub-array named "forbidden", which contains the keys of tags in which we don't want to find them. Example:
+```
 config.tiling.clients = {
   { class = "Termite", name = "ncmpcpp", type = "m", forbidden = {"b","T","d","t","w","M","a","v"} };
   { class = "Termite", name = "wicd", type = "a", forbidden = {"b","d","t","M","v","m"} };
@@ -231,7 +231,7 @@ config.tiling.clients = {
   { class = "Termite", name = "htop", type = "a", forbidden = {"b","M","v","m"} };
   { class = "libreoffice-writer", name = "###", type = "M", forbidden = {"b","T","d","w","a","v","m"} };
 }
-
+```
 
 
 
