@@ -10,7 +10,9 @@
 ----------------------------------------------------------------------------
 
 local tiling = { _NAME = "bosch.tiling" }
-
+local wibox = require("wibox")
+local titlebar = require("awful.titlebar")
+local beautiful = require("beautiful")
 local awful = require("awful")
 local lain = require("lain")
 local naughty =  require("naughty")
@@ -20,23 +22,24 @@ require("bosch.config")
 -- Lain layout settings
 lain.layout.termfair.nmaster = 3
 lain.layout.termfair.ncol = 2
-lain.layout.centerfair.nmaster = 3
-lain.layout.centerfair.ncol = 1
-lain.layout.centerwork.top_left = 0
-lain.layout.centerwork.top_right = 1
-lain.layout.centerwork.bottom_left = 2
-lain.layout.centerwork.bottom_right = 3
+lain.layout.termfair.center.nmaster = 3
+lain.layout.termfair.center.ncol = 1
+-- lain.layout.centerwork.top_left = 0
+-- lain.layout.centerwork.top_right = 1
+-- lain.layout.centerwork.bottom_left = 2
+-- lain.layout.centerwork.bottom_right = 3
 
 local layout = {}
 layout = {
     floating = awful.layout.suit.floating;
     tiling1 = awful.layout.suit.tile;
-    tiling2 = lain.layout.centerfair;
-    tiling3 = lain.layout.centerworkd;
+    tiling2 = lain.layout.centerwork;
+    tiling3 = lain.layout.termfair.center;
+    tiling4 = awful.layout.suit.spiral.dwindle;
     maximized = awful.layout.suit.max;
     fullscreen = awful.layout.suit.max.fullscreen;
-    write = lain.layout.centerworkd;
-    music = lain.layout.centerworkd;
+    write = lain.layout.centerwork;
+    music = lain.layout.centerwork;
     video = awful.layout.suit.tile
 }
 
@@ -48,7 +51,8 @@ layouts = {
     layout.floating,
     layout.tiling1,
     layout.tiling2,
-    layout.tiling3, 
+    layout.tiling3,
+    layout.tiling4,
     layout.maximized,
     layout.fullscreen
 }
@@ -131,6 +135,24 @@ function tiling.extmon()
   return extmon
 end
 
+function tiling.focusBar(c)
+  local layout = wibox.layout.flex.horizontal()
+  local title = titlebar.widget.titlewidget(c)
+  title:set_align("center")
+  layout:add(title)
+  focusBar = titlebar(c,
+  {
+    position = "bottom",
+    bg_normal = beautiful.border_normal,
+    fg_normal = beautiful.border_normal,
+    bg_focus = beautiful.border_focus,
+    fg_focus = beautiful.border_focus,
+    size = 3
+  })
+  focusBar:set_widget(layout)
+--  focusBar.show(c)
+end
+
 -- takes a client as parameter. if it has a default tag, then it returns it.
 -- if it hasn't, it returns actual selected tag.
 function tiling.getDefaultClientsTag(client)
@@ -148,17 +170,32 @@ function tiling.getDefaultClientsTag(client)
 	  end
 	  for j, selem in ipairs(scheme) do
 	    if ielem.type == selem.key then
-	      return tags[2][j]
+	      return tags[2][j], ielem.forbidden, scheme
 	    end
 	  end
 	end
 	scheme = config.tiling.schemes.default
 	for k, selem in ipairs(scheme) do
 	  if ielem.type == selem.key then
-	    return tags[1][k]
+	    return tags[1][k], ielem.forbidden, scheme
 	  end
 	end
       end
+    end
+  end
+  return mouse.screen.selected_tag, {"notag"}, scheme
+end
+
+function tiling.openInTag(client)
+  local t, forb, scheme = tiling.getDefaultClientsTag(client)
+  for i, ielem in ipairs(scheme) do
+    if i == mouse.screen.selected_tag.index then
+      actualKey = ielem.key
+    end
+  end
+  for j, jelem in ipairs(forb) do
+    if jelem == actualKey then
+      return t
     end
   end
   return mouse.screen.selected_tag

@@ -27,6 +27,7 @@ function switcher.init_titlebar(c)
   switcherbar = titlebar(c,
   {
     position = "top",
+    size = 20,
     fg_normal = beautiful.fg_switcher_normal,
     bg_normal = beautiful.bg_switcher_normal,
     fg_focus = beautiful.fg_switcher_focus,

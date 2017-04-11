@@ -30,7 +30,7 @@ layoutsdir    = picsdir .. "/layouts"
 wallpapers    = picsdir .. "/wallpapers"
 
 
-wallpaper1    = wallpapers .. "/background13.png"
+wallpaper1    = wallpapers .. "/background16.png"
 
 if awful.util.file_readable(wallpaper1) then
 	theme.wallpaper = wallpaper1
@@ -74,8 +74,8 @@ theme.border_focus =		config.color12
 
 -- Switcher
 theme.switcher_border_width =	config.border_switcher
-theme.fg_switcher_normal =	config.color14
-theme.bg_switcher_normal =	config.colorbg
+theme.fg_switcher_normal =	config.colorbg
+theme.bg_switcher_normal =	config.color08
 theme.fg_switcher_focus =	config.colorbg
 theme.bg_switcher_focus =	config.color12
 
@@ -100,11 +100,12 @@ theme.layout_max          = picsdir .. "/layouts/max.png"
 theme.layout_fullscreen   = picsdir .. "/layouts/fullscreen.png"
 theme.layout_floating     = picsdir .. "/layouts/floating.png"
 theme.layout_tile         = picsdir .. "/layouts/tile.png"
+theme.layout_dwindle      = picsdir .. "/layouts/dwindle.png"
 theme.layout_uselesstile  = picsdir .. "/layouts/tile.png"
 theme.layout_centerfair   = picsdir .. "/layouts/centerfair.png"
 theme.layout_termfair     = picsdir .. "/layouts/termfair.png"
 theme.layout_uselessfair  = picsdir .. "/layouts/uselessfair.png"
-theme.layout_centerworkd   = picsdir .. "/layouts/centerwork.png"
+theme.layout_centerwork   = picsdir .. "/layouts/centerwork.png"
 -- }}}
 
 -- {{{ Widget icons
@@ -114,6 +115,8 @@ theme.widget_mem    = picsdir .. "/widgets/mem.png"
 theme.widget_cpu    = picsdir .. "/widgets/cpu.png"
 theme.widget_net    = picsdir .. "/widgets/download.png"
 theme.widget_netup  = picsdir .. "/widgets/upload.png"
+theme.widget_netgoing    = picsdir .. "/widgets/download_going.png"
+theme.widget_netupgoing    = picsdir .. "/widgets/upload_going.png"
 theme.widget_vol_on = picsdir .. "/widgets/vol_on.png"
 theme.widget_jack = picsdir .. "/widgets/jack.png"
 theme.widget_hdmi = picsdir .. "/widgets/hdmi.png"
@@ -133,6 +136,11 @@ theme.widget_connecting         = picsdir .. "/widgets/connecting.png"
 theme.widget_wifi 		= picsdir .. "/widgets/wifi.png"
 theme.widget_wired 		= picsdir .. "/widgets/wired.png"
 theme.widget_usb                = picsdir .. "/widgets/usb.png"
+
+theme.widget_therm_low          = picsdir .. "/widgets/therm_low.png"
+theme.widget_therm_med          = picsdir .. "/widgets/therm_med.png"
+theme.widget_therm_high         = picsdir .. "/widgets/therm_high.png"
+theme.widget_therm_crit         = picsdir .. "/widgets/therm_crit.png"
 
 theme.tag_browser = picsdir .. "/tags/browser.png"
 theme.tag_geek = picsdir .. "/tags/geek.png"

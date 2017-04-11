@@ -20,7 +20,7 @@ local wibox = require("wibox")
 local lain = require("lain")
 local bosch = require("bosch")
 
--- {{{ Error managing
+-- {{{ Error handling
 
 -- Check if awesome finds an error during startup. If yes, adopt another config
 -- (the code below will be executed only in fallback
@@ -71,76 +71,66 @@ wibar = bosch.bwibox.init()
 
 
 -- {{{ KEYBOARD ------------------------------------------------------------------
--- TO BE ORGANIZED, IMPROVED AND SEPARATED
---Settaggi globali (indipendenti dal client aperto)
 
+-- Global settings
 globalkeys = awful.util.table.join(
 
--- Spostamento tra diverse tag (sinistra, destra, ultima tag aperta)
-    awful.key({ modkey,           }, "Left",   function () lain.util.tag_view_nonempty(-1) end),
-    awful.key({ modkey,           }, "Right",  function () lain.util.tag_view_nonempty(1) end),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+  -- Restart/Quit AwesomeWM
+  awful.key({ modkey, "Control" }, "r", awesome.restart),
+  awful.key({ modkey, "Control" }, "q", awesome.quit),
 
-    -- Spostamento tra diverse finestre dentro una tag
-  awful.key({ modkey,           }, "Tab",
-    function ()
-      awful.client.focus.byidx( 1)
-      if client.focus then client.focus:raise() end
+  -- Move between active tags
+  -- Left
+  awful.key({ modkey, }, "a",   function () lain.util.tag_view_nonempty(-1) end),
+  -- Right
+  awful.key({ modkey, }, "s",  function () lain.util.tag_view_nonempty(1) end),
+  -- Last opened tag
+  awful.key({ modkey, }, "Escape", awful.tag.history.restore),
+  -- Other screen
+  awful.key({ modkey, }, "d", function () awful.screen.focus_relative( 1) end),
+
+  -- Change focus in actual tag
+  awful.key({ modkey, }, "Tab", function ()
+    awful.client.focus.byidx( 1)
+    if client.focus then client.focus:raise() end
   end),
-  awful.key({ modkey, "Shift"   }, "Tab",
-    function ()
-      awful.client.focus.byidx(-1)
-      if client.focus then client.focus:raise() end
-      -- bosch.taskbar.show(mouse.screen.index)
-   end),
+  awful.key({ modkey, "Shift"   }, "Tab", function ()
+    awful.client.focus.byidx(-1)
+    if client.focus then client.focus:raise() end
+    -- bosch.taskbar.show(mouse.screen.index)
+  end),
+  -- Go to "urgent" (actually deactivated)
+    -- awful.key({ modkey, "Shift" }, "Escape", awful.client.urgent.jumpto),
   
 
-  -- Manipola il layout
-  awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-  awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-  awful.key({ modkey,           }, "a", function ()
-    awful.screen.focus_relative( 1)
-  end),
+  -- Swap clients into tag
+  awful.key({ modkey, }, "q", function () awful.client.swap.byidx(  1) end),
+  awful.key({ modkey, }, "w", function () awful.client.swap.byidx( -1) end),
 
+  -- Change layout geometry
+  -- Main column size
+  awful.key({ modkey, }, "x", function () awful.tag.incmwfact( 0.05) end),
+  awful.key({ modkey, }, "z", function () awful.tag.incmwfact(-0.05) end),
+  -- Decrease/increase rows into main column
+  awful.key({ modkey, "Shift" }, "z", function () awful.tag.incnmaster( 1) end),
+  awful.key({ modkey, "Shift" }, "x", function () awful.tag.incnmaster(-1) end),
+  -- Decrease/increase columns
+  awful.key({ modkey, "Control" }, "z", function () awful.tag.incncol( 1) end),
+  awful.key({ modkey, "Control" }, "x", function () awful.tag.incncol(-1) end),
 
-  awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
+  -- Change layout
+  awful.key({ modkey, }, "space", function () awful.layout.inc(1, mouse.screen, layouts) end),
+  awful.key({ modkey, "Shift" }, "space", function () awful.layout.inc(-1, mouse.screen, layouts) end),
 
-  -- Programmi
-
-  awful.key({}, "Print", function () awful.util.spawn("shot 0 0 png") end),
-  awful.key({ modkey, "Mod1" }, "l", function      () awful.util.spawn("dm-tool lock") end),
-  awful.key({ modkey,           }, "Return", function () 
-    if tags[1][1].selected then
-      awful.tag.viewonly(tags[1][2])
-    end
-    awful.util.spawn(config.terminal)
-  end),
-  awful.key({ modkey, "Control" }, "r", awesome.restart),
-  awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-
-  -- Altre opzioni di manipolazione layout
-
-  awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-  awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-  awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-  awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-  awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-  awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-  awful.key({ modkey,           }, "space", function ()
-    awful.layout.inc(1, mouse.screen, layouts)
-  end),
-  awful.key({ modkey, "Shift"   }, "space", function ()
-    awful.layout.inc(-1, mouse.screen, layouts)
-  end),
-  awful.key({ modkey, "Control" }, "n", function ()
+  -- Unminimize
+  awful.key({ modkey, "Control" }, "w", function ()
     local c = awful.client.restore(mouse.screen)
     client.focus = c
     c:raise()
   end),
-  awful.key({ modkey, "Shift" }, "n", function()
-    bosch.taskbar.toggle(mouse.screen.index)
-  end),
-  awful.key({ modkey, }, "\\", function()
+
+  -- Toggle switcher
+  awful.key({ modkey, }, "`", function()
     if awful.layout.get(mouse.screen.index) == awful.layout.suit.max then
       awful.layout.set(bosch.switcher.layout())
     elseif awful.layout.get(mouse.screen.index) == bosch.switcher.layout() then
@@ -148,123 +138,89 @@ globalkeys = awful.util.table.join(
     end
   end),
 
-  -- Menu "Super-r"
-    awful.key({ modkey },            "r",     function () promptbox[mouse.screen.index]:run() end),
-  -- Menu "Lua"
-  awful.key({ modkey }, "x",
-    function ()
-      awful.prompt.run({ prompt = "Run Lua code: " },
-        promptbox[mouse.screen.index].widget,
-        awful.util.eval, nil,
-        awful.util.getdir("cache") .. "/history_eval"
-      )
-    end),
-  -- Menu "Super-p"
-  awful.key({ modkey }, "p", function() menubar.show() end),
+  -- Run application
+  awful.key({ modkey }, "r", function () promptbox[mouse.screen.index]:run() end),
+  -- Show app menu (actually deactivated)
+     -- awful.key({ modkey }, "p", function() menubar.show() end),
 
-  -- Luminosità
-  awful.key({ }, "XF86MonBrightnessDown", function ()
-    awful.util.spawn("xbacklight -dec 15") end),
-  awful.key({ }, "XF86MonBrightnessUp", function ()
-    awful.util.spawn("xbacklight -inc 15") end),
+  -- Run commands (taken from config.lua)
+  -- Terminal
+  awful.key({ modkey, }, "e", function () awful.util.spawn(config.commands.terminal) end),
+  -- File manager
+  awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn(config.commands.filemanager) end),
+  -- Default browser
+  awful.key({ modkey }, "g", function () awful.util.spawn(config.commands.browser) end),
+  -- Tiled browser
+  awful.key({ modkey, }, "t", function () awful.util.spawn(config.commands.tiledbrowser) end),
+  -- Network manager
+  awful.key({ modkey, }, "F1", function () awful.util.spawn(config.commands.netmanager) end),
+  -- Torrent application
+  awful.key({ modkey, }, "F2", function () awful.util.spawn(config.commands.torrent) end),
+  -- Music player
+  awful.key({ modkey, }, "F3", function () awful.util.spawn(config.commands.music) end),
+  -- Lock screen
+  awful.key({ modkey, }, "F4", function () awful.util.spawn(config.commands.lockscreen) end),
 
-  -- Controllo volume
-  awful.key({ }, "XF86AudioLowerVolume", function ()
-    awful.util.spawn("pulseaudio-ctl down")
-  end),
-  awful.key({ }, "XF86AudioRaiseVolume", function ()
-    awful.util.spawn("pulseaudio-ctl up")
-  end),
-  awful.key({ }, "XF86AudioMute", function ()
-    awful.util.spawn("pulseaudio-ctl mute")
-  end),
+  -- XF86 standard buttons (taken from config.lua)
+  -- Take screenshot
+  awful.key({}, "Print", function () awful.util.spawn(config.commands.screenshot) end),
+  -- Decrease/increase brightness
+  awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn(config.commands.brightdown) end),
+  awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn(config.commands.brightup) end),
+  -- Decrease/increase volume, toggle mute
+  awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn(config.commands.voldown) end),
+  awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn(config.commands.volup) end),
+  awful.key({ }, "XF86AudioMute", function () awful.util.spawn(config.commands.voltoggle) end),
+  -- Music: Play/stop, prev track, next track
+  awful.key({ }, "XF86AudioPlay", function () awful.util.spawn(config.commands.musicplay) end),
+  awful.key({ }, "XF86AudioPrev", function () awful.util.spawn(config.commands.musicprev) end),
+  awful.key({ }, "XF86AudioNext", function () awful.util.spawn(config.commands.musicnext) end)
 
-  -- MPD
-  awful.key({ }, "XF86AudioPlay", function ()
-    awful.util.spawn("mpc-pause")
-  end),
-  awful.key({ }, "XF86AudioPrev", function ()
-    awful.util.spawn("mpc prev")
-  end),
-  awful.key({ }, "XF86AudioNext", function ()
-    awful.util.spawn("mpc next")
-  end),
-  -- Applicazioni
-  awful.key({ }, "XF86HomePage", function ()
-    awful.util.spawn("brws")
-  end),
-  awful.key({ modkey, }, "F5", function ()
-    awful.util.spawn("tiledvimb")
-  end),
-  awful.key({ modkey, "Mod1" }, "h", function () awful.util.spawn("pcmanfm") end),
-  awful.key({ modkey, "Mod1" }, "w", function () awful.util.spawn(config.launch_in_term .. "vim -t write") end),
-  awful.key({ modkey, "Mod1" }, "n", function () awful.util.spawn("wicd-client -n") end),
-  awful.key({ modkey, "Mod1" }, "t", function () awful.util.spawn(config.launch_in_term .. "transmission-remote-cli") end),
-
-  
-  -- Dynamic tagging (with LAIN)
-
-  awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag(mypromptbox) end),
-  awful.key({ modkey, "Control" }, "Left", function () lain.util.move_tag(-1) end), -- move to previous tag
-  awful.key({ modkey, "Control" }, "Right", function () lain.util.move_tag(1) end)  -- move to next tag
 )
-
--- Settaggi riguardanti il client
-
+  
+-- Client settings
 clientkeys = awful.util.table.join(
-  awful.key({ modkey, }, "z", function (c)
+
+  -- Quit client
+  awful.key({ modkey, "Shift" }, "q", function (c) c:kill() end),
+  -- Move client to default tag
+  awful.key({ modkey, }, "b", function (c)
     local itsTag = bosch.tiling.getDefaultClientsTag(c)
     awful.client.movetotag(itsTag,c)
     itsTag:view_only()
   end),
-  awful.key({ modkey, "Shift" }, "z", function (c)
-    local itsTag = bosch.tiling.getDefaultClientsTag(c)
-    awful.client.movetotag(itsTag,c)
-  end),
-
-  awful.key({ modkey, "Shift" }, "Left", function (c)
+  -- Move client to left/right tag
+  awful.key({ modkey, "Shift" }, "a", function (c)
     c:move_to_tag(tags[c.screen.index][c.screen.selected_tag.index -1])
     awful.tag.viewprev(mouse.screen.index)
   end),
-  awful.key({ modkey, "Shift" }, "Right", function (c)
+  awful.key({ modkey, "Shift" }, "s", function (c)
     c:move_to_tag(tags[c.screen.index][c.screen.selected_tag.index +1])
     awful.tag.viewnext(mouse.screen.index)
   end),
-
-  awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-  awful.key({ modkey, "Shift"   }, "c",      function (c)
-    c:kill()
-
+  -- Toggle fullscreen
+  awful.key({ modkey, }, "f", function (c) c.fullscreen = not c.fullscreen  end),
+  -- Toggle maximize
+  awful.key({ modkey, "Shift" }, "f", function (c)
+    c.maximized_horizontal = not c.maximized_horizontal
+    c.maximized_vertical   = not c.maximized_vertical
   end),
-  awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-  awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-  awful.key({ modkey,           }, "o",      function (c)
-    awful.client.movetoscreen(c, mouse.screen.index + 1)
-  end),
-  awful.key({ modkey, "Shift"}, "o", function(c)
+  -- Minimize client
+  awful.key({ modkey, "Shift" }, "w", function (c) c.minimized = true end),
+  -- Toggle floating
+  awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle ),
+  -- Move client to other screen and give it focus
+  awful.key({ modkey,  "Shift" }, "c", function (c) awful.client.movetoscreen(c, mouse.screen.index + 1) end),
+  -- Move client to other screen but keep focus
+  awful.key({ modkey, "Shift"}, "d", function(c)
     awful.client.movetoscreen(c, mouse.screen.index + 1)
     awful.screen.focus_relative( 1) 
-  end),
---  awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-  awful.key({ modkey,           }, "n",
-    function (c)
-      -- The client currently has the input focus, so it cannot be
-      -- minimized, since minimized clients can't have the focus.
-      c.minimized = true
-      c.skip_taskbar = false
-    end),
-  awful.key({ modkey,           }, "m",
-    function (c)
-      c.maximized_horizontal = not c.maximized_horizontal
-      c.maximized_vertical   = not c.maximized_vertical
-    end
-  )
+  end)
 
 )
 
---Settaggi vari per spostarsi / spostare le finestre da un tag all'altro
-
-
+-- Number keys related
+-- Move to n-th active tag
 for i = 1, 9 do
   globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey }, "#" .. i + 9,
@@ -285,6 +241,7 @@ for i = 1, 9 do
         end
       end
     ),
+    -- Move client to n-th tag
     awful.key({ modkey, "Shift" }, "#" .. i + 9,
       function ()
         local tag = awful.tag.gettags(client.focus.screen.index)[i]
@@ -296,33 +253,30 @@ for i = 1, 9 do
   )
 end
 
--- Focus / spostamento / resize finestre  con l'aiuto della modkey
-
+-- Focus/move/resize windows through mouse buttons
 clientbuttons = awful.util.table.join(
   awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
   awful.button({ modkey }, 1, awful.mouse.client.move),
   awful.button({ modkey }, 3, awful.mouse.client.resize)
 )
---clientkeys = bosch.keys.global()
--- Probabilmente per attivare tutte le combinazioni da tastiera
+-- Activate all key shortcuts
 root.keys(globalkeys)
 
 -- }}} ---------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
 
 
--- {{{ REGOLE --------------------------------------------------------------------
+-- {{{ RULES --------------------------------------------------------------------
 
 awful.rules.rules = {
-  -- Regole valide per tutti i client
   { rule = { },
     properties = { border_width = beautiful.border_width,
       focus = awful.client.focus.filter,
       keys = clientkeys,
       buttons = clientbuttons,
-      placement = awful.placement.no_overlap+awful.placement.no_offscreen+awful.placement.under_mouse
     }
-  }
+  },
+  { rule={ class='Vlc' }, properties={ fullscreen=false } }
 
 }
 
@@ -341,43 +295,26 @@ client.connect_signal("manage", function (c, startup)
       client.focus = c
     end
   end)
+  c.shape = function(cr,w,h)
+        gears.shape.rounded_rect(cr,w,h,0)
+  end
 
   if not startup then
     -- Put windows in a smart way, only if they does not set an initial position.
-    if not c.size_hints.user_position and not c.size_hints.program_position then
-      awful.placement.no_overlap(c)
-      awful.placement.no_offscreen(c)
-    end
+--    if not c.size_hints.user_position and not c.size_hints.program_position then
+--      awful.placement.no_overlap(c)
+--      awful.placement.no_offscreen(c)
+--    end
   end
-  local itsTag = bosch.tiling.getDefaultClientsTag(c)
+  local itsTag = bosch.tiling.openInTag(c)
   awful.client.movetotag(itsTag,c)
   itsTag:view_only()
   if c.type == "normal" or c.type == "dialog" then
     bosch.switcher.init_titlebar(c)
+    bosch.tiling.focusBar(c)
   end
 end)
 
-client.connect_signal("focus", function(c)
-  local l = awful.layout.get(c.screen.index)
-  if l == bosch.switcher.layout() then c.border_color = beautiful.bg_switcher_focus
-  else
-    c.border_color = beautiful.border_focus
-    if l == awful.layout.suit.max or c.maximized then
-      c.border_color = beautiful.border_color_max
-    end
-  end
-end)
-client.connect_signal("unfocus", function(c)
-  local l = awful.layout.get(c.screen.index)
-  c.border_color = beautiful.border_normal
-end)
-client.connect_signal("property::maximized", function (c)
-  if l == awful.layout.suit.max then
-    c.maximized = false
-  elseif c.maximized then
-    c.border_color = beautiful.border_color_max
-  end
-end)
 tag.connect_signal("property::selected", function(t)
     if t.layout == awful.layout.suit.max then
     elseif t.layout == awful.layout.suit.max.fullscreen then
@@ -398,32 +335,8 @@ tag.connect_signal("property::layout", function(t)
       awful.titlebar.hide(c)
       c.border_color = beautiful.border_color_max
     end
-  elseif l == bosch.switcher.layout() then
-    t.gap = 5
-    for i, c in ipairs(clients) do
-      awful.titlebar.show(c)
-      c.border_width = beautiful.switcher_border_width
-      if c == awful.client.focus.history.get(mouse.screen.index, 0) then
-	c.border_color = beautiful.bg_switcher_focus
-      end
-      
-    end
   else
     t.gap = 5
-    for i, c in ipairs(clients) do
-      awful.titlebar.hide(c)
-      if c.maximized then
-	c.border_width = beautiful.border_width_max
-	c.border_color = beautiful.border_color_max
-      else
-	c.border_width = beautiful.border_width
-      end
-      if c == awful.client.focus.history.get (mouse.screen.index, 0) then
-	c.border_color = beautiful.border_focus
-      else
-	c.border_color = beautiful.border_normal
-      end
-    end
   end
 
 end)

@@ -8,8 +8,8 @@ font = Share Tech Mono 10
 foreground      = #373b41
 foreground_bold = #373b41
 cursor          = #373b41
-#background      = #f0f0f0
-background	= rgba(240, 240, 240, 0.9)
+background      = #f0f0f0
+#background	= rgba(240, 240, 240, 0.9)
 
 color0  = #1d1f21
 color1  = #b75b5b

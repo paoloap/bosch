@@ -19,7 +19,7 @@ local beautiful = require("beautiful")
 function system.cpu()
   local cpuicon = wibox.widget.imagebox()
   local cpuwidget = wibox.widget.textbox()
-  vicious.register(cpuwidget, vicious.widgets.cpu, "$1 % ")
+  vicious.register(cpuwidget, vicious.widgets.cpu, "$1% ")
   cpuicon:set_image(beautiful.widget_cpu)
   return cpuicon, cpuwidget
 end
@@ -33,6 +33,28 @@ function system.memory()
   return memicon, memwidget
 end
 
+function system.thermal()
+  local thermaltimer = timer({ timeout = 7 })
+  local thermalicon = wibox.widget.imagebox()
+  local thermalstatus = wibox.widget.textbox()
+  thermaltimer:connect_signal("timeout", function()
+    local ftherm = io.open(config.scripts .. '/thermal_data', "r")
+    local status = ftherm:read("*number")
+    if status < 55 then
+      ticon = beautiful.widget_therm_low
+    elseif status < 70 then
+      ticon = beautiful.widget_therm_med
+    elseif status < 80 then
+      ticon = beautiful.widget_therm_high
+    else
+      ticon = beautiful.widget_therm_crit
+    end
+    thermalicon:set_image(ticon)
+    thermalstatus:set_text(status .. "°C")
+  end)
+  thermaltimer:start()
+  return thermalicon, thermalstatus
+end
 
 --- system.battery returns the actual battery status, and an icon which represents it
 -- @return first battery/ac icon
@@ -48,26 +70,26 @@ function system.battery()
     local perc = fbat:read("*number")
     if status == "Discharging" then
       if perc > 80 then
-        icon = beautiful.widget_bat_full
+        bicon = beautiful.widget_bat_full
       elseif perc > 50 then
-        icon = beautiful.widget_bat_med
+        bicon = beautiful.widget_bat_med
       elseif perc > 20 then
-        icon = beautiful.widget_bat_low
+        bicon = beautiful.widget_bat_low
       else
-        icon = beautiful.widget_bat_empty
+        bicon = beautiful.widget_bat_empty
         if perc < 9 then
 	  os.execute("systemctl suspend")
         end
       end
     else
       if perc == 100 then
-        icon = beautiful.widget_ac_full
+        bicon = beautiful.widget_ac_full
       else
-        icon = beautiful.widget_ac
+        bicon = beautiful.widget_ac
       end
     end
-    batteryicon:set_image(icon)
-    batterystatus:set_text(perc .. "%")
+    batteryicon:set_image(bicon)
+    batterystatus:set_text(perc .. "% ")
   end)
   batterytimer:start()
   return batteryicon, batterystatus

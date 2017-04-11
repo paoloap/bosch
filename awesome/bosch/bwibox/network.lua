@@ -13,6 +13,7 @@ local network = { _NAME = "bosch.bwibox.network" }
 local wibox = require("wibox")
 local awful = require ("awful")
 local beautiful = require("beautiful")
+
 --- readfile local function returns connection parameters (as boolean values)
 ---  NOTE: it works only if wicd-cli returns output in italian language
 -- @return first true if connected
@@ -58,17 +59,29 @@ end
 function network.traffic()
   local traffictimer = timer({ timeout = 2 })
   local trafficwidget = wibox.widget.textbox()
+  local dnicon = wibox.widget.imagebox()
+  local upicon = wibox.widget.imagebox()
   traffictimer:connect_signal("timeout",function()
     local ftrf = io.open(config.scripts .. '/traffic_data',"r")
     local download = ftrf:read("*l")
     local upload = ftrf:read("*l")
     local traffic = download .. "/" .. upload
+    local dnum = tonumber(string.match(download,"%d+"))
+    local unum = tonumber(string.match(upload,"%d+"))
+    if dnum > 50 then
+      dicon = beautiful.widget_netgoing
+    else
+      dicon = beautiful.widget_net
+    end
+    if unum > 50 then
+      uicon = beautiful.widget_netupgoing
+    else
+      uicon = beautiful.widget_netup
+    end
+    dnicon:set_image(dicon)
+    upicon:set_image(uicon)
     trafficwidget:set_text(traffic)
   end)
-  local dnicon = wibox.widget.imagebox()
-  local upicon = wibox.widget.imagebox()
-  dnicon:set_image(beautiful.widget_net)
-  upicon:set_image(beautiful.widget_netup)
   traffictimer:start()
   return dnicon, upicon, trafficwidget
 end

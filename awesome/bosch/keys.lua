@@ -10,14 +10,11 @@ local naughty = require("naughty")
 local globalkeys = awful.util.table.join(
 
   -- TILING-RELATED KEY BINDINGS
-  -- Move tags (deprecated)
-  awful.key({ modkey, "Control" }, "Left", function () lain.util.move_tag(-1) end),
-  awful.key({ modkey, "Control" }, "Right", function () lain.util.move_tag(1) end),
   -- Navigate between tags
-  awful.key({ modkey, }, "Left",   function () lain.util.tag_view_nonempty(-1) end),
-  awful.key({ modkey, }, "Right",  function () lain.util.tag_view_nonempty(1) end),
+  awful.key({ modkey, }, "a",   function () lain.util.tag_view_nonempty(-1) end),
+  awful.key({ modkey, }, "s",  function () lain.util.tag_view_nonempty(1) end),
   awful.key({ modkey, }, "Escape", awful.tag.history.restore),
-  awful.key({ modkey, }, "u", awful.client.urgent.jumpto),
+--  awful.key({ modkey, }, "u", awful.client.urgent.jumpto),
   -- Change client focus
   awful.key({ modkey, }, "Tab",
     function ()
@@ -29,24 +26,24 @@ local globalkeys = awful.util.table.join(
       awful.client.focus.byidx(-1)
       if client.focus then client.focus:raise() end
    end),
-  awful.key({ modkey, }, "a", function ()
+  awful.key({ modkey, }, "<", function ()
     awful.screen.focus_relative( 1)
   end),
   -- Move clients into selected tag
-  awful.key({ modkey, "Shift" }, "j", function () awful.client.swap.byidx(  1)    end),
-  awful.key({ modkey, "Shift" }, "k", function () awful.client.swap.byidx( -1)    end),
-  awful.key({ modkey, "Control" }, "n", function ()
+  awful.key({ modkey,  }, "w", function () awful.client.swap.byidx(  1)    end),
+  awful.key({ modkey,  }, "q", function () awful.client.swap.byidx( -1)    end),
+  awful.key({ modkey, "Control" }, "w", function ()
     local c = awful.client.restore(mouse.screen)
     client.focus = c
     c:raise()
   end),
   -- Change selected layout geometry
-  awful.key({ modkey, }, "l", function () awful.tag.incmwfact( 0.05) end),
-  awful.key({ modkey, }, "h", function () awful.tag.incmwfact(-0.05) end),
-  awful.key({ modkey, "Shift" }, "h", function () awful.tag.incnmaster( 1) end),
-  awful.key({ modkey, "Shift" }, "l", function () awful.tag.incnmaster(-1) end),
-  awful.key({ modkey, "Control" }, "h", function () awful.tag.incncol( 1) end),
-  awful.key({ modkey, "Control" }, "l", function () awful.tag.incncol(-1) end),
+  awful.key({ modkey, }, "x", function () awful.tag.incmwfact( 0.05) end),
+  awful.key({ modkey, }, "z", function () awful.tag.incmwfact(-0.05) end),
+  awful.key({ modkey, "Shift" }, "z", function () awful.tag.incnmaster( 1) end),
+  awful.key({ modkey, "Shift" }, "x", function () awful.tag.incnmaster(-1) end),
+  awful.key({ modkey, "Control" }, "z", function () awful.tag.incncol( 1) end),
+  awful.key({ modkey, "Control" }, "x", function () awful.tag.incncol(-1) end),
   -- Change layout
   awful.key({ modkey, }, "space", function ()
     awful.layout.inc(1, mouse.screen, layouts)
@@ -55,9 +52,9 @@ local globalkeys = awful.util.table.join(
     awful.layout.inc(-1, mouse.screen, layouts)
   end),
   -- Show minimized clients list
-  awful.key({ modkey, "Shift" }, "n", function()
-    bosch.taskbar.toggle(mouse.screen.index)
-  end),
+--  awful.key({ modkey, "Shift" }, "n", function()
+--    bosch.taskbar.toggle(mouse.screen.index)
+--  end),
   -- Show switcher
   awful.key({ modkey, }, "\\", function()
     if awful.layout.get(mouse.screen.index) == awful.layout.suit.max then
@@ -70,17 +67,17 @@ local globalkeys = awful.util.table.join(
   -- SYSTEM-RELATED KEY BINDINGS
   -- Awesome stuff
   awful.key({ modkey, "Control" }, "r", awesome.restart),
-  awful.key({ modkey, "Shift" }, "q", awesome.quit),
+  awful.key({ modkey, "Control" }, "q", awesome.quit),
   awful.key({ modkey }, "r", function ()
     promptbox[mouse.screen.index]:run()
   end),                                  
-  awful.key({ modkey }, "x", function ()
-    awful.prompt.run({ prompt = "Run Lua code: " },
-      promptbox[mouse.screen.index].widget,
-      awful.util.eval, nil,
-      awful.util.getdir("cache") .. "/history_eval"
-    )
-  end),
+--  awful.key({ modkey }, "x", function ()
+--    awful.prompt.run({ prompt = "Run Lua code: " },
+--      promptbox[mouse.screen.index].widget,
+--      awful.util.eval, nil,
+--      awful.util.getdir("cache") .. "/history_eval"
+--    )
+--  end),
   awful.key({ modkey }, "p", function()
     menubar.show()
   end),
@@ -114,33 +111,30 @@ local globalkeys = awful.util.table.join(
     awful.util.spawn(config.command.screenshot)
   end),
   -- Lock screen
-  awful.key({ modkey, "Mod1" }, "l", function ()
+  awful.key({ modkey, "Mod1" }, "F4", function ()
     awful.util.spawn(config.command.lock)
   end),
 
   -- APP LAUNCH KEY BINDINGS
-  awful.key({ modkey, }, "Return", function () 
-    if tags[1][1].selected then                      -- VEDI MEGLIO
-      awful.tag.viewonly(tags[1][2])
-    end
+  awful.key({ modkey, }, "e", function () 
     awful.util.spawn(config.terminal)
   end),
-  awful.key({}, "XF86HomePage", function ()
+  awful.key({ modkey }, "g", function ()
     awful.util.spawn(config.program.maxbrowser)
   end),
-  awful.key({ modkey, }, "F5", function ()
+  awful.key({ modkey, }, "t", function ()
     awful.util.spawn(config.program.tiledbrowser)
   end),
-  awful.key({ modkey, "Mod1" }, "h", function ()
+  awful.key({ modkey, "Shift" }, "e", function ()
     awful.util.spawn(config.program.filemanager)
   end),
-  awful.key({ modkey, "Mod1" }, "w", function ()
-    awful.util.spawn(config.program.writer)
-  end),
-  awful.key({ modkey, "Mod1" }, "n", function ()
+--  awful.key({ modkey, "Mod1" }, "w", function ()
+--    awful.util.spawn(config.program.writer)
+--  end),
+  awful.key({ modkey, }, "F1", function ()
     awful.util.spawn(config.program.connection)
   end),
-  awful.key({ modkey, "Mod1" }, "t", function ()
+  awful.key({ modkey, }, "F2", function ()
     awful.util.spawn(config.program.torrent)
   end)
 )
@@ -173,15 +167,15 @@ end
 
 local clientkeys = awful.util.table.join(
   -- Move client to ta
-  awful.key({ modkey, "Shift" }, "Left", function (c)
+  awful.key({ modkey, "Shift" }, "a", function (c)
     c:move_to_tag(tags[c.screen.index][c.screen.selected_tag.index -1])
     awful.tag.viewprev(mouse.screen.index)
   end),
-  awful.key({ modkey, "Shift" }, "Right", function (c)
+  awful.key({ modkey, "Shift" }, "s", function (c)
     c:move_to_tag(tags[c.screen.index][c.screen.selected_tag.index +1])
     awful.tag.viewnext(mouse.screen.index)
   end),
-  awful.key({ modkey, }, "z",
+  awful.key({ modkey, }, "b",
     function (c)
       local itsTag = bosch.tiling.getDefaultClientsTag(c)
       awful.client.movetotag(itsTag,c)
@@ -190,28 +184,28 @@ local clientkeys = awful.util.table.join(
   awful.key({ modkey, }, "f", function (c)
     c.fullscreen = not c.fullscreen
   end),
-  awful.key({ modkey, "Shift"   }, "c",      function (c)
+  awful.key({ modkey, "Shift"   }, "q",      function (c)
     c:kill()
 
   end),
   awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-  awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-  awful.key({ modkey,           }, "o",      function (c)
+--  awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+  awful.key({ modkey, "Shift" }, "<",      function (c)
     awful.client.movetoscreen(c, mouse.screen.index + 1)
   end),
-  awful.key({ modkey, "Shift"}, "o", function(c)
+  awful.key({ modkey, "Control"}, "<", function(c)
     awful.client.movetoscreen(c, mouse.screen.index + 1)
     awful.screen.focus_relative( 1) 
   end),
 --  awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-  awful.key({ modkey,           }, "n",
+  awful.key({ modkey, "Shift" }, "w",
     function (c)
       -- The client currently has the input focus, so it cannot be
       -- minimized, since minimized clients can't have the focus.
       c.minimized = true
       c.skip_taskbar = false
     end),
-  awful.key({ modkey,           }, "m",
+  awful.key({ modkey, "Shift" }, "f",
     function (c)
       c.maximized_horizontal = not c.maximized_horizontal
       c.maximized_vertical   = not c.maximized_vertical
