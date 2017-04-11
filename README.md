@@ -71,6 +71,7 @@ Sound volume
 Actual MPD playing song (if yes)
 ```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/audio.jpg)
+
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/volume_icons.jpg)
 ```
 CPU stress
@@ -80,25 +81,28 @@ Battery status/charge
 Thermal (needed in my case)
 ```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/system.jpg)
+
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/system_icons.jpg)
 ```
 Connection status (wifi, eth, usb, bluetooth, connecting, disconnected, connected)
 Traffic (download, upload)
 ```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/network.jpg)
+
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/network_icons.jpg)
 ```
 Unread mails
 ```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/mail.jpg)
+
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/mail_icons.jpg)
 ```
 Date/Time
 Actual layout
 ```
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/clock_layout.jpg)
+
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/layouts.jpg)
-```
 - No to:
 ```
 Free disk space
