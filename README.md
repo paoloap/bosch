@@ -98,7 +98,7 @@ Actual layout
 
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/mail_icons.jpg)
 
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/layouts.jpg)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/layout_icons.jpg)
 
 - No to:
 ```
