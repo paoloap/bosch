@@ -2,10 +2,19 @@
 Awesome WM 'Bosch Theme'
 v 0.6.2
 
+Empty screen
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/empty.png)
+
+Browser start page (browser tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/startpage.png)
+
+Vim, pcmanfm, zsh/git (nerd tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/nerd.png)
+
+Htop, pacman (admin tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/admin.png)
+
+Two ncmpcpp sessions (music tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/music.png)
 
 In this git I will upload all the configuration files that make my GUI work properly.

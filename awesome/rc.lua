@@ -327,16 +327,25 @@ tag.connect_signal("property::selected", function(t)
 tag.connect_signal("property::layout", function(t)
   clients = t:clients()
   local l = awful.layout.get(mouse.screen.index)
-  if l == awful.layout.suit.max.fullscreen then
-    t.gap = 0
-  elseif l == awful.layout.suit.max then
-    t.gap = 5
+  if l == awful.layout.suit.max then
     for i, c in ipairs(clients) do
+      c.border_width = 0
       awful.titlebar.hide(c)
-      c.border_color = beautiful.border_color_max
+    end
+  elseif l == bosch.switcher.layout() then
+    for i, c in ipairs(clients) do
+      c.border_width = 2
+      awful.titlebar.show(c)
     end
   else
-    t.gap = 5
+    for i, c in ipairs(clients) do
+      awful.titlebar.hide(c)
+      if l == awful.layout.suit.floating then
+	c.border_width = 2
+      else
+	c.border_width = 0
+      end
+    end
   end
 
 end)
