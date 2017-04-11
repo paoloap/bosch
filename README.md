@@ -63,46 +63,43 @@ ABOUT TOP BAR (bwibox)
 ```
 Actual active tags (with selected tag highlighted)
 Focused client's titlebar (no icon, just text)
-```
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/taglist.jpg)
-```
 Active sound output (Speakers, bluetooth, hdmi, jack)
 Sound volume
 Actual MPD playing song (if yes)
-```
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/audio.jpg)
-
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/volume_icons.jpg)
-```
 CPU stress
 MEM stress
 NOTE: 'stress' situations are not implemented yet, because I didn't reprogrammed these widget from scratch yet, they are still based on vicious
 Battery status/charge
 Thermal (needed in my case)
-```
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/system.jpg)
-
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/system_icons.jpg)
-```
 Connection status (wifi, eth, usb, bluetooth, connecting, disconnected, connected)
 Traffic (download, upload)
-```
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/network.jpg)
-
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/network_icons.jpg)
-```
 Unread mails
-```
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/mail.jpg)
-
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/mail_icons.jpg)
-```
 Date/Time
 Actual layout
 ```
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/taglist.jpg)
+
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/audio.jpg)
+
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/system.jpg)
+
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/network.jpg)
+
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/mail.jpg)
+
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/clock_layout.jpg)
 
+
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/volume_icons.jpg)
+
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/system_icons.jpg)
+
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/network_icons.jpg)
+
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/mail_icons.jpg)
+
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/layouts.jpg)
+
 - No to:
 ```
 Free disk space
