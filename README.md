@@ -1,6 +1,8 @@
 # bosch
 Awesome WM 'Bosch Theme'
-v 0.6.2
+v 0.7
+
+# The README below isn't up to date. I improved a lot of stuff in Lua files. Soon an updated documentation
 
 In this git I will upload all the configuration files that make my GUI work properly.
 This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
