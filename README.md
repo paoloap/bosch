@@ -2,7 +2,7 @@
 Awesome WM 'Bosch Theme'
 v 0.7
 
-# The README below isn't up to date. I improved a lot of stuff in Lua files. Soon an updated documentation
+## The present README has been updated, but I screenshot are still the old ones. Will update soon.
 
 In this git I will upload all the configuration files that make my GUI work properly.
 This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
@@ -34,23 +34,24 @@ Dynamic tagging is good, but too freedom in its interpretation risks to traduce 
 
 ```
 browsers (maximized) ------------------ brave, firefox, chromium, vimb, opera...
-nerd (tiling1-classic) ---------------- termite, pcmanfm...
+nerd (tiling1-classic) ---------------- termite, thunar...
 distraction-free (tiling2-centered) --- termite/vim...
 chat (tiling3-columned) --------------- tiled-vimb, termite/hangups...
 work (tiling1-classic) ---------------- mutt...
 admin (tiling1-classic) --------------- termite/htop, termite/pacman, wicd...
-max-apps (maximized) ------------------ libreoffice, gimp...
-video (tiling1-classic) --------------- vlc, sxiv...
+max-apps (maximized) ------------------ libreoffice, gimp, intellij...
+video (tiling1-classic) --------------- vlc...
 music (tiling2-centered) -------------- nncmpcpp, quodlibet...
 ```
 
 - By `config.lua` user can create/delete/edit scenarios
 - When system is started there's only one open tag, other ones are inactives
 - Every time a new client is opened, it can be put into an active tag (possibly the actually selected one) or activate a new one
+- Following standard AwesomeWM behaviour, to every tag (activated or not) it's associated a number
 - A tag is deactivated when there are no clients in it, and activates when a client is put into it
 - Every client has a default tag and a set of forbidden ones. When the client opens, if the actual tag is not forbidden, the client is opened there. If it's forbidden, the client is put into its default tag.
-- Actual existing philosophies aren't imo ergonomic: if we just allow to set a default tag, it's ok if we talk about a browser, but many clients don't belong to a specific tag and nevertheless are not made to be opened everywhere (i.e. a GTK application like pcmanfm is ok on some kinds of tiled layouts but not to others)
-- Anyway, we can simply "manually" move a client between tags, included forbidden ones
+- Actual existing philosophies aren't imo ergonomic: if we just allow to set a default tag, it's ok if we talk about a browser, but many clients don't belong to a specific tag and nevertheless are not made to be opened everywhere (i.e. a GTK application like thunar is ok on some kinds of tiled layouts but not to others)
+- Anyway, we can simply "manually" move a client between tags, included forbidden ones, using Super+Shift+[tag number]
 - There's a keybind that send every client to its default tag
 - A new app by default is not configured. If a client isn't configured, it just open always into actual tag
 - Clients can be configured by `config.lua` file.
@@ -123,17 +124,18 @@ Switcher with some browser instances open (browser tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/switcher.png)
 
 ## About browser
-- The idea is to have a simple, lightweight, button-less, keyboard-oriented browser
+- The idea is to have a simple, lightweight, button-less, keyboard-driven browser
 - Possibly this browser should be also tab-less, because the wm manages correctly the different browser instances, with the help of the switcher, and this way we can maximize space available for websites' content
 - The better choice imo is vimb browser: it's simple, it's lightweight, it's button-less, it's tab-less, it's keyboard oriented, and there's a WebKit2 version in development and already usable.
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/browser.png)
 - Moreover, it allows to create different "profiles" based on separate configuration files.
 - So we can create a separate profile, called "tiled" or "tiledvimb", which has the same configuration of "main" profile, except for one important aspect: we configure "Safari Mobile" as agent. This way, by default every web page will open in "mobile" website version, and it's just perfect for a tiled layout!
+- Unfortunately, vimb and in general every tiling-compliant browser has issues. Just two examples: they haven't "mainstream browser" extensions (it's really painful to even have an ad blocker...), and have some problems with some websites (i.e. web.whatsapp.com). My tip is to always have also a "traditional" browser like firefox or chrome, that you can open if needed
 
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/tiled_browser.png)
 
 ## About terminal
-- Just like browser, terminal should be lightweight, button-less and tab-less
+- Just like the browser, the terminal should be lightweight, button-less and tab-less
 - But it should correctly support colors
 - So I choosed termite, which also supports internal padding and pic integration (well, I didn't realize how to make it work yet...)
 In spiral layout
@@ -142,7 +144,7 @@ In spiral layout
 ## About GTK
 - I adopted an icon theme and a color scheme (which matches with termite and awesomewm) both created with oomox
 - I adopted as font the same font (Share Tech Mono 10) used for terminal and awesomewm
-- I use pcmanfm file manager, with hidden buttons (unfortunately not menu, because I don't know how to do it)
+- I used pcmanfm but now I moved to thunar file manager. Nevertheless it's trivial to adopt your favourite file manager and configure it in Bosch
 
 ## About key-shortcuts
 I find Awesome WM default key-shortcuts not very comfortable. In my idea all important ones should be one-hand. So this is my custom mapping:
@@ -167,7 +169,7 @@ config.border = "0";
 ```
 config.commands = {
   terminal = "termite";
-  filemanager = "pcmanfm";
+  filemanager = "thunar";
   browser = "nuvimb";
   tiledbrowser = "tiledvimb";
   netmanager = "termite -e wicd-curses -t wicd";
@@ -230,19 +232,29 @@ config.tiling.clients = {
   { class = "Termite", name = "ncmpcpp", type = "m", forbidden = {"b","T","d","t","w","M","a","v"} };
   { class = "Termite", name = "wicd", type = "a", forbidden = {"b","d","t","M","v","m"} };
   { class = "Termite", name = "rtv", type = "t", forbidden = {"b","d","w","M","v","m"} };
+  { class = "TelegramDesktop", name = "###", type = "t", forbidden = {"b","d","w","M","v","m"} };
   { class = "Termite", name = "htop", type = "a", forbidden = {"b","M","v","m"} };
-  { class = "libreoffice-writer", name = "###", type = "M", forbidden = {"b","T","d","w","a","v","m"} };
+  { class = "Termite", name = "pacaur", type = "a", forbidden = {"b","d","M","v","m"} };
 }
 ```
 
 # Release notes
 ## TO DO:
 - Implement "separate client" function
-- Borders for floating clients
 - Pics into terminals
-- Better comments into code
+- An app which takes config.lua and export the settings to gtk, icons, terminal etc
 
 ## New stuff
+
+### 0.7
+- moved keybindings, rules and signal from rc.lua to bosch/krs.lua
+- moved theme initialization and error managing from rc.lua to bosch/init.lua
+- ordered code
+- a lockscreen (based on i3-lock) which simply takes a screenshot of what actually appears, blur it and add some pic on it
+- corrected several bugs
+- improved code comments
+- added xcompmgr autostart to manage some simple effects like shadows
+- added caps lock bwibox widget
 
 ### 0.6.2
 - upgraded dynamic tagging logic
@@ -258,7 +270,7 @@ config.tiling.clients = {
 - added scripts to autostart bosch services
 
 ### 0.6
-- now the theme in compatible (only?) with awesome git version
+- now the theme is compatible (only?) with awesome git version
 - decoupled almost everything
 - created a config.lua file
 - changed colors and various settings
@@ -285,7 +297,7 @@ config.tiling.clients = {
 # Installation
 ## Dependencies:
 Some of them are just optional, or repleaceable with other commands
-- awesomewm 4 (or - in general - git version)
+- awesomewm
 - xrandr
 - acpi
 - imagemagick
@@ -298,7 +310,7 @@ Some of them are just optional, or repleaceable with other commands
 - ncmpcpp
 - mpc
 - zathura
-- pcmanfm
+- thunar
 - transmission
 - xorg-xbacklight
 - zsh

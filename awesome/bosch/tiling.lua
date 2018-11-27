@@ -9,6 +9,7 @@
 ---------------------------------------------------------------------------
 
 local tiling = { _NAME = "bosch.tiling" }
+
 local wibox = require("wibox")
 local titlebar = require("awful.titlebar")
 local beautiful = require("beautiful")
@@ -28,17 +29,19 @@ lain.layout.termfair.center.ncol = 1
 -- lain.layout.centerwork.bottom_right = 3
 
 local layout = {}
+
+
 layout = {
-    floating = awful.layout.suit.floating;
-    tiling1 = awful.layout.suit.tile;
-    tiling2 = lain.layout.centerwork;
-    tiling3 = lain.layout.termfair.center;
-    tiling4 = awful.layout.suit.spiral.dwindle;
-    maximized = awful.layout.suit.max;
-    fullscreen = awful.layout.suit.max.fullscreen;
-    write = lain.layout.centerwork;
-    music = lain.layout.centerwork;
-    video = awful.layout.suit.tile
+   floating = awful.layout.suit.floating;
+   tiling1 = awful.layout.suit.tile;
+   tiling2 = lain.layout.centerwork;
+   tiling3 = lain.layout.termfair.center;
+   tiling4 = awful.layout.suit.spiral.dwindle;
+   maximized = awful.layout.suit.max;
+   fullscreen = awful.layout.suit.max.fullscreen;
+   write = lain.layout.centerwork;
+   music = lain.layout.centerwork;
+   video = awful.layout.suit.tile
 }
 
 layouts = {}
@@ -46,13 +49,13 @@ local tags = {}
 
 -- "Standard" layouts definition (independent by any configuration)
 layouts = {
-    layout.floating,
-    layout.tiling1,
-    layout.tiling2,
-    layout.tiling3,
-    layout.tiling4,
-    layout.maximized,
-    --layout.fullscreen
+   layout.floating,
+   layout.tiling1,
+   layout.tiling2,
+   layout.tiling3,
+   layout.tiling4,
+   layout.maximized,
+   --layout.fullscreen
 }
 
 --- setDefLayout local method returns the proper default layout for any tag type.
@@ -60,17 +63,17 @@ layouts = {
 -- @param ltype is the tag type ("floating", "maximized" etc)
 -- @return the layout element related to the tag type (es awful.layout.suit.tile)
 local function setDefLayout(ltype)
-  if ltype == "floating" then return layout.floating
-  elseif ltype == "tiling1" then return layout.tiling1
-  elseif ltype == "tiling2" then return layout.tiling2
-  elseif ltype == "tiling3" then return layout.tiling3
-  elseif ltype == "maximized" then return layout.maximized
-  elseif ltype == "fullscreen" then return layout.fullscreen
-  elseif ltype == "music" then return layout.music
-  elseif ltype == "video" then return layout.video
-  elseif ltype == "write" then return layout.write
-  else return layout.floating
-  end
+   if ltype == "floating" then return layout.floating
+   elseif ltype == "tiling1" then return layout.tiling1
+   elseif ltype == "tiling2" then return layout.tiling2
+   elseif ltype == "tiling3" then return layout.tiling3
+   elseif ltype == "maximized" then return layout.maximized
+   elseif ltype == "fullscreen" then return layout.fullscreen
+   elseif ltype == "music" then return layout.music
+   elseif ltype == "video" then return layout.video
+   elseif ltype == "write" then return layout.write
+   else return layout.floating
+   end
 end
 
 extmon = "no"
@@ -86,69 +89,68 @@ xrandr:read("*l")
 
 -- For every connected screen, load from config the desided scheme
 for i=1,nmon do
-  local screen = i
-  -- For first screen, load default tags/layouts scheme
-  if screen == 1 then
-    scheme = config.tiling.schemes.default
-  -- For each secondary screen, check if it's VGA or HDMI, and load the related
-  -- tags/layouts scheme
-  elseif screen > 1 then
-    -- Read a new line from xrandr
-    extmon = xrandr:read("*l")
-    if extmon == "VGA1" then
-      scheme = config.tiling.schemes.vga
-    else
-      scheme = config.tiling.schemes.hdmi
-    end
-  end
+   local screen = i
+   -- For first screen, load default tags/layouts scheme
+   if screen == 1 then
+      scheme = config.tiling.schemes.default
+   -- For each secondary screen, check if it's VGA or HDMI, and load the related
+   -- tags/layouts scheme
+   elseif screen > 1 then
+      -- Read a new line from xrandr
+      extmon = xrandr:read("*l")
+      if extmon == "VGA1" then
+         scheme = config.tiling.schemes.vga
+      else
+         scheme = config.tiling.schemes.hdmi
+      end
+   end
 
-  -- The two arrays below will collects the tag names list and relative layouts
-  -- for current screen, which will be passed as parameters to awful,tag.new
-  local deftags = {}
-  local deflayouts = {}
-  local deficons = {}
-  -- For every element of the scheme
-  for j, elem in ipairs(scheme) do
-    -- Get the tag type (maximized, floating, tiling1, etc.)
-    local currentType = elem.type
-    -- Execute setDefLayout function to set the right layout for current tag type 
-    local currentLayout = setDefLayout(currentType)
-    -- Get the tag name (which will be shownin bwibox taglist
-    --local currentName = elem.name
-    local currentName = ""
-    local currentIcon = elem.icon
-    -- insert currentName and currentLayout respectively on deftags and
-    -- deflayouts arrays
-    table.insert(deftags, currentName)
-    table.insert(deflayouts, currentLayout)
-    table.insert(deficons, currentIcon)
-  end
-  tags[screen] = awful.tag.new(deftags, screen, deflayouts)
-  for k, elem in ipairs(tags[screen]) do
-    tags[screen][k].icon = deficons[k]
-  end
+   -- The two arrays below will collects the tag names list and relative layouts
+   -- for current screen, which will be passed as parameters to awful,tag.new
+   local deftags = {}
+   local deflayouts = {}
+   local deficons = {}
+   -- For every element of the scheme
+   for j, elem in ipairs(scheme) do
+      -- Get the tag type (maximized, floating, tiling1, etc.)
+      local currentType = elem.type
+      -- Execute setDefLayout function to set the right layout for current tag type 
+      local currentLayout = setDefLayout(currentType)
+      -- Get the tag name (which will be shownin bwibox taglist
+      --local currentName = elem.name
+      local currentName = ""
+      local currentIcon = elem.icon
+      -- insert currentName and currentLayout respectively on deftags and
+      -- deflayouts arrays
+      table.insert(deftags, currentName)
+      table.insert(deflayouts, currentLayout)
+      table.insert(deficons, currentIcon)
+   end
+   tags[screen] = awful.tag.new(deftags, screen, deflayouts)
+   for k, elem in ipairs(tags[screen]) do
+      tags[screen][k].icon = deficons[k]
+   end
 end
 
 function tiling.extmon()
-  return extmon
+   return extmon
 end
 
 function tiling.focusBar(c)
-  local layout = wibox.layout.flex.horizontal()
-  local title = titlebar.widget.titlewidget(c)
-  title:set_align("center")
-  layout:add(title)
-  focusBar = titlebar(c,
-  {
-    position = "bottom",
-    bg_normal = beautiful.border_normal,
-    fg_normal = beautiful.border_normal,
-    bg_focus = beautiful.border_focus,
-    fg_focus = beautiful.border_focus,
-    size = 3
-  })
-  focusBar:set_widget(layout)
---  focusBar.show(c)
+   local layout = wibox.layout.flex.horizontal()
+   local title = titlebar.widget.titlewidget(c)
+   title:set_align("center")
+   layout:add(title)
+   focusBar = titlebar(c, {
+      position = "bottom",
+      bg_normal = beautiful.border_normal,
+      fg_normal = beautiful.border_normal,
+      bg_focus = beautiful.border_focus,
+      fg_focus = beautiful.border_focus,
+      size = 3
+   })
+   focusBar:set_widget(layout)
+   --  focusBar.show(c)
 end
 
 -- takes a client as parameter. if it has a default tag, then it returns it.
