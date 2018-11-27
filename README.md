@@ -2,7 +2,7 @@
 Awesome WM 'Bosch Theme'
 v 0.7
 
-## The present README has been updated, but I screenshot are still the old ones. Will update soon.
+## The present README has been updated, but screenshots are still the old ones. Will update soon.
 
 In this git I will upload all the configuration files that make my GUI work properly.
 This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
