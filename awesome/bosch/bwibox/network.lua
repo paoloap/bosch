@@ -3,8 +3,8 @@
 --- Network and traffic widgets for Bosch top wibox
 --- To do: Correct comments
 -- @author schuppenflektor
--- @copyright 2016 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.6
+-- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.7
 -- @module bosch.bwibox.network
 ----------------------------------------------------------------------------
 

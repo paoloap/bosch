@@ -4,8 +4,8 @@
 -- Released under GPL v3
 -- To do: Order everything, comments
 -- @author schuppenflektor
--- @copyright 2016 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.6
+-- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.7
 ---------------------------------------------------------------------------
 -- based on zenburn-custom, awesome3 theme, by Adrian C. (anrxc)
 
@@ -30,7 +30,7 @@ layoutsdir    = picsdir .. "/layouts"
 wallpapers    = picsdir .. "/wallpapers"
 
 
-wallpaper1    = wallpapers .. "/background16.png"
+wallpaper1    = wallpapers .. "/background18.png"
 
 if awful.util.file_readable(wallpaper1) then
 	theme.wallpaper = wallpaper1
@@ -58,29 +58,29 @@ theme.tasklist_disable_icon = true
 --
 
 -- Bosch Wibox
-theme.fg_bwibox =		config.colorbg
+theme.fg_bwibox =		config.color00
 theme.bg_bwibox =		config.transparent
-theme.fg_bwibox_seltag =	config.color14
-theme.bg_bwibox_seltag =	config.colorfg
+theme.fg_bwibox_seltag =	config.color00
+theme.bg_bwibox_seltag =	config.color09
 theme.fg_bwibox_urgent =	config.color12
 
 
 -- Clients
-theme.border_width =		config.border
+theme.border_width =		3
 theme.border_width_max =	config.border_max
 theme.border_color_max = 	config.colorbg
 theme.border_normal =		config.colorbg
-theme.border_focus =		config.color12
+theme.border_focus =		config.color02
 
 -- Switcher
 theme.switcher_border_width =	config.border_switcher
 theme.fg_switcher_normal =	config.colorbg
 theme.bg_switcher_normal =	config.color08
 theme.fg_switcher_focus =	config.colorbg
-theme.bg_switcher_focus =	config.color12
+theme.bg_switcher_focus =	config.color01
 
 -- General
-theme.fg_normal = 		config.colorbg
+theme.fg_normal = 		config.color00
 theme.fg_focus  = 		config.color14
 theme.fg_urgent = 		config.color12
 theme.bg_normal = 		config.transparent
@@ -141,6 +141,10 @@ theme.widget_therm_low          = picsdir .. "/widgets/therm_low.png"
 theme.widget_therm_med          = picsdir .. "/widgets/therm_med.png"
 theme.widget_therm_high         = picsdir .. "/widgets/therm_high.png"
 theme.widget_therm_crit         = picsdir .. "/widgets/therm_crit.png"
+
+theme.widget_capslock_on	= picsdir .. "/widgets/capslock_on.png"
+theme.widget_capslock_off	= picsdir .. "/widgets/capslock_off.png"
+theme.widget_void		= picsdir .. "/widgets/void.png"
 
 theme.tag_browser = picsdir .. "/tags/browser.png"
 theme.tag_geek = picsdir .. "/tags/geek.png"

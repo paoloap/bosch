@@ -5,8 +5,8 @@
 -- Released under GPL v3
 -- NOTE: depends on pulseaudio package (pacmd command)
 -- @author schuppenflektor
--- @copyright 2016 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.6
+-- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.7
 -- @module bosch.bwibox.audio
 ---------------------------------------------------------------------------
 
@@ -44,6 +44,9 @@ function audio.volume()
   volumetimer:start()
   return volumeicon, volumewidget
 end
+
+--- audio.volume returns the actual volume, and an icon which represents it
+-- @return mpd widget
 
 function audio.mpd()
   local mpdtimer = timer({ timeout = 7 })

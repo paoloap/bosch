@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # Main display geometry
-main="$(xrandr | grep LVDS1 | cut -d' ' -f4)"
+main="$(xrandr | grep eDP1 | cut -d' ' -f4)"
 
 # Second display geometry
 sec="$(xrandr | grep ' connected' | sed -n 2p | cut -d' ' -f4)"
+
+echo $main
+echo $sec
 
 # Actual date
 date="$(date +%Y%m%d%H%M%S)"

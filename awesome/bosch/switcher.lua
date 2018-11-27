@@ -1,12 +1,13 @@
 ---------------------------------------------------------------------------
 --- BOSCH - switcher.lua
---- Bosch Swither: to view all opened clients in a maximized layout
+--- Bosch Swither: to view all open clients in a maximized layout
 -- Released under GPL v3
 -- To do: Comments
 -- @author schuppenflektor
--- @copyright 2016 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.6
+-- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.7
 ---------------------------------------------------------------------------
+
 
 local switcher = { _NAME = "bosch.switcher" }
 

@@ -4,8 +4,8 @@
 --- To do: Comments
 -- Released under GPL v3
 -- @author schuppenflektor
--- @copyright 2016 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.6
+-- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.7
 ---------------------------------------------------------------------------
 
 local bwibox =
@@ -24,6 +24,7 @@ require("bosch.config")
 
 beautiful.init(config.theme)
 
+-- All widget we want to show in bwibox
 separator = wibox.widget.textbox(" \\ ")
 batteryicon, batterystatus = bwibox.system.battery()
 neticon, netstatus = bwibox.network.status()
@@ -33,7 +34,8 @@ mpdwidget = bwibox.audio.mpd()
 memicon, memwidget = bwibox.system.memory()
 cpuicon, cpuwidget = bwibox.system.cpu()
 thermicon, thermwidget = bwibox.system.thermal()
-mailicon, mailwidget = bwibox.various.mail()
+--mailicon, mailwidget = bwibox.various.mail()
+capsicon = bwibox.various.capslock()
 textclock = awful.widget.textclock()
 main = {}
 taglist = {}
@@ -41,6 +43,8 @@ promptbox = {}
 titlebar = {}
 layoutbox = {}
 
+
+-- Draw a bwibox for every screen, basing on theme options
 for s = 1, screen.count() do
   main[s] = awful.wibox(
                       {
@@ -69,10 +73,11 @@ end
 
 function bwibox.init()
   awful.util.spawn("killall bwibox.sh; exec " .. config.scripts .. "/bwibox.sh")
-  -- Elements wchich are potentially different in every screen
+  -- Elements which are potentially different in every screen
   -- Variables need to be initialized because the are arrays
   -- (i.e. mywibox[1] is different from mywibox[2]
-    
+  
+  -- For every bwibox, put the desired widget in the choosen order and position
   for s = 1, screen.count() do
     -- Create Layout Box
       -- Widget allineati a sinistra
@@ -105,8 +110,8 @@ function bwibox.init()
     right_layout:add(upicon)
     right_layout:add(separator)
     --if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(mailicon)
-    right_layout:add(mailwidget)
+--    right_layout:add(mailicon)
+    right_layout:add(capsicon)
     right_layout:add(separator)
     right_layout:add(textclock)
     right_layout:add(layoutbox[s])

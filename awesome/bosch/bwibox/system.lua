@@ -3,10 +3,9 @@
 --- CPU, memory and battery  widgets for Bosch top wibox
 -- Released under GPL v3
 -- NOTE: depends on 'systemctl suspend' command
--- To Do: Correct comment
 -- @author schuppenflektor
--- @copyright 2016 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.6
+-- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.7
 -- @module bosch.bwibox.system
 ---------------------------------------------------------------------------
 
@@ -16,6 +15,9 @@ local awful = require ("awful")
 local vicious = require("vicious")
 local beautiful = require("beautiful")
 
+--- system.cpu returns the actual cpu stress, and a cpu icon
+-- @return first cpu icon
+-- @return second cpu stress value
 function system.cpu()
   local cpuicon = wibox.widget.imagebox()
   local cpuwidget = wibox.widget.textbox()
@@ -24,7 +26,9 @@ function system.cpu()
   return cpuicon, cpuwidget
 end
 
-
+--- system.memory returns the actual ram usage, and a ram icon
+-- @return first ram icon
+-- @return second ram value
 function system.memory()
   local memwidget = wibox.widget.textbox()
   vicious.register(memwidget, vicious.widgets.mem, "$1% ", 13)
@@ -33,6 +37,9 @@ function system.memory()
   return memicon, memwidget
 end
 
+--- system.thermal returns the actual cpu temperature, and an icon which represents it
+-- @return first thermal icon
+-- @return second cpu temperature value (in celsius)
 function system.thermal()
   local thermaltimer = timer({ timeout = 7 })
   local thermalicon = wibox.widget.imagebox()

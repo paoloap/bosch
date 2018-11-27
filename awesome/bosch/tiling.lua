@@ -4,10 +4,9 @@
 --- NOTE: depends on xrandr package
 --- To do: Comments
 -- @author schuppenflektor
--- @copyright 2016 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.6
--- @module bosch.tiling
-----------------------------------------------------------------------------
+-- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.7
+---------------------------------------------------------------------------
 
 local tiling = { _NAME = "bosch.tiling" }
 local wibox = require("wibox")
@@ -16,7 +15,6 @@ local beautiful = require("beautiful")
 local awful = require("awful")
 local lain = require("lain")
 local naughty =  require("naughty")
---local beautiful = require("beautiful")
 require("bosch.config")
 
 -- Lain layout settings
@@ -43,7 +41,7 @@ layout = {
     video = awful.layout.suit.tile
 }
 
-local layouts = {}
+layouts = {}
 local tags = {}
 
 -- "Standard" layouts definition (independent by any configuration)
@@ -54,7 +52,7 @@ layouts = {
     layout.tiling3,
     layout.tiling4,
     layout.maximized,
-    layout.fullscreen
+    --layout.fullscreen
 }
 
 --- setDefLayout local method returns the proper default layout for any tag type.
@@ -158,7 +156,9 @@ end
 function tiling.getDefaultClientsTag(client)
   for i, ielem in ipairs(config.tiling.clients) do
     if client.class == ielem.class then
-      local _s, _e,  nsubstr = string.find(client.name, "(%a+)")
+	  if not client.name == nil then
+		local _s, _e,  nsubstr = string.find(client.name, "(%a+)")
+	  end
       local _s, _e, isubstr = string.find(client.instance, "(%a+)")
       if client.name == ielem.name or client.instance == ielem.name or nsubstr == ielem.name or isubstr == ielem.name or ielem.name == "###" then
 	local scheme = {}
@@ -200,6 +200,22 @@ function tiling.openInTag(client)
   end
   return mouse.screen.selected_tag
 end
+
+function tiling.saveClientsStatus()
+  clientsListFile = io.open (config.bosch .. '/.cache/clients_status', "a")
+  for s in screen do
+    local clientsList = mouse.screen.clients
+    if not clientsList == nil then
+      local n = table.getn(clientsList)
+      for c in clientsList do
+      local pid = c.pid
+      local tag = c.first_tag
+      clientsListFile:write(c.pid .. ';;;' .. c.first_tag .. ';;;' .. s, "\n")
+    end
+  end
+end
+end
+
 
 function tiling.layouts()
   return layouts
