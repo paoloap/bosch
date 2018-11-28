@@ -5,7 +5,7 @@ visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
 header_visibility = no
 statusbar_visibility = no
-visualizer_look = "┃┃"
+visualizer_look = "██"
 
 colors_enabled = "yes"
 empty_tag_color = "blue"
@@ -22,7 +22,7 @@ statusbar_color = "red"
 active_column_color = "red"
 window_border_color = "blue"
 active_window_border = "blue"
-song_columns_list_format = "(6f)[red]{l} (25)[yellow]{a} (40)[blue]{t|f} (30)[cyan]{b}"
+song_columns_list_format = "(6f)[red]{l} (25)[yellow]{a} (40)[blue]{t|f} (30)[red]{b}"
 now_playing_prefix = "$b"
 now_playing_suffix = "$/b"
 playlist_display_mode = "columns" (classic/columns)

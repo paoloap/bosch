@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------
---- BOSCH - krc.lua
+--- BOSCH - init.lua
 --- Keybindings, Rules and Signals
 -- Released under GPL v3
 -- @author schuppenflektor

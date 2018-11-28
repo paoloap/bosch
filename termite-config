@@ -1,29 +1,44 @@
 [options]
 font = Share Tech Mono 10
 
-
 [colors]
 
 # special
 foreground      = #373b41
 foreground_bold = #373b41
-cursor          = #373b41
+cursor          = #FF49C0
 background      = #f0f0f0
-#background	= rgba(240, 240, 240, 0.9)
 
+# black
 color0  = #1d1f21
-color1  = #ff49c0
-color2  = #00f0c8
-color3  = #ff49c0
-color4  = #00f0c8
-color5  = #ff49c0
-color6  = #00f0c8
-color7  = #6c6e6d
 color8  = #b0b2b0
-color9  = #ff49c0
+
+# red
+color1  = #d23c9e
+color9  = #d23c9e
+
+# green
+color2  = #00c1a1
 color10 = #00c1a1
-color11 = #ff49c0
+
+# yellow
+color3  = #d23c9e
+color11 = #d23c9e
+
+# blue
+color4  = #00c1a1
 color12 = #00c1a1
-color13 = #ff49c0
-color14 = #729d97
+
+# magenta
+color5  = #d23c9e
+color13 = #d23c9e
+
+# cyan
+color6  = #00c1a1
+color14 = #00c1a1
+
+# white
+color7  = #6c6e6d
 color15 = #1d1f21
+
+

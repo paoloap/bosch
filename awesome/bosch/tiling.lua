@@ -54,7 +54,7 @@ layouts = {
    layout.tiling2,
    layout.tiling3,
    layout.tiling4,
-   layout.maximized,
+   layout.maximized
    --layout.fullscreen
 }
 
@@ -219,12 +219,12 @@ end
 end
 
 
-function tiling.layouts()
+function tiling.getLayouts()
   return layouts
 end
 
 function tiling.tags()
   return tags
 end
-
+--
 return tiling

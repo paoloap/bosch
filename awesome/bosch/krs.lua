@@ -20,8 +20,7 @@ local tiling = require("bosch.tiling")
 local switcher = require("bosch.switcher")
 
 local modkey = config.modkey
-
-local layouts = tiling.layouts
+local layouts = tiling.getLayouts()
 
 -- {{{ INPUT --------------------------------------------------------------------
 
@@ -178,8 +177,8 @@ globalkeys = awful.util.table.join(
       {  modkey,           }, "\\",
       function()
          if awful.layout.get(mouse.screen.index) == awful.layout.suit.max then
-            awful.layout.set(bosch.switcher.layout())
-         elseif awful.layout.get(mouse.screen.index) == bosch.switcher.layout() then
+            awful.layout.set(switcher.layout())
+         elseif awful.layout.get(mouse.screen.index) == switcher.layout() then
             awful.layout.set(awful.layout.suit.max)
          end
       end
@@ -360,7 +359,7 @@ clientkeys = awful.util.table.join(
    awful.key(
       { modkey,            }, "b",
       function(c)
-         local itsTag = bosch.tiling.getDefaultClientsTag(c)
+         local itsTag = tiling.getDefaultClientsTag(c)
          awful.client.movetotag(itsTag,c)
          itsTag:view_only()
       end
@@ -458,8 +457,16 @@ awful.rules.rules = {
    {
       rule = { class = 'Vlc' },
       properties = {
-         fullscreen=false
+         fullscreen = false
       }
+   },
+   {
+       rule = { class = 'Vimb' },
+       properties = {
+           maximized = false;
+           maximized_horizontal = false;
+           maximized_vertical = false
+       }
    }
 
 }
@@ -527,7 +534,7 @@ tag.connect_signal("property::layout",
          for i, c in ipairs(clients) do
             awful.titlebar.hide(c)
          end
-      elseif l == bosch.switcher.layout() then
+      elseif l == switcher.layout() then
          for i, c in ipairs(clients) do
             awful.titlebar.show(c)
          end
