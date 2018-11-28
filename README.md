@@ -1,8 +1,8 @@
 # bosch
 Awesome WM 'Bosch Theme'
-v 0.7
+v 0.7.1
 
-## The present README has been updated, but screenshots are still the old ones. Will update soon.
+## Still something to update in documentation
 
 In this git I will upload all the configuration files that make my GUI work properly.
 This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
@@ -16,13 +16,13 @@ Empty screen
 Browser start page (browser tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/startpage.png)
 
-Vim, pcmanfm, zsh/git (nerd tag)
+Vim, thunar, zsh/git (nerd tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/nerd.png)
 
-Htop, pacman (admin tag)
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/admin.png)
+Intellij Idea (maximized tag)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/idea.png)
 
-Two ncmpcpp sessions (music tag)
+Ncmpcpp (music tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/music.png)
 
 
