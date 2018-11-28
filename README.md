@@ -20,7 +20,7 @@ Vim, thunar, zsh/git (nerd tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/nerd.png)
 
 Intellij Idea (maximized tag)
-![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/idea.png)
+![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/maximized.png)
 
 Ncmpcpp (music tag)
 ![ScreenShot](https://raw.github.com/paoloap/bosch/master/screenshots/music.png)
