@@ -4,8 +4,8 @@
 -- Released under GPL v3
 -- To do: Order everything, comments
 -- @author schuppenflektor
--- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.7
+-- @copyright 2016-2019 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.8
 ---------------------------------------------------------------------------
 -- based on zenburn-custom, awesome3 theme, by Adrian C. (anrxc)
 
@@ -110,18 +110,32 @@ theme.layout_centerwork   = picsdir .. "/layouts/centerwork.png"
 
 -- {{{ Widget icons
 
+-- Audio
+theme.audio_analog_on_speakers  = picsdir .. "/audio/analog_speakers_on.png"
+theme.audio_analog_on_jack      = picsdir .. "/audio/analog_jack_on.png"
+theme.audio_analog_off          = picsdir .. "/audio/analog_off.png"
+theme.audio_hdmi_on             = picsdir .. "/audio/hdmi_on.png"
+theme.audio_hdmi_off            = picsdir .. "/audio/hdmi_off.png"
+theme.audio_bluetooth_on        = picsdir .. "/audio/bluetooth_on.png"
+theme.audio_bluetooth_off       = picsdir .. "/audio/bluetooth_off.png"
+theme.audio_mpd_local           = picsdir .. "/audio/mpd_local.png"
+theme.audio_mpd_soundcloud      = picsdir .. "/audio/mpd_soundcloud.png"
+theme.audio_mpd_youtube         = picsdir .. "/audio/mpd_youtube.png"
+-- Network
+theme.network_disconnected      = picsdir .. "/network/disconnected.png"
+theme.network_connecting        = picsdir .. "/network/connecting.png"
+theme.network_wifi              = picsdir .. "/network/wifi.png"
+theme.network_wired             = picsdir .. "/network/wired.png"
+theme.network_bluetooth         = picsdir .. "/network/bluetooth.png"
+theme.network_usb               = picsdir .. "/network/urb.png"
+theme.network_download          = picsdir .. "/network/download.png"
+theme.network_download_stress   = picsdir .. "/network/download_stress.png"
+theme.network_upload            = picsdir .. "/network/upload.png"
+theme.network_upload_stress     = picsdir .. "/network/upload_stress.png"
+
 theme.widget_fs     = picsdir .. "/widgets/disk.png"
 theme.widget_mem    = picsdir .. "/widgets/mem.png"
 theme.widget_cpu    = picsdir .. "/widgets/cpu.png"
-theme.widget_net    = picsdir .. "/widgets/download.png"
-theme.widget_netup  = picsdir .. "/widgets/upload.png"
-theme.widget_netgoing    = picsdir .. "/widgets/download_going.png"
-theme.widget_netupgoing    = picsdir .. "/widgets/upload_going.png"
-theme.widget_vol_on = picsdir .. "/widgets/vol_on.png"
-theme.widget_jack = picsdir .. "/widgets/jack.png"
-theme.widget_hdmi = picsdir .. "/widgets/hdmi.png"
-theme.widget_vol_off = picsdir .. "/widgets/vol_off.png"
-theme.widget_music  = picsdir .. "/widgets/music.png"
 theme.widget_ac_full = picsdir .. "/widgets/ac_full.png"
 theme.widget_ac     = picsdir .. "/widgets/ac.png"
 theme.widget_bat_full   = picsdir .. "/widgets/bat_full.png"
@@ -131,19 +145,12 @@ theme.widget_bat_empty  = picsdir .. "/widgets/bat_empty.png"
 theme.widget_nomail = picsdir .. "/widgets/nomail.png"
 theme.widget_newmail = picsdir .. "/widgets/newmail.png"
 
-theme.widget_disconnected 	= picsdir .. "/widgets/noconn.png"
-theme.widget_connecting         = picsdir .. "/widgets/connecting.png"
-theme.widget_wifi 		= picsdir .. "/widgets/wifi.png"
-theme.widget_wired 		= picsdir .. "/widgets/wired.png"
-theme.widget_usb                = picsdir .. "/widgets/usb.png"
-
 theme.widget_therm_low          = picsdir .. "/widgets/therm_low.png"
 theme.widget_therm_med          = picsdir .. "/widgets/therm_med.png"
 theme.widget_therm_high         = picsdir .. "/widgets/therm_high.png"
 theme.widget_therm_crit         = picsdir .. "/widgets/therm_crit.png"
 
 theme.widget_capslock_on	= picsdir .. "/widgets/capslock_on.png"
-theme.widget_capslock_off	= picsdir .. "/widgets/capslock_off.png"
 theme.widget_void		= picsdir .. "/widgets/void.png"
 
 theme.tag_browser = picsdir .. "/tags/browser.png"

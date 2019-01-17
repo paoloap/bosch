@@ -1,4 +1,5 @@
 #!/bin/bash
+## Script that dinamically generates the image shown on screen lock
 import -window root /tmp/screen.png
 mogrify -blur 0x5 /tmp/screen.png
 convert /tmp/screen.png /home/paoloap/.config/awesome/bosch/pics/other/onlock.png onlock.png -composite /tmp/locked.png

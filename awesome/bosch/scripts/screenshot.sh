@@ -1,4 +1,6 @@
 #!/bin/bash
+## Script to instantly produce a screenshot.
+## It works well and it supports a secondary screen, but it can be improved...
 
 # Main display geometry
 main="$(xrandr | grep eDP1 | cut -d' ' -f4)"

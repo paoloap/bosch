@@ -3,8 +3,8 @@
 --- Keybindings, Rules and Signals
 -- Released under GPL v3
 -- @author schuppenflektor
--- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.7
+-- @copyright 2016-2019 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.8
 ---------------------------------------------------------------------------
 
 local krs = { _NAME = "bosch.krs" }
@@ -18,9 +18,11 @@ local naughty = require("naughty")
 require("bosch.config")
 local tiling = require("bosch.tiling")
 local switcher = require("bosch.switcher")
+local tricks = require ("bosch.utils.tricks")
+local network = require ("bosch.bwibox.network")
 
 local modkey = config.modkey
-local layouts = tiling.getLayouts()
+local layouts = config.tiling.layouts
 
 -- {{{ INPUT --------------------------------------------------------------------
 
@@ -32,14 +34,16 @@ globalkeys = awful.util.table.join(
 -- Restart/Quit AwesomeWM
    awful.key(
       {  modkey, "Control" }, "r",
-      awesome.restart
+      function()
+         tiling.save_clients_status()
+      	 awesome.restart()
+      end
    ),
 
    awful.key(
       {  modkey, "Control" }, "q",
       awesome.quit
    ),
-
 -- Move between active tags
 -- Left
    awful.key(
@@ -152,13 +156,13 @@ globalkeys = awful.util.table.join(
    awful.key(
       {  modkey,           }, "space",
       function()
-         awful.layout.inc(1, mouse.screen, layouts)
+         awful.layout.inc(1, mouse.screen, config.tiling.layouts)
       end
    ),
    awful.key(
       {  modkey, "Shift"   }, "space",
       function()
-         awful.layout.inc(-1, mouse.screen, layouts)
+         awful.layout.inc(-1, mouse.screen, config.tiling.layouts)
       end
    ),
 
@@ -169,6 +173,15 @@ globalkeys = awful.util.table.join(
          local c = awful.client.restore(mouse.screen)
          client.focus = c
          c:raise()
+      end
+   ),
+
+   -- Toggle actual screen wibar
+   awful.key(
+      {  modkey,           }, "k",
+      function()
+         local ms = mouse.screen.index
+         wibars[ms].visible = not wibars[ms].visible
       end
    ),
 
@@ -188,7 +201,7 @@ globalkeys = awful.util.table.join(
    awful.key(
       {  modkey,           }, "r",
       function()
-         promptbox[mouse.screen.index]:run()
+         wibarswidgets[1].promptbox:run()
       end
    ),
 -- Show app menu (actually deactivated)
@@ -224,26 +237,26 @@ globalkeys = awful.util.table.join(
       end
    ),
 -- Network manager
-   awful.key(
-      {  modkey,           }, "F1",
-      function()
-         awful.util.spawn(config.commands.netmanager)
-      end
-   ),
+--   awful.key(
+--      {  modkey,           }, "F1",
+--      function()
+--         awful.util.spawn(config.commands.netmanager)
+--      end
+--   ),
 -- Torrent application
-   awful.key(
-      {  modkey,           }, "F2",
-      function()
-         awful.util.spawn(config.commands.torrent)
-      end
-   ),
+--   awful.key(
+--      {  modkey,           }, "F2",
+--      function()
+--         awful.util.spawn(config.commands.torrent)
+--      end
+--   ),
 -- Music player
-   awful.key(
-      {  modkey,           }, "F3",
-      function()
-         awful.util.spawn(config.commands.music)
-      end
-   ),
+--   awful.key(
+--      {  modkey,           }, "F3",
+--      function()
+--         awful.util.spawn(config.commands.music)
+--      end
+--   ),
 -- Lock screen
    awful.key(
       {  modkey,           }, "l",
@@ -283,19 +296,44 @@ globalkeys = awful.util.table.join(
    awful.key(
       {                    }, "F2",
       function()
-         awful.util.spawn(config.commands.voldown)
+         awful.spawn.easy_async_with_shell
+         (
+            config.commands.voldown,
+            function()
+               wtimers.volume:emit_signal("timeout")
+            end
+         )
       end
    ),
    awful.key(
       {                    }, "F3",
       function()
-         awful.util.spawn(config.commands.volup)
+         awful.spawn.easy_async_with_shell
+         (
+            config.commands.volup,
+            function()
+               wtimers.volume:emit_signal("timeout")
+            end
+         )
       end
    ),
    awful.key(
       {                    }, "F1",
       function()
-         awful.util.spawn(config.commands.voltoggle)
+         awful.spawn.easy_async_with_shell
+         (
+            config.commands.voltoggle,
+            function()
+               wtimers.volume:emit_signal("timeout")
+            end
+         )
+      end
+   ),
+   awful.key(
+      {  modkey,            }, "F1",
+      function()
+         os.execute(config.commands.sinkchange)
+         wtimers.volume:emit_signal("timeout")
       end
    )
 -- Music: Play/stop, prev track, next track
@@ -359,9 +397,12 @@ clientkeys = awful.util.table.join(
    awful.key(
       { modkey,            }, "b",
       function(c)
-         local itsTag = tiling.getDefaultClientsTag(c)
-         awful.client.movetotag(itsTag,c)
-         itsTag:view_only()
+         local default_tag = tiling.clientTagRules(c)
+         c:move_to_tag(default_tag)
+         
+------         local itsTag = tiling.getDefaultClientsTag(c)
+------         awful.client.movetotag(itsTag,c)
+------         itsTag:view_only()
       end
    ),
 -- Move client to left/right tag
@@ -416,18 +457,24 @@ clientkeys = awful.util.table.join(
       awful.client.floating.toggle
    ),
 -- Move client to other screen and give it focus
-   awful.key(
-      { modkey, "Shift"    }, "c",
-      function(c)
-         awful.client.movetoscreen(c, mouse.screen.index + 1)
-      end
-   ),
+--   awful.key(
+--      { modkey, "Shift"    }, "c",
+--      function(c)
+--         awful.client.movetoscreen(c, mouse.screen.index + 1)
+--      end
+--   ),
 -- Move client to other screen but keep focus
    awful.key(
       { modkey, "Shift"    }, "d",
       function(c)
          awful.client.movetoscreen(c, mouse.screen.index + 1)
          awful.screen.focus_relative( 1)
+      end
+   ),
+   awful.key(
+      { modkey, "Control"  }, "d",
+      function(c)
+         awful.client.movetoscreen(c, mouse.screen.index + 1)
       end
    )
 )
@@ -490,18 +537,24 @@ client.connect_signal("manage",
       )
 
       if not startup then
-       -- Put windows in a smart way, only if they does not set an initial position.
-       --    if not c.size_hints.user_position and not c.size_hints.program_position then
-       --      awful.placement.no_overlap(c)
-       --      awful.placement.no_offscreen(c)
-       --    end
+         -- Put windows in a smart way, only if they does not set an initial position.
+         if not c.size_hints.user_position and not c.size_hints.program_position then
+            awful.placement.no_overlap(c)
+            awful.placement.no_offscreen(c)
+         end
+--         naughty.notify({text = saved_clients[1] .. ""})
+         if saved_clients[c.pid] then
+            c.first_tag:view_only()
+         else
+            local itsTag = tiling.open_in_tag(c)
+            c:move_to_tag(itsTag)
+            itsTag:view_only()
+            client.focus = c
+         end
       end
-      local itsTag = tiling.openInTag(c)
-      awful.client.movetotag(itsTag,c)
-      itsTag:view_only()
       if c.type == "normal" or c.type == "dialog" then
          switcher.init_titlebar(c)
-         tiling.focusBar(c)
+         tiling.focus_bar(c)
       end
    end
 )

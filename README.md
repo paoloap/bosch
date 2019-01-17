@@ -1,8 +1,8 @@
 # bosch
 Awesome WM 'Bosch Theme'
-v 0.7.1
+v 0.8.0
 
-## Still something to update in documentation
+## I have corrected several errors and updated some function. I'm going to create a "develop" branch because 0.9 version will be almost rewritten, all the project will change (not the behaviour, but the programming style, considering that I've improved a lot with Lua). I hope that when I'll finish it will become usable for the most. See you soon
 
 In this git I will upload all the configuration files that make my GUI work properly.
 This GUI configuration is intended to be as much as lightweight I can, and to maximize keyboard/automation and minimize mouse/touchpad use.
