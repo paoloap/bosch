@@ -1,5 +1,4 @@
 # bosch
-Awesome WM 'Bosch Theme'
 
 ## Bosch AwesomeWM extension, develop branch
 
