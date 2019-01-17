@@ -1,30 +1,37 @@
 ---------------------------------------------------------------------------
---- BOSCH - config.lua
+--- BOSCH - conf.lua
 --- Configuration file. Here user can set every customizable value
 -- Released under GPL v3
 -- @author schuppenflektor
--- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
--- @release 0.7
+-- @copyright 2016-2019 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.8.1
 ---------------------------------------------------------------------------
 
+local gears = require("gears")
 local awful = require("awful")
 local lain = require("lain")
--- local functions = require("bosch.utils.functions")
-config                  =
+
+conf                    = {}
+
+conf.basekeys           =
 {
+   mod                  = "Mod4";
+   shi                  = "Shift";
+   ctl                  = "Control";
+   alt                  = "Alt";
 }
 
-config.main_dir         = awful.util.getdir("config") .. "bosch/"
-config.theme_dir        = config.bosch .. "theme.lua/"
-config.pics_dir         = config.bosch .. "pics/"
-config.scripts_dir      = config.bosch .. "scripts/"
-config.tmp_dir          = config.bosch .. ".cache/"
-config.mod              = "Mod4"
-config.shift            = "Shift"
-config.ctrl             = "Control"
-config.alt              = "Alt"
+conf.dir                =
+{
+   bosch                = gears.filesystem.get_xdg_config_home() .. "bosch/";
+   lib                  = gears.filesystem.get_xdg_config_home() .. "bosch/lib/";
+   bash                 = gears.filesystem.get_xdg_config_home() .. "bosch/lib/bash/";
+   icons                = gears.filesystem.get_xdg_config_home() .. "bosch/media/icons/";
+   walls                = gears.filesystem.get_xdg_config_home() .. "bosch/media/wallpapers/";
+   cache                = gears.filesystem.get_xdg_config_home() .. "bosch/.cache/";
+}
 
-config.skin             =
+conf.skin               =
 {
    font                 = "Share Tech Mono 10";
    transparent          = "#00000000";
@@ -52,8 +59,9 @@ config.skin             =
    border_switcher      = "2"
 }
 
-local mod, shift, control, alt = config.mod, config.shift, config.control, config.alt
-config.shortcuts        =
+-- Set the basekeys as short local variables to improve readability into conf.shortcuts table
+local mod, shi, ctl, alt = conf.basekeys.mod, conf.basekeys.shi, conf.basekeys.ctl, conf.basekeys.alt
+conf.shortcuts          =
 {
    terminal             =
    {
@@ -62,16 +70,17 @@ config.shortcuts        =
    };
    filemanager          =
    {
-      keys              = { mod, shift, "e" };
+      keys              = { mod, shi, "e" };
       spawn             = "thunar"
    };
    browser              =
    {
-      spawn             = "browser.sh default";
+      keys              = { mod, "g" };
+      spawn             = conf.dir.bash .. "browser.sh default";
    };
    tiledbrowser         =
    {
-      spawn             = "browser.sh mobile";
+      spawn             = conf.dir.bash .. "browser.sh mobile";
    };
    torrent              =
    {
@@ -97,35 +106,59 @@ config.shortcuts        =
    };
    brightdown           =
    {
-      launch            = "screenrec.sh 10";
+      keys              = { mod, "F5" }
+      launch            = "xbacklight -dec 15";
    };
-   brightup            =
+   brightup             =
    {
-      launch            = "screenrec.sh 10";
+      keys              = { mod, "F6" }
+      launch            = "xbacklight -inc 15";
    };
    voldown              =
    {
-      launch            = "screenrec.sh 10";
+      keys              = { "F2" }
+      launch            = "pactl -- set-sink-volume `pacmd list-sinks| grep '* index' | sed 's/^.*index: //'` -5%";
+      signals           = { "widle.pulse" }
    };
    volup                =
    {
-      launch            = "screenrec.sh 10";
+      keys              = { "F3" }
+      launch            = "pactl -- set-sink-volume `pacmd list-sinks| grep '* index' | sed 's/^.*index: //'` +5%";
+      signals           = { "widle.pulse" }
    };
-   brightdown           = "xbacklight -dec 15";
-   brightup             = "xbacklight -inc 15";
-   voldown              = "pactl -- set-sink-volume `pacmd list-sinks| grep '* index' | sed 's/^.*index: //'` -5%";
-   volup                 = "pactl -- set-sink-volume `pacmd list-sinks| grep '* index' | sed 's/^.*index: //'` +5%";
-   voltoggle             = "pactl set-sink-mute `pacmd list-sinks| grep '* index' | sed 's/^.*index: //'` toggle";
-   sinkchange		= config.scripts .. "/change_default_sink.sh";
-   musicplay             = "mpc-pause";
-   musicprev             = "mpc prev";
-   musicnext             = "mpc next";
-   data = {
-      pulseaudio             = "pacmd list-sinks | sed -r 's/^[ ]*[\t]*//'" .. ' | grep -e "^volume:" -e "^active port:" -e "^muted: " -e "^[ \\* ]*index: "';
-      mpd                = 'echo -e "status\ncurrentsong\nclose" | curl telnet://127.0.0.1:6600 -fsm 1 | grep -e "^state: " -e "^file: " -e "^Name: " -e "^Title: " -e "^Artist: "'
+   voltoggle            =
+   {
+      keys              = { "F3" }
+      launch            = "pactl set-sink-mute `pacmd list-sinks| grep '* index' | sed 's/^.*index: //'` toggle";
+      signals           = { "widle.pulse" }
+   };
+   sinkchange           =
+   {
+      keys              = { mod, "F1" }
+      launch            = conf.dir.bash .. "/change_default_sink.sh";
+      signals           = { "widle.pulse" }
+   };
+   musicplay            =
+   {
+      launch            = "mpc-pause";
+      signals           = { "widle.mpd" }
+   };
+   musicprev            =
+   {
+      launch            = "mpc prev";
+      signals           = { "widle.mpd" }
+   };
+   musicnext            =
+   {
+      launch            = "mpc next";
+      signals           = { "widle.mpd" }
+   };
 }
-config.wible            =
+
+
+conf.wible              =
 {
+
    --[[
 
    wible_example       =
@@ -133,14 +166,18 @@ config.wible            =
       refresh_time      -> an integer which represents the refresh time that will be set to the
                            widgets, in seconds
       model             -> table which represents the data model you want to match with the
-                           retrieved data
-      icons             -> a table which represents
-      command           -> the command that will retrieve the needed data from operating system a
+                           retrieved data. In general, you can just store it as a strings array,
+                           but it's better to think it to make data matching simpler
+      icons             -> a table which collects the view strings/media that will be shown
+                           in the widgets. In general, you can just store it as an array, but it's
+                           better to think it to make widget updating simpler
+      command           -> the command that will retrieve the needed data from operating system
    };
 
    ]]
+   
    pulse                =
-   {
+   {           
       refresh_time      = 1;
       model             =
       {
@@ -158,31 +195,32 @@ config.wible            =
          {
             on          =
             {
-               speakers = boschdir.pics.icons .. "audio/analog_speakers_on.png";
-               jack     = boschdir.pics.icons .. "audio/analog_jack_on.png";
+               speakers = boschdir.dirs.icons .. "audio/analog_speakers_on.png";
+               jack     = boschdir.dirs.icons .. "audio/analog_jack_on.png";
             };
             off         =
             {
-               speakers = boschdir.pics.icons .. "audio/analog_speakers_off.png";
-               jack     = boschdir.pics.icons .. "audio/analog_jack_off.png";
+               speakers = boschdir.dirs.icons .. "audio/analog_speakers_off.png";
+               jack     = boschdir.dirs.icons .. "audio/analog_jack_off.png";
             };
          };
          hdmi           =
          {
-            on          = boschdir.pics.icons .. "audio/hdmi_on.png";
-            off         = boschdir.pics.icons .. "audio/hdmi_off.png";
+            on          = boschdir.dirs.icons .. "audio/hdmi_on.png";
+            off         = boschdir.dirs.icons .. "audio/hdmi_off.png";
          };
          bluetooth      =
          {
-            on          = boschdir.pics.icons .. "audio/bluetooth_on.png";
-            off         = boschdir.pics.icons .. "audio/bluetooth_off.png";
+            on          = boschdir.dirs.icons .. "audio/bluetooth_on.png";
+            off         = boschdir.dirs.icons .. "audio/bluetooth_off.png";
          };
       };
+      command           = 
    };
 }
 
-config.network = {}
-config.network.interfaces = {
+conf.network = {}
+conf.network.interfaces = {
    wifi = "wlp3s0";
    wired = "enp0s25"
    }
