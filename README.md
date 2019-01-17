@@ -5,7 +5,7 @@ Awesome WM 'Bosch Theme'
 
 ### Desired project structure
 
-`
+```
 awesome
 |
 |___rc.lua
@@ -97,6 +97,6 @@ external
 |___termite_config
 
 launch_bosch.sh
-`
+```
 
 
