@@ -147,7 +147,7 @@ conf.shortcuts          =
    {
       launch            = "mpc prev";
       signals           = { "widle.mpd" }
-   };
+   };3
    musicnext            =
    {
       launch            = "mpc next";
@@ -155,7 +155,22 @@ conf.shortcuts          =
    };
 }
 
-
+-- conf.wible stores the configuration data for wible objects.
+-- A wible object consists in a table of widgets, plus a timer which controls their refresh (with a
+-- timeout or when resetted by a signal, see "gears.timer" in AwesomeWM API doc). These widget tables
+-- are structured to fit well into an horizontal wibox (a wibar), but they can be used in any way.
+-- Every wible can be considered as a set of widgets about an environment information that we want to
+-- show. If you want you can create a wible about whatever you want; the ones actually defined are
+-- named 'pulse', 'mpd', 'wicd' and 'traffic' and you can find more detailed information about them
+-- below. Technically, the creation of a wible object starts passing a string parameter, and optionally
+-- a table. The constructor, if the second parameter is not passed, considers conf.wible as the default
+-- table parameter. If we pass 'foo' as parameter, bosch.modules.wible will take conf.wible.foo data
+-- as an input for a 'foo' function. Every wible creation starts spawning a bash command (into
+-- conf.wible.foo.command) and taking the output, which will be elaborated basing on the model and the
+-- view by a function 'foo'. If we pass 'bar', then conf.wible.bar will be used as parameter by a 'bar'
+-- function.
+-- You can find more information about wibles and especially about how to create a new one into
+-- bosch.modules.wible api documentation.
 conf.wible              =
 {
 
@@ -165,20 +180,21 @@ conf.wible              =
    {
       refresh_time      -> an integer which represents the refresh time that will be set to the
                            widgets, in seconds
+      command           -> the command that will retrieve the needed data from operating system
       model             -> table which represents the data model you want to match with the
                            retrieved data. In general, you can just store it as a strings array,
                            but it's better to think it to make data matching simpler
       icons             -> a table which collects the view strings/media that will be shown
                            in the widgets. In general, you can just store it as an array, but it's
                            better to think it to make widget updating simpler
-      command           -> the command that will retrieve the needed data from operating system
    };
 
    ]]
    
-   pulse                =
+   pulse                = conf.dir.bash .. "data.sh pulse"
    {           
       refresh_time      = 1;
+      command           = 
       model             =
       {
          analog         =
@@ -189,6 +205,9 @@ conf.wible              =
          hdmi           = "hdmi-output-0";
          bluetooth      = "speaker-output";
       };
+      -- conf.wible.pulse.view stores, for every sink configured, all possible icons:
+      -- i.e. conf.wible.pulse.analog.off.jack referes to the icon which represents analog speakers
+      -- (the port named "analog-output-headphnes" in this case), when they are muted.
       view              =
       {
          analog         =
@@ -215,15 +234,7 @@ conf.wible              =
             off         = boschdir.dirs.icons .. "audio/bluetooth_off.png";
          };
       };
-      command           = 
    };
-}
-
-conf.network = {}
-conf.network.interfaces = {
-   wifi = "wlp3s0";
-   wired = "enp0s25"
-   }
 }
 
 
