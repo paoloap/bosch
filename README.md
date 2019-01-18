@@ -43,7 +43,7 @@ bosch
 |	|
 |	|_______walls
 |		|
-|		|______[wallpapers]
+|		|_______[wallpapers]
 |
 |_______modules
 |	|_______init.lua
@@ -54,7 +54,7 @@ bosch
 |	|	|_______maximo.lua
 |	|	|_______normie.lua
 |	|
-|	|___view
+|	|_______view
 |	|	|_______init.lua
 |	|	|
 |	|	|_______bwibox.lua
