@@ -7,48 +7,48 @@
 ```
 awesome
 |
-|___rc.lua
-|___conf.lua
+|_______rc.lua
+|_______conf.lua
 	
 bosch
-|___init.lua
+|_______init.lua
 |
-|___core
-|	|___init.lua
+|_______core
+|	|_______init.lua
 |	|
-|	|___engine.lua
-|	|___makeup.lua
+|	|_______engine.lua
+|	|_______makeup.lua
 |
-|___lib
+|_______lib
 |	|
-|	|___bash
+|	|_______bash
 |	|	|
-|	|	|___data_fetch.sh
-|	|	|___screens.sh
+|	|	|_______data_fetch.sh
+|	|	|_______screens.sh
 |	|
-|	|___lua
+|	|_______lua
 |		|
-|		|___tricks.lua
+|		|_______tricks.lua
 |
-|___media
+|_______media
 |	|
-|	|___icons
+|	|_______icons
 |	|	|
-|	|	|___[icons]
+|	|	|_______[icons]
 |	|
-|	|___other
+|	|_______other
 |	|	|
-|	|	|___lock_base.png
-|	|	|___login_base.png
+|	|	|_______lock_base.png
+|	|	|_______login_base.png
 |	|
-|	|___walls
+|	|_______walls
 |		|
-|		|__[wallpapers]
+|		|______[wallpapers]
 |
-|___modules
-|	|___init.lua
+|_______modules
+|	|_______init.lua
 |	|
-|	|___layout
+|	|_______layout
 |	|	|___init.lua
 |	|	|
 |	|	|___maximo.lua
@@ -61,7 +61,7 @@ bosch
 |	|	|___panoti.lua
 |	|	|___clinot.lua
 |	|
-|	|___wible
+|	|_______wible
 |		|___init.lua
 |		|
 |		|___pulse.lua
@@ -70,30 +70,30 @@ bosch
 |		|___traffic.lua
 |		|___capslock.lua
 |	
-|___.cache
+|_______.cache
 
 external
-|___bosch_gtk_theme
+|_______bosch_gtk_theme
 |	|
-|	|___[theme structure]
+|	|_______[theme structure]
 |
-|___bosch_icon_theme
+|_______bosch_icon_theme
 |	|
-|	|___[theme structure]
+|	|_______[theme structure]
 |
-|___install_tools
+|_______install_tools
 |	|
-|	|___generate_conf.sh
-|	|___generate_skin.sh
+|	|_______generate_conf.sh
+|	|_______generate_skin.sh
 |
-|___readme_media
+|_______readme_media
 |	|
-|	|___[screenshots etc]
+|	|_______[screenshots etc]
 |
-|___gtk.css
-|___ncmpcpp_config
-|___share_tech_mono.otf
-|___termite_config
+|_______gtk.css
+|_______ncmpcpp_config
+|_______share_tech_mono.otf
+|_______termite_config
 
 launch_bosch.sh
 ```
