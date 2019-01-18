@@ -49,26 +49,26 @@ bosch
 |	|_______init.lua
 |	|
 |	|_______layout
-|	|	|___init.lua
+|	|	|_______init.lua
 |	|	|
-|	|	|___maximo.lua
-|	|	|___normie.lua
+|	|	|_______maximo.lua
+|	|	|_______normie.lua
 |	|
 |	|___view
-|	|	|___init.lua
+|	|	|_______init.lua
 |	|	|
-|	|	|___bwibox.lua
-|	|	|___panoti.lua
-|	|	|___clinot.lua
+|	|	|_______bwibox.lua
+|	|	|_______panoti.lua
+|	|	|_______clinot.lua
 |	|
 |	|_______wible
-|		|___init.lua
+|		|_______init.lua
 |		|
-|		|___pulse.lua
-|		|___mpd.lua
-|		|___wicd.lua
-|		|___traffic.lua
-|		|___capslock.lua
+|		|_______pulse.lua
+|		|_______mpd.lua
+|		|_______wicd.lua
+|		|_______traffic.lua
+|		|_______capslock.lua
 |	
 |_______.cache
 
