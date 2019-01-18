@@ -2,6 +2,11 @@
 
 ## Bosch AwesomeWM extension, develop branch
 
+### NEXT:
+- Install and learn LuaDoc or similiar, so that you can document all the code while rewriting it.
+- Keep going with conf file
+- Start writing bosch.modules.widle
+
 ### Desired project structure
 
 ```
@@ -97,5 +102,4 @@ external
 
 launch_bosch.sh
 ```
-
 
