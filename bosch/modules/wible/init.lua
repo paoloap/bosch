@@ -25,8 +25,6 @@ function wible:_init(sink, wible_conf)
    if not wible_conf then
       wible_conf = conf.wible
    end
-   self.value1 = init1
-   self.value2 = init2
    local sink_conf      = wible_conf[sink] or conf.wible[sink]
    self.refresh         = sink_conf.refresh_time
    self.view            = sink_conf.view
