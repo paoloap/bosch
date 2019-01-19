@@ -184,17 +184,17 @@ conf.wible              =
       model             -> table which represents the data model you want to match with the
                            retrieved data. In general, you can just store it as a strings array,
                            but it's better to think it to make data matching simpler
-      icons             -> a table which collects the view strings/media that will be shown
+      view              -> a table which collects the view strings/media that will be shown
                            in the widgets. In general, you can just store it as an array, but it's
                            better to think it to make widget updating simpler
    };
 
    ]]
    
-   pulse                = conf.dir.bash .. "data.sh pulse"
+   pulse                = 
    {           
       refresh_time      = 1;
-      command           = 
+      command           = conf.dir.bash .. "data.sh pulse";
       model             =
       {
          analog         =
@@ -234,7 +234,23 @@ conf.wible              =
             off         = boschdir.dirs.icons .. "audio/bluetooth_off.png";
          };
       };
+      max_number        = 8;
    };
+   mpd                  = 
+   {           
+      refresh_time      = 1;
+      command           = conf.dir.bash .. "data.sh mpd";
+      model             =
+      {
+         soundcloud     = "https://api.soundcloud.com";
+      };
+      view              =
+      {
+         local          = boschdir.dirs.icons .. "audio/mpd_local.png";
+         soundcloud     = boschdir.dirs.icons .. "audio/mpd_soundcloud.png";
+         youtube        = boschdir.dirs.icons .. "audio/mpd_youtube.png";
+      };
+      max_number        = 2;
 }
 
 
