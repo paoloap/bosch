@@ -180,7 +180,6 @@ conf.wible              =
    {
       refresh_time      -> an integer which represents the refresh time that will be set to the
                            widgets, in seconds
-      command           -> the command that will retrieve the needed data from operating system
       model             -> table which represents the data model you want to match with the
                            retrieved data. In general, you can just store it as a strings array,
                            but it's better to think it to make data matching simpler
@@ -194,7 +193,6 @@ conf.wible              =
    pulse                = 
    {           
       refresh_time      = 1;
-      command           = conf.dir.bash .. "data.sh pulse";
       model             =
       {
          analog         =
@@ -239,7 +237,6 @@ conf.wible              =
    mpd                  = 
    {           
       refresh_time      = 1;
-      command           = conf.dir.bash .. "data.sh mpd";
       model             =
       {
          soundcloud     = "https://api.soundcloud.com";

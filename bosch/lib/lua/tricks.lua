@@ -18,16 +18,28 @@ local naughty = require("naughty")
 -- @return result a string array which we get from splitting
 -- @return i the number of strings contained in 'result'
 function tricks.split(s, delimiter)
-   local result = {}
-   local i = 0
-   for match in (s..delimiter):gmatch("(.-)"..delimiter) do
-      table.insert(result, match)
-	   i = i + 1
+   if s then
+      local result = {}
+      local i = 0
+      for match in (s..delimiter):gmatch("(.-)"..delimiter) do
+         table.insert(result, match)
+   	   i = i + 1
+      end
+      if result[i] == "" or result[i] == nil then
+          table.remove(result)
+      end
+      return result, i - 1;
    end
-   if result[i] == "" or result[i] == nil then
-       table.remove(result)
-   end
-   return result, i - 1;
+end
+
+function tricks.rows(s)
+   return tricks.split(s, "\n")
+end
+
+function tricks.start_from(s, delimiter)
+    local sa, n = tricks.split(s, delimiter)
+    local result = sa[2]
+    
 end
 
 --- readonlytable takes a table and returns the same table but with immutable fields
