@@ -2,79 +2,49 @@
 --- BOSCH - init.lua
 --- Bosch main file
 -- Released under GPL v3
--- @author schuppenflektor
+-- @author barrotes
 -- @copyright 2016-2019 Paolo Porcedda - porcedda(at)gmail.com
 -- @module bosch
--- @release 0.8
+-- @release 0.9.0
 ---------------------------------------------------------------------------
-
-local gears = require("gears")
-local awful = require("awful")
-local beautiful = require("beautiful")
-local naughty = require("naughty")
-
 
 package.loaded.bosch = nil
 
-local bosch = {
-   bwibox = require("bosch.bwibox"),
-   switcher = require("bosch.switcher"),
-   tiling = require("bosch.tiling"),
-   config = require("bosch.config"),
-   krs = require("bosch.krs"),
-   utils = require("bosch.utils"),
+bosch          = { _NAME = "bosch" }
+
+awful          = require("awful")
+gears          = require("gears")
+naughty        = require("naughty")
+beautiful      = require("beautiful")
+lain           = require("lain")
+tricks         = require("bosch.tricks")
+conf           = require("bosch.conf")
+
+
+bosch.modules  = require("bosch.modules")
+bosch.core     = require("bosch.core")
+bosch.actions  =
+{
+   global      = require("bosch.actions.global"),
+   client      = require("bosch.actions.client")
+}
+bosch.engine   = 
+{
+   unconscious = require("bosch.engine.unconscious"),
+   bad_news    = require("bosch.engine.bad_news"),
+   conscious   = require("bosch.engine.conscious")
 }
 
--- {{{ Error handling
--- Check if awesome finds an error during startup. If yes, adopt another config
--- (the code below will be executed only in fallback
-if awesome.startup_errors then
-   naughty.notify({
-      preset = naughty.config.presets.critical,
-      title = "Oops, there were errors during startup!",
-      text = awesome.startup_errors
-   })
-end
 
--- Error managing after startup
-do
-   local in_error = false
-   awesome.connect_signal("debug::error",
-      function (err)
-         -- Make sure we don't go into an endless error loop
-         if in_error then
-            return
-         end
-         in_error = true
-         naughty.notify({
-            preset = naughty.config.presets.critical,
-            title = "Oops, an error happened!",
-            text = err
-         })
-         in_error = false
-      end
-   )
-end
--- }}}
+-- Handle error notifications
+bosch.engine.bad_news()
 
--- {{{ Init elements
+-- Handle screens, tags, layouts, clients, modules
+-- and in generaly any "automatic" behaviour
+bosch.engine.unconscious()
 
--- Set wallpaper
-if beautiful.wallpaper then
-   awful.screen.connect_for_each_screen(
-      function(s)
-         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-      end
-   )
-end
+-- Handle input management
+bosch.engine.conscious()
 
--- Load the theme
-beautiful.init(config.theme)
-
--- Load layouts, tags and top wibar
-tags, saved_clients = bosch.tiling.init()
-layouts = bosch.config.layouts
-wibars, wtimers, wibarswidgets = bosch.bwibox.init()
---naughty.notify({ text = saved_clients[1] .. ""})
 
 return bosch
