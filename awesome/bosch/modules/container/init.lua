@@ -7,7 +7,7 @@ local container =
 wibox = require("wibox")
 
 local modules_dir = conf.dir.bosch .. "modules/container/"
-local objects =
+local def_objects =
 {
    screen = "index",
    client = "window"
@@ -25,7 +25,7 @@ setmetatable
 )
 
 
-for obj, key in pairs(objects) do
+for obj, id_key in pairs(def_objects) do
    local def_table = tricks.lua_in_dir(modules_dir .. obj .. "/")
    container[obj] =
    {
@@ -43,16 +43,15 @@ container.new = function(name, conf_table)
    self.name = name
    self.conf = conf_table
 
-   for obj, key in pairs(objects) do
+   for obj, id_key in pairs(def_objects) do
       local instance = container[obj].defined[name]
       if instance then
          local cont = instance.create(conf_table)
          self.element = cont.element
          self.children = cont.children
-         local id
          if conf_table.apply_to then
-            --naughty.notify({text = conf_table.apply_to[key] ..""})
-            id = conf_table.apply_to[key]
+            --naughty.notify({text = key ..""})
+            local id = ( def_key and conf_table.apply_to[def_key] ) or 1
             bosch.modules.containers[obj] = bosch.modules.containers[obj] or { }
             bosch.modules.containers[obj][id] = bosch.modules.containers[obj][id] or { }
             bosch.modules.containers[obj][id][name] = self

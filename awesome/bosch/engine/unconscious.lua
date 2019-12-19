@@ -55,11 +55,11 @@ function unconscious.tagging_logic()
             mod_table.apply_to = c
             bosch.modules.container(name, mod_table)
          end
-         --naughty.notify({text = c.bosch_table.tiling.default})
          local startup = not (opened_windows and opened_windows[c.window])
          if startup then
             core.send_to(c)
             if not c.bosch_table.background then
+               --naughty.notify({text = "aeaeaeaeaeaeaeaea"})
                core.pimp_client(c)
             end
          end
@@ -96,7 +96,13 @@ function unconscious.tagging_logic()
       end
    )
    
-   client.connect_signal( "property::floating", core.pimp_client )
+   client.connect_signal
+   (
+      "property::floating",
+      function(c)
+         core.pimp_client(c)
+      end
+   )
    client.connect_signal( "property::maximized", core.pimp_client )
 end
 

@@ -4,8 +4,8 @@
 -- Released under GPL v3
 -- @author barrotes
 -- @copyright 2016-2019 Paolo Porcedda - porcedda(at)gmail.com
+-- @module bosch
 -- @release 0.9.0
--- @module bosch.tricks
 ---------------------------------------------------------------------------
 
 local tricks = { _NAME = "bosch.tricks" }
@@ -37,11 +37,11 @@ end
 -- @return the read-only version of table
 function tricks.readonlytable(table)
    return setmetatable({}, {
-     __index = table,
-     __newindex = function(table, key, value)
+      __index = table,
+      __newindex = function(table, key, value)
         error("Attempt to modify read-only table")
-     end,
-     __metatable = false
+      end,
+      __metatable = false
    });
 end
 

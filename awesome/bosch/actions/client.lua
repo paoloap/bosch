@@ -42,7 +42,7 @@ end
 function client.minimize(c) c.minimized = true end
 
 -- Send client c to its default tag (defined on conf) but stay in actual tag
-function client.default_tag_bg = function(c)
+function client.default_tag_bg(c)
    local t, bg = bosch.core.send_to( c, { background = true, force_default = true } )
 end
 

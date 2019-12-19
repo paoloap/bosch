@@ -82,8 +82,8 @@ conf.modules               =
       {
          position            = "top",
          size                = 15,
-         excluded_layouts    = { "float", "switcher" },
-         excluded_props      = { "floating" }
+         def_layouts    = { "float", "switcher" },
+         def_props      = { "floating" }
       },
    }
 }
@@ -242,7 +242,7 @@ conf.clients           =
    termite        =
    {
       rule        = { class = "Termite", role = "terminal" },
-      no_titlebar = true,
+      --no_titlebar = true,
       tiling      = { default = ge, forbidden = { br, ma } },
    },
    thunar         =
@@ -267,9 +267,10 @@ conf.clients           =
    },
    vlc_controls   =
    {
-      rule        = { class = "vlc", name = "vlc" },
+      rule        = { class = "vlc", name = "" },
       --properties  = { border_width = 0},
       tiling      = { default = vi, forbidden = { br, wo, ma, wr, ad }, screen = "HDMI1" },
+      background  = true,
       no_titlebar = true,
       unpimpable  = true,
    },

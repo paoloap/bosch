@@ -30,7 +30,7 @@ end
 global.wm_quit = awesome.quit
 
 -- Open prompt-box on actual screen's wibar to execute a command
-function global.run_cmd
+function global.run_cmd()
    local s = mouse.screen.index
    bosch.modules.containers.screen[s].barble.children.prompt.widgets[1]:run()
 end

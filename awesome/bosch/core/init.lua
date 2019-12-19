@@ -133,8 +133,7 @@ end
 
 -- Popolate client c "bosch_table" field
 function core.boschiman(c)
-   -- naughty.notify({ text = c.class })
-   local same_class
+   local same_class = { }
    for name, ctable in pairs(conf.clients) do
       local class = ctable.rule.class or ""
       local client_class = (c and c.class) or ""
@@ -174,13 +173,11 @@ end
 -- Give focus to client c, select its tag if not selected, and place
 -- the mouse pointer on its center
 function core.pimp_client(c)
-   if
-      awful.client.focus.filter(c)
-      and not ( c.bosch_table and c.bosch_table.unpimpable )
-   then
+   if awful.client.focus.filter(c) then
+      --naughty.notify({ text = c.name })
       local t = c.first_tag or mouse.screen.selected_tag
-      if not t.selected then
-         t:view_only()
+      if t and not t.selected then
+          t:view_only()
       end
 
       client.focus = c
@@ -190,12 +187,14 @@ function core.pimp_client(c)
          0.05,
          function()
 
-            local point =
-            {
-               x = c.x + ( c.width / 2 ),
-               y = c.y + ( c.height / 2 )
-            }
-            mouse.coords( point )
+            if not ( c.bosch_table and c.bosch_table.unpimpable ) then
+               local point =
+               {
+                  x = c.x + ( c.width / 2 ),
+                  y = c.y + ( c.height / 2 )
+               }
+               mouse.coords( point )
+            end
          end
       )
    end
