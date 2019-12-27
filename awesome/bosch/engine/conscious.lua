@@ -12,9 +12,9 @@ setmetatable
    }
 )
 
-actions = bosch.actions
 
 function finger_catch.init()
+   local actions = bosch.actions
    local global_keys = {}
    setmetatable(global_keys, { __shl = function (t,v) t[#t+1]=v end })
    for action, keys in pairs(conf.keybindings.global) do

@@ -34,7 +34,7 @@ conf.makeup          =
    color15           = "#1d1f21";
    gap               = 7;
    border            = 4;
-   border_max        = 2;
+   border_max        = 4;
    border_switcher   = 2;
 }
 
@@ -75,16 +75,10 @@ conf.modules               =
          }
       }
    },
-   client                  =
+   client                     =
    {
-      focus_blink            = { position = "bottom", size = 6 },
-      ninja_title            =
-      {
-         position            = "top",
-         size                = 15,
-         def_layouts    = { "float", "switcher" },
-         def_props      = { "floating" }
-      },
+      focus_blink = { position = "bottom", size = 6 },
+      ninja_title = { position = "top", size = 15 },
    }
 }
 
@@ -267,12 +261,13 @@ conf.clients           =
    },
    vlc_controls   =
    {
-      rule        = { class = "vlc", name = "" },
+      rule        = { class = "vlc", name = "vlc" },
       --properties  = { border_width = 0},
       tiling      = { default = vi, forbidden = { br, wo, ma, wr, ad }, screen = "HDMI1" },
       background  = true,
       no_titlebar = true,
       unpimpable  = true,
+      ghost       = true
    },
    vlc_playlist   =
    {

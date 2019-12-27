@@ -32,6 +32,7 @@ theme.font              = conf.makeup.font
 theme.useless_gap       = conf.makeup.gap
 theme.useless_gap_width = conf.makeup.gap
 theme.border_width      = conf.makeup.border
+theme.border_max        = conf.makeup.border_max
 --theme.border_normal     = conf.makeup.color12
 theme.border_normal     = conf.makeup.colorfg
 theme.border_focus      = conf.makeup.color12

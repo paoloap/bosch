@@ -21,6 +21,22 @@ setmetatable
    }
 )
 
+function barble.show(s)
+   local wibar = s.bosch_table.containers.barble.element
+   if wibar then wibar.visible = true end
+end
+
+function barble.hide(s)
+   local wibar = s.bosch_table.containers.barble.element
+   if wibar then wibar.visible = false end
+end
+
+function barble.toggle(s)
+   local wibar = s.bosch_table.containers.barble.element
+   if wibar then wibar.visible = not wibar.visible end
+end
+
+
 function barble.create(bconf)
    local self = setmetatable({}, barble)
    self.children = {}
@@ -43,7 +59,6 @@ function barble.create(bconf)
             local w_props = tricks.split(element, "_")
             local replicate = w_props[1] == ""
             local name = w_props[3] or w_props[2] or w_props[1]
-            --naughty.notify({text = bconf.screen.index ..""})
             if name then
                local current_wible = bosch.modules.wible
                (

@@ -17,14 +17,22 @@ setmetatable
    }
 )
 
+local mod_table = conf.modules.client and conf.modules.client.focus_blink
+focus_blink.conf =
+{
+   signal_delay   = 0.10,
+   props          = { "!maximized", "!fullscreen" },
+   flags          = { "!ghost" },
+   layouts        = {  }
+}
+
 
 function focus_blink.create(conf_table)
    local self = setmetatable({}, focus_blink)
-   --   naughty.notify ( { text = beautiful.focus_selected .. "" } )
    local layout = wibox.layout.flex.horizontal()
    self.element = awful.titlebar
    (
-      conf_table.client,
+      conf_table.apply_to,
       {
          position    = conf_table.position,
          bg_normal   = beautiful.focus_unselected,
@@ -39,16 +47,20 @@ function focus_blink.create(conf_table)
 
 end
 
-client.connect_signal
-(
-   "manage",
-   function (c) --, startup)
-      local mod_table = conf.modules.client.focus_blink
-      mod_table.client = c
-      bosch.modules.container("focus_blink", mod_table)
-      awful.titlebar.show(c, mod_table.position)
-   end
-)
+function focus_blink.show(c)
+   awful.titlebar.show(c, mod_table.position)
+end
+function focus_blink.hide(c)
+   awful.titlebar.hide(c, mod_table.position)
+end
+
+--client.connect_signal
+--(
+--   "manage",
+--   function (c) --, startup)
+--      awful.titlebar.show(c, conf.modules.client.focus_blink.position)
+--   end
+--)
 
 
 return focus_blink

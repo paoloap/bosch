@@ -2,13 +2,14 @@
 --- BOSCH - tricks.lua
 --- Some lua tricks to manipulate data structures
 -- Released under GPL v3
--- @author barrotes
--- @copyright 2016-2019 Paolo Porcedda - porcedda(at)gmail.com
--- @module bosch
--- @release 0.9.0
+-- NOTE: depends on pulseaudio package (pacmd command)
+-- @author schuppenflektor
+-- @copyright 2016-2018 Paolo Porcedda - porcedda(at)gmail.com
+-- @release 0.8
+-- @module bosch.utils.tricks
 ---------------------------------------------------------------------------
 
-local tricks = { _NAME = "bosch.tricks" }
+local tricks = { _NAME = "bosch.core.tricks" }
 
 --- split takes a string and a delimiter, and returns an array with the string splitted
 --- basing on delimiter, and the array size (an integer)
@@ -37,11 +38,11 @@ end
 -- @return the read-only version of table
 function tricks.readonlytable(table)
    return setmetatable({}, {
-      __index = table,
-      __newindex = function(table, key, value)
-        error("Attempt to modify read-only table")
-      end,
-      __metatable = false
+     __index = table,
+     __newindex = function(table, key, value)
+                    error("Attempt to modify read-only table")
+                  end,
+     __metatable = false
    });
 end
 

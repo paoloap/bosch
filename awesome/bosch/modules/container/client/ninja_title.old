@@ -1,0 +1,157 @@
+local ninja_title =
+{
+   _NAME = "bosch.modules.container.client.ninja_title",
+   init   = function(custom_conf)
+      bosch.modules.container.client("ninja_title", custom_conf)
+   end
+}
+
+
+setmetatable
+(
+   ninja_title,
+   {
+      __call = function(cls, ...)
+         return cls.init(...)
+      end,
+   }
+)
+
+function ninja_title.create(conf_table)
+   local self = setmetatable({}, ninja_title)
+   local c = conf_table.apply_to
+   self.element = awful.titlebar
+   (
+      c,
+      {
+         position = conf_table.position,
+         height   = conf_table.size,
+         fg       = conf.makeup.colorbg,
+         bg       = conf.makeup.color07,
+         fg_focus = conf.makeup.colorbg,
+         bg_focus = conf.makeup.color09
+      }
+   )
+   local buttons = gears.table.join
+   (
+      awful.button
+      (
+         { },
+         1,
+         function()
+            client.focus = c
+            c:raise()
+            awful.mouse.client.move(c)
+         end
+      ),
+      awful.button
+      (
+         { },
+         3,
+         function()
+            client.focus = c
+            c:raise()
+            awful.mouse.client.resize(c)
+         end
+      )
+   )
+   self.element:setup
+   {
+      { -- Left
+          awful.titlebar.widget.iconwidget(c),
+          buttons = buttons,
+          layout  = wibox.layout.fixed.horizontal
+      },
+      { -- Middle
+          { -- Title
+              align  = 'center',
+              widget = awful.titlebar.widget.titlewidget(c)
+          },
+          buttons = buttons,
+          layout  = wibox.layout.flex.horizontal
+      },
+      { -- Right
+          awful.titlebar.widget.floatingbutton     (c),
+          awful.titlebar.widget.maximizedbutton    (c),
+          awful.titlebar.widget.stickybutton       (c),
+          awful.titlebar.widget.ontopbutton        (c),
+          awful.titlebar.widget.closebutton        (c),
+          layout = wibox.layout.fixed.horizontal   ( )
+      },
+      layout = wibox.layout.align.horizontal
+   }
+
+   return self
+end
+--if
+client.connect_signal
+(
+   "manage",
+   function (c) --, startup)
+      local conf_table = c.bosch_table
+      local mod_table = conf.modules.client.ninja_title
+      if mod_table then
+         mod_table.apply_to = c
+         bosch.modules.container("ninja_title",mod_table)
+         if not c.first_tag then
+            c.first_tag = mouse.screen.tags[1]
+         end
+         if
+            (
+               c.floating
+               or c.first_tag.name == "floating"
+               or c.first_tag.layout == layouts.switcher
+            )
+            and conf.modules.client.ninja_title
+            and not ( conf_table and conf_table.no_titlebar )
+         then
+            local nt = c.bosch_table and c.bosch_table.no_titlebar
+            --   naughty.notify({text = c.bosch_table.tiling.default})
+            if  nt then
+               awful.titlebar.show(c, mod_table.position)
+            else
+               awful.titlebar.hide(c, mod_table.position)
+            end
+         else
+            awful.titlebar.hide(c, mod_table.position)
+         end
+      end
+      client.connect_signal
+      (
+         "property::floating",
+         function(c)
+            if c.floating then
+               if not ( conf_table and conf_table.no_titlebar ) then
+                  awful.titlebar.show(c, conf.modules.client.ninja_title.position)
+               end
+            else
+               awful.titlebar.hide(c, conf.modules.client.ninja_title.position)
+            end
+         end
+      )
+
+   end
+)
+
+tag.connect_signal
+(
+   "property::selected",
+   function(t)
+      if t.selected then
+         if t.name == "floating" then
+            for i, c in ipairs(t:clients()) do
+            if conf.modules.client.ninja_title then
+               awful.titlebar.show(c, conf.modules.client.ninja_title.position)
+               end
+            end
+         else
+            for i, c in pairs(t:clients()) do
+               awful.titlebar.hide(c, conf.modules.client.ninja_title.position)
+            end
+         end
+      end
+   end
+)
+
+
+return ninja_title

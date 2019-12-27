@@ -31,8 +31,10 @@ global.wm_quit = awesome.quit
 
 -- Open prompt-box on actual screen's wibar to execute a command
 function global.run_cmd()
-   local s = mouse.screen.index
-   bosch.modules.containers.screen[s].barble.children.prompt.widgets[1]:run()
+   local actual_barble = mouse.screen.bosch_table.containers.barble
+
+   --naughty.notify({text = ""})
+   actual_barble.children.prompt.widgets[1]:run()
 end
 
 -- Go to left tag
@@ -50,6 +52,7 @@ function global.screen_focus() awful.screen.focus_relative(1) end
 -- Focus on next client in order
 function global.tag_focus_left()
    local c = awful.client.next(1)
+   --naughty.notify({ text = c.class})
    bosch.core.pimp_client(c)
 end
 
@@ -116,12 +119,7 @@ end
 
 -- Toggle actual screen's bosch wibar
 function global.toggle_wibar()
-   local s = mouse.screen.index
-   local wibar = bosch.modules.containers.screen[s].barble.element
-   if wibar then
-      --naughty.notify({text = "esiste"})
-      wibar.visible = not wibar.visible
-   end
+   bosch.modules.container.hide(mouse.screen.bosch_table.containers.barble, mouse.screen)
 end
 
 -- If you are in a maximized layout, toggle switcher
@@ -130,7 +128,6 @@ function global.switcher()
    if tag.layout == layouts.max then
       for i, c in ipairs(tag:clients()) do
          awful.titlebar.show(c)
-         --naughty.notify({ text = c.class})
       end
       tag.layout = layouts.switcher
    elseif tag.layout == layouts.switcher then

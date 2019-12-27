@@ -1,8 +1,7 @@
 local lain = require("lain")
 
 local unconscious = { _NAME = "bosch.engine.unconscious" }
-local core = bosch.core
-local prop_list = core.prop_list
+--local prop_list = core.prop_list
 
 lain.layout.termfair.nmaster = 3
 lain.layout.termfair.ncol    = 1
@@ -20,6 +19,8 @@ setmetatable
 )
 
 function unconscious.init()
+   local core = bosch.core
+
 
    unconscious.rebosch()
    unconscious.makeup()
@@ -28,6 +29,7 @@ function unconscious.init()
 end
 
 function unconscious.tagging_logic()
+   local core = bosch.core
 
    screen.connect_signal
    (
@@ -40,7 +42,15 @@ function unconscious.tagging_logic()
       end
    )
    
-   tag.connect_signal( "property::selected", core.weak_focus )
+   tag.connect_signal
+   (
+      "property::selected",
+      function(t)
+         if t.selected then
+            core.weak_focus(t)
+         end
+      end
+   )
    
    local opened_windows = tricks.table_from_file(conf.dir.cache, "clients_status")
    client.connect_signal
@@ -58,8 +68,8 @@ function unconscious.tagging_logic()
          local startup = not (opened_windows and opened_windows[c.window])
          if startup then
             core.send_to(c)
-            if not c.bosch_table.background then
-               --naughty.notify({text = "aeaeaeaeaeaeaeaea"})
+            if not ( c.bosch_table.background or c.bosch_table.ghost ) then
+               --naughty.notify({text = "eoeoeoe"})
                core.pimp_client(c)
             end
          end
@@ -103,7 +113,13 @@ function unconscious.tagging_logic()
          core.pimp_client(c)
       end
    )
-   client.connect_signal( "property::maximized", core.pimp_client )
+   client.connect_signal
+   (
+      "property::maximized",
+      function(c)
+         core.pimp_client(c)
+      end
+   )
 end
 
 function unconscious.makeup()
@@ -112,21 +128,40 @@ function unconscious.makeup()
    (
       "added",
       function(s)
-         gears.wallpaper.fit(beautiful.wallpaper, screen.primary)
+         gears.timer.weak_start_new
+         (
+            0.50,
+            function()
+               gears.wallpaper.fit(beautiful.wallpaper, screen.primary)
+            end
+         )
       end
    )
    screen.connect_signal
    (
       "removed",
       function(s)
-         gears.wallpaper.fit(beautiful.wallpaper, screen.primary)
+         gears.timer.weak_start_new
+         (
+            0.50,
+            function()
+               gears.wallpaper.fit(beautiful.wallpaper, screen.primary)
+            end
+         )
       end
    )
    client.connect_signal
    (
       "manage",
       function (c)
-         c.border_width = beautiful.border_width
+         if not c.bosch_table then
+            bosch.core.boschiman(c)
+         end
+         if c.bosch_table.ghost then
+            c.border_width = 0
+         else
+            c.border_width = beautiful.border_width
+         end
          c.border_color = beautiful.border_normal
       end
    )
@@ -134,9 +169,33 @@ function unconscious.makeup()
    (
       "property::maximized",
       function(c)
-         c.border_width =
-            ( c.maximized and beautiful.border_max )
-            or beautiful.border_width
+         gears.timer.weak_start_new
+         (
+            0.02,
+            function()
+               c.border_width =
+                  ( c.maximized and beautiful.border_max )
+                  or beautiful.border_width
+               c.border_color =
+                  ( c.maximized and beautiful.focus_selected )
+                  or beautiful.border_normal
+            end
+         )
+      end
+   )
+   client.connect_signal
+   (
+      "property::fullscreen",
+      function(c)
+         gears.timer.weak_start_new
+         (
+            0.02,
+            function()
+               c.border_width =
+                  ( c.fullscreen and 0 )
+                  or beautiful.border_width
+            end
+         )
       end
    )
 
@@ -224,7 +283,10 @@ function unconscious.rebosch()
 end
 
 
+local tag_to_show
 function unconscious.screen_bot(s, screen_table)
+   local prop_list = bosch.core.prop_list
+   s.bosch_table = { object = "screen" }
    gears.wallpaper.fit(beautiful.wallpaper, s)
    local screen_props = conf.tiling.displays[next(s.outputs)]
    for i, tag_name in ipairs(screen_props[2]) do
@@ -255,6 +317,9 @@ function unconscious.screen_bot(s, screen_table)
          end
       end
       t.icon_only = 1
+      --if screen_table.selected_tag == i then
+      --   tag_to_show = t
+      --end
    end
    for name, conf_table in pairs(conf.modules.screen) do
       conf_table.apply_to = s

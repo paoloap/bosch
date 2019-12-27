@@ -48,8 +48,10 @@ function core.say_cheese()
 
    for s in screen do
       tiling_status_table[s.index] = { }
-      local tag_status_table = { }
       for i, t in ipairs(s.tags) do
+         if t.selected then
+            tiling_status_table[s.index].selected_tag = i
+         end
          local actual_layout_index = 1
          for i, l in ipairs(conf.tiling.tags[t.name].layout_set) do
             if layouts[l] == t.layout then
@@ -162,11 +164,13 @@ function core.boschiman(c)
             )
          ) then
             c.bosch_table = ctable
+	    c.bosch_table.object = "client"
             return ctable
          end
       end
    end
    c.bosch_table = same_class
+   c.bosch_table.object = "client"
    return same_class
 end
 
@@ -174,7 +178,6 @@ end
 -- the mouse pointer on its center
 function core.pimp_client(c)
    if awful.client.focus.filter(c) then
-      --naughty.notify({ text = c.name })
       local t = c.first_tag or mouse.screen.selected_tag
       if t and not t.selected then
           t:view_only()
@@ -209,6 +212,7 @@ function core.weak_focus(t)
       0.08,
       function()
          if t and t.selected then
+            --naughty.notify({ text =  "no."})
             local s = t.screen or mouse.screen
             local clients = t:clients()
             local c =
@@ -221,7 +225,6 @@ function core.weak_focus(t)
                      )
                )
                or s.clients[1]
-
             client.focus = c
          end
       end

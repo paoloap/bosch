@@ -17,8 +17,23 @@ setmetatable
    }
 )
 
+
 local mod_table = conf.modules.client and conf.modules.client.ninja_title
-local SIGNAL_DELAY = 0.05
+
+ninja_title.conf =
+{
+   signal_delay   = 0.10,
+   props          = { "floating", "!fullscreen", "!maximized" },
+   flags          = { "!ghost" }, -- necessario e non sufficiente
+   layouts        = { "float", "switcher" } -- sufficiente se rispetta i flag
+}
+
+function ninja_title.show(c)
+   awful.titlebar.show(c, mod_table.position)
+end
+function ninja_title.hide(c)
+   awful.titlebar.hide(c, mod_table.position)
+end
 
 function ninja_title.create(conf_table)
    local self = setmetatable({}, ninja_title)
@@ -83,111 +98,9 @@ function ninja_title.create(conf_table)
       },
       layout = wibox.layout.align.horizontal
    }
+   --naughty.notify({text = "ok" })
 
    return self
 end
---if
-client.connect_signal
-(
-   "manage",
-   function (c) --, startup)
-      gears.timer.weak_start_new
-      (
-         SIGNAL_DELAY,
-         function()
-            if not c.bosch_table then
-               naughty.notify({text = c.bosch_table.tiling.default })
-               bosch.core.boschiman(c)
-            end
-            local mod_table = conf.modules.client.ninja_title
-            awful.titlebar.hide(c, mod_table.position)
-            c.first_tag = c.first_tag or mouse.screen.tags[1]
-            local has_def_layout, has_def_prop = false, false
-            for _, l_name in ipairs (mod_table.def_layouts) do
-               has_def_layout = has_def_layout or c.first_tag.layout == layouts[l_name]
-            end
-            for _, p_name in ipairs (mod_table.def_props) do 
-               has_def_prop = has_def_prop or c[p_name]
-            end
-            if
-               ( has_def_layout or has_def_prop )
-               and not ( c.bosch_table and c.bosch_table.no_titlebar )
-            then
-               awful.titlebar.show(c, mod_table.position)
-            else
-               awful.titlebar.hide(c, mod_table.position)
-            end
-         end
-      )
-   end
-)
-client.connect_signal
-(
-   "property::floating",
-   function(c)
-      gears.timer.weak_start_new
-      (
-         SIGNAL_DELAY,
-         function()
-            if c.floating then
-               if not ( c.bosch_table and c.bosch_table.no_titlebar ) then
-                  awful.titlebar.show(c, mod_table.position)
-               else
-                  awful.titlebar.hide(c, mod_table.position)
-               end
-            else
-               awful.titlebar.hide(c, mod_table.position)
-            end
-         end
-      )
-   end
-)
-
-tag.connect_signal
-(
-   "property::selected",
-   function(t)
-      gears.timer.weak_start_new
-      (
-         SIGNAL_DELAY,
-         function()
-            if t.selected then
-               local show_it = false
-               for _, l_name in ipairs (mod_table.def_layouts) do
-                  show_it = show_it or t.layout == layouts[l_name]
-               end
-               if show_it then
-                  for i, c in ipairs(t:clients()) do
-                     if c.bosch_table.no_titlebar then
-                        awful.titlebar.hide(c, mod_table.position)
-                     else
-                        awful.titlebar.show(c, mod_table.position)
-                     end
-                  end
-               else
-                  for i, c in pairs(t:clients()) do
-                     awful.titlebar.hide(c, mod_table.position)
-                     for _, p_name in ipairs (mod_table.def_props) do
-                        if
-                           c[p_name]
-                           and not
-                           (
-                              c.bosch_table
-                              and c.bosch_table.no_titlebar
-                           )
-                        then
-                           awful.titlebar.show(c, mod_table.position)
-                        else
-                           awful.titlebar.hide(c, mod_table.position)
-                        end
-                     end
-                  end
-               end
-            end
-         end
-      )
-   end
-)
-
 
 return ninja_title
